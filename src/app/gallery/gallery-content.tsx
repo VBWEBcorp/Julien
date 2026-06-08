@@ -58,7 +58,7 @@ export default function GalleryContent({ initialSettings, initialImages }: Props
             <div className="w-full h-full bg-gradient-to-br from-primary/20 via-primary/10 to-background" />
           )}
         </div>
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/35" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28 w-full">
@@ -71,11 +71,11 @@ export default function GalleryContent({ initialSettings, initialImages }: Props
             <p className="font-display text-xs font-semibold tracking-[0.22em] text-white/70 uppercase mb-4">
               {settings.eyebrow || 'Galerie'}
             </p>
-            <h1 className="font-display text-4xl tracking-tight text-white sm:text-5xl lg:text-6xl font-bold">
-              {settings.title || 'Nos réalisations'}
+            <h1 className="font-display text-4xl tracking-tight text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] sm:text-5xl lg:text-6xl font-bold">
+              {settings.title || "L'auberge en images"}
             </h1>
-            <p className="mt-5 text-lg text-white/70 leading-relaxed sm:text-xl max-w-2xl mx-auto">
-              {settings.description || 'Découvrez nos projets récents et laissez-vous inspirer par notre savoir-faire.'}
+            <p className="mt-5 text-lg text-white/80 leading-relaxed [text-shadow:0_1px_14px_rgba(0,0,0,0.45)] sm:text-xl max-w-2xl mx-auto">
+              {settings.description || "Le lieu, les chambres, la table et les paysages de la Vallée d'Aspe. Bientôt enrichie de nos photos."}
             </p>
           </motion.div>
         </div>

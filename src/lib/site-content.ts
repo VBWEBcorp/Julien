@@ -21,74 +21,82 @@
 // produits, ateliers, plats, chantiers, etc.). Garde le format auto+fit pour
 // la performance.
 
+// ⚠️ PLACEHOLDERS — visuels d'appoint (montagne / auberge / table) le temps
+// du shooting photo pro (nov./déc. 2026). À remplacer par les vraies photos
+// du Permayou via le back-office, sans toucher au code.
+
 export const images = {
-  // Hero homepage — 3 images qui défilent en carousel
+  // Hero homepage — vallée, salle/terrasse, chambre
   heroCarousel: [
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80',
-    'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80', // vallée de montagne
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80', // salle de restaurant
+    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1920&q=80', // chambre chaleureuse
   ],
 
-  // Section "Notre histoire" sur la home
+  // Section "Notre histoire / l'auberge" sur la home
   story:
-    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=1200&q=80', // auberge de montagne
 
-  // Page À propos — image principale du hero
+  // Page L'auberge — image principale du hero
   aboutHero:
-    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80', // montagnes
 
-  // Page Services — image de fond du hero (workspace/bureau sombre)
+  // Page L'hôtel / Restaurant — image de fond du hero
   servicesHero:
-    'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1920&q=80', // hôtel
 
   // Page Contact — image de fond du hero
   contactHero:
-    'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1920&q=80',
+    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80', // paysage montagne
 
-  // Page À propos — galerie 4 images
+  // Page L'auberge — galerie (8 images, grille 4 colonnes)
   aboutGallery: [
-    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80',
-    'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=600&q=80',
-    'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80',
+    'https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=600&q=80', // façade auberge
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80', // sommets
+    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80', // table / plat
+    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80', // chambre
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80', // salle / terrasse
+    'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80', // bar
+    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80', // randonnée
+    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80', // montagnes
   ],
 
-  // Page Services — 8 images illustrant chaque prestation
+  // Images illustrant les 3 pôles + la vallée
   services: [
-    'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=1200&q=80',
+    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80', // hôtel / chambre
+    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80', // restaurant / plat
+    'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80', // bar
+    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80', // vallée
+    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=80', // randonnée
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80', // terrasse / salle
+    'https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=1200&q=80', // façade auberge
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80', // sommets
   ],
 
   // Section CTA — 2 colonnes d'images animées en marquee vertical
   ctaScrollColumns: {
     col1: [
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1531973576160-7125cd663d86?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=500&fit=crop&q=75',
     ],
     col2: [
-      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1455587734955-081b22074882?w=400&h=500&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop&q=75',
     ],
   },
 
   // GalleryCarousel sur la home
   homeGallery: [
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=720&q=80',
   ],
 }
 
@@ -97,125 +105,138 @@ export const images = {
 // ============================================================================
 
 export const heroContent = {
-  eyebrow: 'Bienvenue',
-  title: 'Votre partenaire pour réussir en ligne',
+  eyebrow: "Accous · Vallée d'Aspe",
+  title: "Une auberge de montagne au cœur des Pyrénées",
   description:
-    'Nous accompagnons les entreprises avec des solutions sur mesure, pensées pour durer. Présence digitale, performance et clarté.',
-  button1: 'Prendre contact',
-  button2: 'Découvrir nos services',
+    "Hôtel, restaurant et bar au cœur de la Vallée d'Aspe. On y vient pour une pause gourmande, une nuit d'étape ou un séjour au grand air — dans une ambiance simple et conviviale.",
+  button1: 'Réserver',
+  button2: "Découvrir l'auberge",
   images: images.heroCarousel,
 }
 
 export const storyContent = {
-  eyebrow: 'Notre histoire',
-  title: 'Une approche humaine, des résultats concrets',
+  eyebrow: "L'esprit des lieux",
+  title: "Bienvenue au Permayou",
   paragraph1:
-    "Depuis nos débuts, nous croyons qu'un bon site commence par une bonne écoute. Nous prenons le temps de comprendre votre métier, vos clients et vos objectifs avant de concevoir quoi que ce soit.",
+    "Au cœur de la vallée d'Aspe, à Accous, Le Permayou est une auberge de montagne où l'on vient aussi bien pour une pause gourmande que pour un séjour au grand air. Entre les sommets pyrénéens, les sentiers de randonnée et l'authenticité du Béarn, nous accueillons voyageurs, randonneurs, habitants de la vallée et amoureux de nature dans une ambiance simple et conviviale.",
   paragraph2:
-    "Le résultat : des projets qui vous ressemblent, qui parlent à votre audience, et qui travaillent pour vous 24h/24.",
+    "Le Permayou, c'est un restaurant mettant à l'honneur les produits locaux, un hôtel chaleureux de huit chambres, un bar vivant ouvert à tous et un point presse — un lieu où l'on se sent bien, que l'on vienne pour un café, un repas entre amis ou plusieurs jours à la découverte des Pyrénées.",
   image: images.story,
 }
 
 // Aperçu des services sur la home (4 cards)
 // `iconName` correspond à une icône lucide (voir https://lucide.dev/icons/)
 export const servicesPreviewContent = {
-  eyebrow: 'Nos services',
-  title: 'Des solutions adaptées à votre activité',
+  eyebrow: 'Sous un même toit',
+  title: 'Dormir, se régaler, prendre un verre',
   description:
-    'Quel que soit votre secteur, nous vous aidons à développer votre présence et à atteindre vos objectifs.',
+    "Dormir, se régaler, prendre un verre face aux montagnes : Le Permayou réunit tout sous un même toit, au cœur de la Vallée d'Aspe.",
   items: [
     {
-      iconName: 'Globe',
-      title: 'Création de site web',
-      desc: 'Sites vitrines modernes, responsive et optimisés pour convertir vos visiteurs en clients.',
+      iconName: 'BedDouble',
+      title: "L'Hôtel",
+      desc: "8 chambres chaleureuses, dont des chambres avec vue sur la montagne et une chambre accessible PMR.",
     },
     {
-      iconName: 'Search',
-      title: 'Référencement SEO',
-      desc: 'Stratégie de contenu et optimisation technique pour apparaître en première page Google.',
+      iconName: 'UtensilsCrossed',
+      title: 'Le Restaurant',
+      desc: "Une cuisine traditionnelle et généreuse, qui met à l'honneur les produits locaux et les spécialités du Béarn.",
     },
     {
-      iconName: 'Palette',
-      title: 'Identité visuelle',
-      desc: 'Logo, charte graphique et supports cohérents qui reflètent votre image de marque.',
+      iconName: 'Wine',
+      title: 'Le Bar & la Terrasse',
+      desc: "Un bar vivant ouvert à tous et une terrasse avec vue sur le Cirque d'Iseye, pour l'apéro ou la pause d'après-rando.",
     },
     {
-      iconName: 'ShieldCheck',
-      title: 'Maintenance & support',
-      desc: 'Mises à jour, sécurité et accompagnement continu pour garder votre site performant.',
+      iconName: 'Mountain',
+      title: "La Vallée d'Aspe",
+      desc: "Randonnée, vélo, nature et patrimoine : l'auberge est votre camp de base pour explorer les Pyrénées.",
     },
+  ],
+}
+
+// Mosaïque éditoriale des pôles sur la home (grandes images + gros labels)
+export const polesContent = {
+  eyebrow: 'Nos univers',
+  title: 'Quatre lieux, une même âme',
+  items: [
+    { label: "La Vallée d'Aspe", href: '/vallee-d-aspe', image: images.services[3] },
+    { label: "L'Hôtel", href: '/services', image: images.services[0] },
+    { label: 'Le Restaurant', href: '/restaurant', image: images.services[1] },
+    { label: 'Le Bar & la Terrasse', href: '/bar-terrasse', image: images.services[2] },
   ],
 }
 
 export const testimonialsContent = {
-  eyebrow: 'Témoignages',
-  title: 'Ils nous font confiance',
+  eyebrow: 'Ils sont passés au Permayou',
+  title: 'Ils en parlent mieux que nous',
   description:
-    'Des entreprises de tous horizons qui ont gagné en visibilité et en crédibilité.',
+    "Randonneurs, cyclistes, familles ou habitants de la vallée : tous repartent avec le sourire.",
   items: [
-    { name: 'Marie D.', company: 'Boulangerie Le Fournil', text: "Depuis le nouveau site, je reçois 3 fois plus d'appels. Les clients nous trouvent enfin sur Google.", stars: 5 },
-    { name: 'Thomas L.', company: 'Cabinet Conseil TLR', text: 'Un travail soigné, un site clair et professionnel. Mes prospects comprennent immédiatement ce que je propose.', stars: 5 },
-    { name: 'Camille B.', company: 'Atelier Camille', text: "Le site reflète parfaitement l'univers de ma marque. J'ai gagné en crédibilité auprès de mes clients.", stars: 5 },
-    { name: 'Laurent M.', company: 'LM Rénovation', text: 'En trois mois, mon chiffre a augmenté de 40 %. Le site et le SEO font vraiment la différence.', stars: 5 },
-    { name: 'Nadia K.', company: 'Agence NovaTour', text: 'Un accompagnement au top, des délais respectés et un résultat qui dépasse mes attentes.', stars: 5 },
-    { name: 'Sophie R.', company: 'Studio Pilates Zen', text: "L'équipe a su capter l'ambiance de mon studio. Les réservations ont décollé.", stars: 5 },
-    { name: 'Pierre V.', company: 'Transports Vallée', text: 'Un investissement rentabilisé en quelques semaines. Des contacts qualifiés chaque jour.', stars: 5 },
-    { name: 'Julie A.', company: "Les Jardins d'Alice", text: 'Ils ont transformé notre présence en ligne. Le site est magnifique et nos ventes ont triplé.', stars: 5 },
-    { name: 'Franck G.', company: 'Studio FG', text: 'Design épuré, navigation fluide, exactement ce que je voulais pour présenter mes projets.', stars: 4 },
-    { name: 'Émilie T.', company: 'Clinique Vétérinaire du Parc', text: 'Nos clients trouvent toutes les infos facilement. La prise de rendez-vous a changé notre quotidien.', stars: 5 },
+    { name: 'Marie & Paul', company: 'Randonneurs · GR10', text: "Étape parfaite sur le GR10 : accueil chaleureux, lit confortable et un dîner copieux après une longue journée de marche.", stars: 5 },
+    { name: 'Thomas L.', company: 'Cycliste', text: "Idéal pour récupérer avant le col du Somport. La terrasse avec vue sur les montagnes vaut le détour.", stars: 5 },
+    { name: 'Famille Bernard', company: 'Séjour en famille', text: "Chambre avec vue magnifique, cuisine généreuse et locale. Les enfants ont adoré. On reviendra !", stars: 5 },
+    { name: 'Isabel G.', company: 'Voyageuse · Espagne', text: "Un vrai coup de cœur dans la Vallée d'Aspe. Authentique, convivial et très bien situé.", stars: 5 },
+    { name: 'Laurent M.', company: 'De passage', text: "Arrêt repas sur la route : produits du coin, plats savoureux et un bon verre au bar. Que demander de plus.", stars: 5 },
+    { name: 'Sophie R.', company: 'Amoureuse de nature', text: "Le calme, la montagne, l'odeur du bois… exactement l'esprit qu'on cherchait. Accueil aux petits soins.", stars: 5 },
   ],
 }
 
 export const galleryContent = {
-  eyebrow: 'Galerie',
-  title: 'En coulisses',
+  eyebrow: 'Le lieu',
+  title: "L'auberge en images",
   images: images.homeGallery,
 }
 
 export const ctaContent = {
-  eyebrow: 'Prêt à démarrer ?',
-  title: 'Parlons de votre projet',
+  eyebrow: 'Votre séjour',
+  title: "Votre prochaine étape dans la Vallée d'Aspe",
   description:
-    "Un échange simple et sans engagement pour comprendre vos besoins et vous proposer la meilleure approche.",
-  button: 'Demander un devis gratuit',
+    "Une nuit d'étape, un week-end ou une semaine à la montagne : réservez votre chambre au Permayou en quelques clics.",
+  button: 'Réserver maintenant',
   scrollImages: images.ctaScrollColumns,
 }
 
 export const faqContent = {
-  eyebrow: 'FAQ',
-  title: 'Questions fréquentes',
+  eyebrow: 'Avant de venir',
+  title: 'Les questions qu’on nous pose',
   description:
-    "Les réponses aux questions que vous vous posez avant de nous confier votre projet.",
+    "Les réponses aux questions que vous vous posez avant de venir au Permayou.",
   items: [
     {
-      question: 'Combien coûte un site internet ?',
+      question: "Quels sont vos horaires d'ouverture ?",
       answer:
-        "Le tarif dépend de votre besoin : un site vitrine simple démarre autour de 1 500 €, une application web sur mesure peut aller bien au-delà. Nous établissons toujours un devis clair et détaillé après un premier échange gratuit.",
+        "En été (juin à septembre), l'auberge est ouverte de 7h à 23h. Les horaires du reste de l'année seront précisés prochainement — n'hésitez pas à nous contacter.",
     },
     {
-      question: 'Combien de temps faut-il pour livrer un site ?',
+      question: 'Comment réserver une chambre ?',
       answer:
-        "Comptez 3 à 6 semaines pour un site vitrine standard, 2 à 4 mois pour un projet plus complexe. Nous vous fournissons un planning détaillé dès le début du projet, avec des jalons clairs.",
+        "La réservation se fait en ligne via notre moteur de réservation sécurisé, ou directement par téléphone. Nous proposons 8 chambres, dont des chambres avec vue sur la montagne et une chambre accessible aux personnes à mobilité réduite.",
     },
     {
-      question: 'Êtes-vous disponibles après la livraison ?',
+      question: 'Le restaurant est-il ouvert à tous ?',
       answer:
-        "Oui, nous proposons des contrats de maintenance qui incluent les mises à jour, la sécurité, les sauvegardes et un support réactif. Vous restez accompagnés dans la durée.",
+        "Oui, le restaurant et le bar sont ouverts aussi bien aux clients de l'hôtel qu'aux habitants et voyageurs de passage. On y sert midi et soir une cuisine de tradition et des spécialités de la gastronomie aspoise — garbure, palombe en saison — ainsi que des snacks pour une étape simple. L'apéro avec tapas se prend en terrasse face aux montagnes. Réservation conseillée, surtout en saison.",
     },
     {
-      question: "Le site m'appartient-il une fois livré ?",
+      question: 'Disposez-vous d\'un accès pour les personnes à mobilité réduite ?',
       answer:
-        "Totalement. Vous êtes propriétaire de votre site, de son code source, de son nom de domaine et de tous les contenus. Nous vous fournissons les accès et la documentation nécessaire.",
+        "Oui. L'auberge dispose d'une chambre double spécialement aménagée et accessible aux personnes à mobilité réduite.",
     },
     {
-      question: 'Comment se passe le référencement (SEO) ?',
+      question: 'Acceptez-vous les animaux ?',
       answer:
-        "Le SEO technique est intégré dès la conception : performance, structure sémantique, données structurées, accessibilité. Nous proposons aussi un accompagnement éditorial pour renforcer votre positionnement sur le long terme.",
+        "Oui, les animaux sont les bienvenus dans nos chambres. N'hésitez pas à nous le préciser lors de votre réservation.",
     },
     {
-      question: 'Acceptez-vous les paiements échelonnés ?',
+      question: 'Êtes-vous bien situés pour la randonnée et le vélo ?',
       answer:
-        "Oui. Le règlement se fait habituellement en 3 fois : 30 % à la signature, 40 % à mi-projet, 30 % à la livraison. Nous adaptons cette répartition selon vos contraintes.",
+        "Idéalement. Le Permayou est au cœur de la Vallée d'Aspe, étape incontournable sur le chemin de Saint-Jacques de Compostelle, point de départ de nombreux sentiers de randonnée et étape appréciée des cyclistes (col du Somport à proximité). Un vrai camp de base pour explorer les Pyrénées.",
+    },
+    {
+      question: 'Acceptez-vous les groupes ?',
+      answer:
+        "Oui, nous accueillons les groupes et pouvons étudier vos demandes spécifiques (séjours, repas de groupe, séminaires). Contactez-nous via le formulaire pour que nous construisions une proposition adaptée.",
     },
   ],
 }
@@ -226,35 +247,55 @@ export const faqContent = {
 
 export const aboutContent = {
   hero: {
-    eyebrow: 'À propos',
-    title: 'Une équipe engagée à vos côtés',
+    eyebrow: 'Notre histoire',
+    title: "L'auberge Le Permayou",
     description:
-      "Nous croyons que chaque entreprise mérite une présence en ligne à la hauteur de ses ambitions. Depuis notre création, nous accompagnons artisans, PME et indépendants avec des solutions simples, efficaces et soignées.",
+      "Au cœur de la vallée d'Aspe, à Accous : un hôtel, un restaurant et un bar tenus par un jeune couple amoureux de la montagne et des moments simples.",
     image: images.aboutHero,
   },
+  story: [
+    {
+      eyebrow: "L'auberge",
+      title: "Au cœur de la vallée d'Aspe",
+      paragraphs: [
+        "Au cœur de la vallée d'Aspe, à Accous, Le Permayou est une auberge de montagne où l'on vient aussi bien pour une pause gourmande que pour un séjour au grand air. Entre les sommets pyrénéens, les sentiers de randonnée et l'authenticité du Béarn, nous accueillons voyageurs, randonneurs, habitants de la vallée et amoureux de nature dans une ambiance simple et conviviale.",
+        "Le Permayou, c'est un restaurant mettant à l'honneur les produits locaux et les spécialités régionales, un hôtel chaleureux de huit chambres, un bar vivant ouvert à tous et un point presse, véritable lieu de rencontre du village. Notre ambition est de faire de l'auberge un lieu où l'on se sent bien, que l'on vienne pour un café, un repas entre amis, une nuit d'étape ou plusieurs jours à la découverte des Pyrénées.",
+      ],
+      image: images.story,
+    },
+    {
+      eyebrow: 'Les repreneurs',
+      title: 'Coline & Julien',
+      paragraphs: [
+        "Nous sommes Coline et Julien, un jeune couple animé par l'envie de donner vie à un projet qui nous ressemble : accueillir, partager et créer du lien autour d'une belle table et d'un lieu chaleureux. Amoureux de la montagne, des rencontres et des moments simples, nous sommes tombés sous le charme de cette auberge et de son environnement exceptionnel.",
+        "Notre objectif est de faire du Permayou un lieu vivant et convivial, ouvert aussi bien aux habitants qu'aux voyageurs. Nous souhaitons proposer une cuisine généreuse inspirée des produits locaux, développer la vie du bar avec des animations et faire de l'hôtel une étape accueillante pour tous ceux qui découvrent les Pyrénées.",
+      ],
+      image: images.services[5],
+    },
+  ],
   stats: [
-    { value: '200+', label: 'Projets livrés' },
-    { value: '98%', label: 'Clients satisfaits' },
-    { value: '5 ans', label: "D'expertise" },
-    { value: '24/7', label: 'Support continu' },
+    { value: '8', label: 'chambres' },
+    { value: '★★', label: 'hôtel' },
+    { value: '1', label: 'chambre PMR' },
+    { value: '100%', label: 'produits locaux' },
   ],
   values: [
     {
       iconName: 'Heart',
-      title: 'Proximité',
+      title: 'Convivialité',
       description:
-        'Un interlocuteur unique, disponible, qui connaît votre projet sur le bout des doigts.',
+        "Un accueil chaleureux et sincère, pour les voyageurs comme pour les habitants de la vallée.",
     },
     {
-      iconName: 'Lightbulb',
-      title: 'Clarté',
-      description: "Pas de jargon inutile. Des explications simples, des livrables concrets.",
+      iconName: 'Leaf',
+      title: 'Authenticité & local',
+      description: "Une cuisine généreuse inspirée des produits du terroir et des spécialités du Béarn.",
     },
     {
-      iconName: 'Users',
-      title: 'Sur mesure',
+      iconName: 'Mountain',
+      title: 'Esprit montagne',
       description:
-        "Chaque projet est différent. Nous adaptons nos solutions à votre réalité, pas l'inverse.",
+        "L'amour de la nature, des Pyrénées et des moments simples au grand air.",
     },
   ],
   gallery: images.aboutGallery,
@@ -266,73 +307,59 @@ export const aboutContent = {
 
 export const servicesContent = {
   hero: {
-    eyebrow: 'Nos services',
-    title: "Tout ce qu'il faut pour réussir en ligne",
+    eyebrow: "L'Hôtel ★★",
+    title: 'Huit chambres au pied des montagnes',
     description:
-      "Des prestations complètes, de la conception à l'accompagnement continu, adaptées à toutes les tailles d'entreprise.",
+      "Un hôtel chaleureux de 8 chambres, dont plusieurs avec vue sur la montagne et une chambre accessible aux personnes à mobilité réduite. Étape incontournable de la Vallée d'Aspe sur le chemin de Saint-Jacques de Compostelle — idéale pour les randonneurs, les cyclistes et tous les voyageurs de passage.",
   },
   kpis: [
-    { value: '8', label: 'prestations' },
-    { value: '200+', label: 'projets livrés' },
-    { value: '100%', label: 'sur mesure' },
+    { value: '8', label: 'chambres' },
+    { value: '★★', label: 'classement hôtel' },
+    { value: '1', label: 'chambre PMR' },
   ],
-  // Chaque service : icône, titre, description, 3 points clés, image
+  // Chaque entrée : icône, titre, description, 3 points clés, image
   list: [
     {
-      iconName: 'Globe',
-      title: 'Création de site vitrine',
-      description: 'Un site moderne, rapide et responsive qui présente clairement votre activité et inspire confiance à vos visiteurs.',
-      points: ['Design sur mesure', 'Mobile-first', 'Optimisé Google'],
+      iconName: 'BedDouble',
+      title: 'Chambre Double — Vue Montagne',
+      description: "Une chambre confortable avec un grand lit et une vue dégagée sur les sommets pyrénéens. Idéale pour un séjour en couple.",
+      points: ['1 lit double', 'Vue montagne', 'Salle de bain privative'],
       image: images.services[0],
     },
     {
-      iconName: 'Smartphone',
-      title: 'Application web',
-      description: 'Outils métier, plateformes de réservation, espaces clients : des applications pensées pour simplifier votre quotidien.',
-      points: ['Architecture évolutive', 'Sécurité renforcée', 'Hébergement haute dispo'],
-      image: images.services[1],
+      iconName: 'BedDouble',
+      title: 'Chambre Double ou Lits Jumeaux — Vue Montagnes',
+      description: "Modulable selon vos besoins : un grand lit ou deux lits simples, avec une belle vue sur la vallée.",
+      points: ['Lit double ou 2 lits', 'Vue montagnes', 'Configuration flexible'],
+      image: images.services[7],
     },
     {
-      iconName: 'Search',
-      title: 'Référencement naturel (SEO)',
-      description: 'Optimisation technique, contenu stratégique et suivi de positionnement pour gagner en visibilité sur Google.',
-      points: ['Audit technique', 'Stratégie de contenu', 'Suivi mensuel'],
-      image: images.services[2],
-    },
-    {
-      iconName: 'Palette',
-      title: 'Identité visuelle',
-      description: 'Logo, charte graphique, supports de communication : une image cohérente qui vous ressemble.',
-      points: ['Logo & déclinaisons', 'Charte graphique', 'Supports print & web'],
-      image: images.services[3],
-    },
-    {
-      iconName: 'Megaphone',
-      title: 'Communication digitale',
-      description: 'Stratégie de contenu, réseaux sociaux et campagnes pour développer votre audience en ligne.',
-      points: ['Stratégie éditoriale', 'Réseaux sociaux', 'Campagnes Ads'],
+      iconName: 'BedDouble',
+      title: 'Chambre Triple — Vue Montagne',
+      description: "Spacieuse, parfaite pour les familles ou les groupes d'amis, avec vue sur la montagne.",
+      points: ['Jusqu’à 3 personnes', 'Vue montagne', 'Espace généreux'],
       image: images.services[4],
     },
     {
-      iconName: 'Code',
-      title: 'Développement sur mesure',
-      description: 'Intégrations, automatisations, API : des solutions techniques taillées pour vos besoins spécifiques.',
-      points: ['Intégrations sur mesure', 'API & automatisation', 'Code propre & testé'],
-      image: images.services[5],
-    },
-    {
-      iconName: 'ShieldCheck',
-      title: 'Maintenance & sécurité',
-      description: 'Mises à jour, sauvegardes, monitoring et corrections pour un site toujours performant et sécurisé.',
-      points: ['Sauvegardes quotidiennes', 'Mises à jour sécu', 'Monitoring 24/7'],
+      iconName: 'BedDouble',
+      title: 'Chambre Triple Classique',
+      description: "Une chambre triple chaleureuse et fonctionnelle, idéale pour une étape confortable à plusieurs.",
+      points: ['Jusqu’à 3 personnes', 'Confort cosy', 'Bon rapport qualité-prix'],
       image: images.services[6],
     },
     {
-      iconName: 'BarChart3',
-      title: 'Analyse & reporting',
-      description: 'Tableaux de bord clairs pour suivre vos performances, comprendre vos visiteurs et ajuster votre stratégie.',
-      points: ['Dashboards clairs', 'Recommandations', 'Suivi mensuel'],
-      image: images.services[7],
+      iconName: 'Accessibility',
+      title: 'Chambre Double — Accessible PMR',
+      description: "Une chambre double spécialement aménagée et accessible aux personnes à mobilité réduite, pour un séjour serein.",
+      points: ['Accès PMR', 'Aménagement adapté', 'Plain-pied'],
+      image: images.services[5],
+    },
+    {
+      iconName: 'Coffee',
+      title: 'Les services de l’hôtel',
+      description: "Petit-déjeuner, demi-pension, Wi-Fi gratuit dans toutes les chambres, point presse (tabac & journaux) et animaux acceptés. Chaque chambre dispose d'une télévision à écran plat, d'une salle de bain privative et d'un sèche-cheveux.",
+      points: ['Petit-déj & demi-pension', 'Wi-Fi gratuit · TV écran plat', 'Animaux acceptés · Point presse'],
+      image: images.services[1],
     },
   ],
 }
@@ -344,11 +371,146 @@ export const servicesContent = {
 export const contactContent = {
   hero: {
     eyebrow: 'Contact',
-    title: 'Parlons de votre projet',
+    title: 'Nous contacter',
     description:
-      'Remplissez le formulaire ci-dessous ou contactez-nous directement. Nous répondons sous 24h.',
+      "Une question, une demande de réservation ou un projet de groupe ? Écrivez-nous ou appelez-nous directement, nous vous répondrons rapidement.",
   },
   // Les coordonnées (phone, email, address) viennent de siteConfig dans seo.ts
+}
+
+// ============================================================================
+//                          RESTAURANT — page /restaurant
+// ============================================================================
+
+export const restaurantContent = {
+  hero: {
+    eyebrow: 'Le Restaurant',
+    title: 'Une cuisine de tradition, généreuse et locale',
+    description:
+      "Au Permayou, on cuisine les produits de la Vallée d'Aspe et les spécialités du Béarn — garbure, palombe en saison, viandes du pays. Une table conviviale ouverte aux voyageurs comme aux habitants de la vallée, midi et soir.",
+  },
+  sections: [
+    {
+      iconName: 'UtensilsCrossed',
+      title: 'Notre cuisine',
+      description:
+        "Une cuisine traditionnelle et de saison, mijotée à partir de produits frais et locaux. Des plats généreux qui réchauffent après une journée de marche, et des spécialités aspoises qui racontent le terroir.",
+      points: ['Produits frais & de saison', 'Spécialités du Béarn', 'Circuits courts'],
+    },
+    {
+      iconName: 'Leaf',
+      title: 'Produits du terroir',
+      description:
+        "Nous travaillons avec les producteurs de la vallée : fromages de brebis, charcuteries, viandes et légumes du pays. Manger au Permayou, c'est goûter la Vallée d'Aspe.",
+      points: ['Producteurs locaux', 'Fromages de brebis', 'Viandes du pays'],
+    },
+    {
+      iconName: 'Wine',
+      title: 'Bar & snacking',
+      description:
+        "Une petite faim entre deux randos ? Le bar propose des snacks, des planches et un apéro en terrasse face aux montagnes. La carte des boissons met en avant les producteurs régionaux.",
+      points: ['Planches & snacks', 'Apéro en terrasse', 'Boissons régionales'],
+    },
+  ],
+  hours: {
+    eyebrow: 'Horaires de service',
+    title: 'Quand venir',
+    note: "En été (juin à septembre), service midi et soir. Réservation conseillée, surtout en saison. Les horaires du reste de l'année seront précisés prochainement — n'hésitez pas à nous contacter.",
+  },
+}
+
+// ============================================================================
+//                       BAR & TERRASSE — page /bar-terrasse
+// ============================================================================
+
+export const barTerrasseContent = {
+  hero: {
+    eyebrow: 'Le Bar & la Terrasse',
+    title: "Un verre face au Cirque d'Iseye",
+    description:
+      "La terrasse du Permayou ouvre sur l'une des plus belles vues de la vallée : le Cirque d'Iseye. Un bar vivant, ouvert à tous, pour l'apéro, la pause d'après-rando ou simplement un café au soleil.",
+  },
+  sections: [
+    {
+      iconName: 'Mountain',
+      title: 'La terrasse & la vue',
+      description:
+        "Installée face aux sommets, la terrasse est le cœur de l'auberge dès les beaux jours. On y prend son petit-déjeuner au calme, un déjeuner au soleil ou un verre au coucher du soleil sur les montagnes.",
+      points: ['Vue sur le Cirque d’Iseye', 'Plein soleil', 'Au calme'],
+    },
+    {
+      iconName: 'Wine',
+      title: 'Le bar',
+      description:
+        "Un bar de village, vivant et convivial, ouvert aussi bien aux clients de l'hôtel qu'aux habitants et aux voyageurs de passage. Bières locales, vins de la région et boissons du coin.",
+      points: ['Ouvert à tous', 'Bières & vins locaux', 'Ambiance conviviale'],
+    },
+    {
+      iconName: 'Coffee',
+      title: 'Les moments',
+      description:
+        "L'apéro entre amis, la pause des cyclistes avant le col, le café du matin avant la rando, le verre de fin de journée : la terrasse se prête à tous les moments de la journée.",
+      points: ['Apéro & tapas', 'Pause cycliste', 'Café du matin'],
+    },
+  ],
+}
+
+// ============================================================================
+//                     VALLÉE D'ASPE — page /vallee-d-aspe
+// ============================================================================
+
+export const valleeAspeContent = {
+  hero: {
+    eyebrow: "La Vallée d'Aspe",
+    title: "Votre camp de base dans la Vallée d'Aspe",
+    description:
+      "Randonnée, vélo, faune sauvage et patrimoine : la Vallée d'Aspe est l'une des plus préservées des Pyrénées. Depuis l'auberge, partez explorer les sentiers, les cols et les villages du Béarn.",
+  },
+  activities: [
+    {
+      iconName: 'Footprints',
+      title: 'Randonnée',
+      description:
+        "De nombreux sentiers au départ d'Accous, dont le GR10 et le chemin de Saint-Jacques de Compostelle. Le Cirque d'Iseye, les estives et les lacs d'altitude sont à portée de marche.",
+    },
+    {
+      iconName: 'Bike',
+      title: 'Vélo & cyclo',
+      description:
+        "Étape appréciée des cyclistes : le col du Somport et le col du Pourtalet sont à proximité. L'auberge est un point de départ et de récupération idéal.",
+    },
+    {
+      iconName: 'TreePine',
+      title: 'Faune & nature',
+      description:
+        "Ours, isards, vautours, marmottes : la vallée abrite une faune sauvage exceptionnelle, au cœur d'un environnement montagnard préservé.",
+    },
+    {
+      iconName: 'Landmark',
+      title: 'Patrimoine',
+      description:
+        "Villages de caractère, fort du Portalet, gare internationale de Canfranc tout près de la frontière espagnole : la vallée se découvre aussi à travers son histoire.",
+    },
+  ],
+}
+
+// ============================================================================
+//                          RÉSERVER — page /reserver
+// ============================================================================
+
+export const reserverContent = {
+  hero: {
+    eyebrow: 'Réservation',
+    title: 'Votre séjour au Permayou',
+    description:
+      "Une nuit d'étape, un week-end ou une semaine à la montagne : réservez votre chambre en quelques clics. Paiement sécurisé et confirmation immédiate via notre moteur de réservation.",
+  },
+  reassurance: [
+    { iconName: 'ShieldCheck', title: 'Paiement sécurisé', description: 'Réservation et paiement protégés.' },
+    { iconName: 'CalendarCheck', title: 'Confirmation immédiate', description: 'Votre créneau est bloqué aussitôt.' },
+    { iconName: 'Phone', title: 'Réservation assistée', description: 'Une question ? Appelez-nous directement.' },
+  ],
+  note: "Choisissez vos dates, votre chambre et réglez en ligne, sans quitter le site. Pour une demande de groupe ou un séminaire, contactez-nous directement.",
 }
 
 // ============================================================================

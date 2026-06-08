@@ -50,11 +50,11 @@ const MarketingPopupSchema = new Schema<IMarketingPopup>(
     },
     textColor: {
       type: String,
-      default: '#111827',
+      default: '#1d2420',
     },
     buttonColor: {
       type: String,
-      default: '#2563eb',
+      default: '#274923',
     },
     delay: {
       type: Number,
@@ -64,7 +64,7 @@ const MarketingPopupSchema = new Schema<IMarketingPopup>(
       enabled: { type: Boolean, default: false },
       text: { type: String, default: '' },
       link: { type: String, default: '' },
-      bgColor: { type: String, default: '#111827' },
+      bgColor: { type: String, default: '#274923' },
       textColor: { type: String, default: '#ffffff' },
     },
   },

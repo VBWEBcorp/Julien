@@ -66,7 +66,18 @@ export default async function BlogPage() {
         .lean(),
     ])
 
-    if (settingsDoc) settings = settingsDoc
+    if (settingsDoc) {
+      // Sérialisation : ne passer que des champs simples au Client Component
+      // (le doc Mongoose porte _id/ObjectId + dates non sérialisables).
+      const s = settingsDoc as any
+      settings = {
+        enabled: s.enabled ?? defaultSettings.enabled,
+        title: s.title ?? defaultSettings.title,
+        description: s.description ?? defaultSettings.description,
+        eyebrow: s.eyebrow ?? defaultSettings.eyebrow,
+        ...(s.heroImage ? { heroImage: s.heroImage } : {}),
+      }
+    }
     posts = (postsDocs as any[]).map((p) => ({
       ...p,
       _id: String(p._id),

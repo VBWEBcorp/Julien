@@ -51,7 +51,7 @@ export function PremiumHero({
   return (
     <section
       className={`relative isolate overflow-hidden border-b border-border/60 ${
-        hasBgImage ? 'bg-background' : 'bg-[oklch(0.975_0.012_285)] dark:bg-[oklch(0.16_0.02_285)]'
+        hasBgImage ? 'bg-background' : 'bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]'
       }`}
     >
       {/* Image de fond plein largeur + overlay sombre + fade vers le bas (style Blog) */}
@@ -73,7 +73,7 @@ export function PremiumHero({
             aria-hidden
             style={{
               background:
-                'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.60) 70%, rgba(0,0,0,0) 100%)',
+                'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.40) 70%, rgba(0,0,0,0) 100%)',
             }}
           />
           {/* Fade vers le bg uniquement sur les ~96px du bas */}
@@ -131,14 +131,14 @@ export function PremiumHero({
             <h1
               className={`mt-6 font-display text-balance pb-1 text-4xl leading-[1.15] font-semibold tracking-[-0.035em] sm:text-5xl ${
                 hasImage ? 'lg:text-[56px]' : 'lg:text-[60px]'
-              } ${darkOver ? 'text-white' : 'text-foreground'}`}
+              } ${darkOver ? 'text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.45)]' : 'text-foreground'}`}
             >
               {lead ? (
                 <>
                   {lead}{' '}
                   <span
                     className={`relative inline-block pb-1 font-serif italic font-normal tracking-[-0.01em] ${
-                      darkOver ? 'text-[oklch(0.78_0.15_285)]' : 'text-primary'
+                      darkOver ? 'text-[oklch(0.55_0.1_150)]' : 'text-primary'
                     }`}
                   >
                     {accent}
@@ -153,7 +153,7 @@ export function PremiumHero({
               <p
                 className={`mt-6 max-w-2xl text-pretty text-base leading-relaxed sm:text-lg ${
                   hasImage ? 'max-w-xl' : 'mx-auto'
-                } ${darkOver ? 'text-white/75' : 'text-muted-foreground'}`}
+                } ${darkOver ? 'text-white/80 [text-shadow:0_1px_14px_rgba(0,0,0,0.45)]' : 'text-muted-foreground'}`}
               >
                 {description}
               </p>
@@ -174,17 +174,17 @@ export function PremiumHero({
                 aria-hidden
                 style={{
                   background:
-                    'radial-gradient(ellipse at center, oklch(0.55 0.2 285 / 0.3) 0%, transparent 70%)',
+                    'radial-gradient(ellipse at center, oklch(0.45 0.1 150 / 0.3) 0%, transparent 70%)',
                 }}
               />
 
-              <div className="relative overflow-hidden rounded-2xl bg-background/40 p-1.5 shadow-[0_30px_60px_-20px_oklch(0.2_0.02_264/0.3)] backdrop-blur-xl ring-1 ring-border/60">
+              <div className="relative overflow-hidden rounded-2xl bg-background/40 p-1.5 shadow-[0_30px_60px_-20px_oklch(0.2_0.02_150/0.3)] backdrop-blur-xl ring-1 ring-border/60">
                 <div
                   className="pointer-events-none absolute inset-0 rounded-2xl p-px"
                   aria-hidden
                   style={{
                     background:
-                      'linear-gradient(135deg, oklch(0.55 0.2 285 / 0.4) 0%, oklch(0.91 0.012 264 / 0.5) 50%, oklch(0.55 0.2 285 / 0.4) 100%)',
+                      'linear-gradient(135deg, oklch(0.45 0.1 150 / 0.4) 0%, oklch(0.91 0.012 95 / 0.5) 50%, oklch(0.45 0.1 150 / 0.4) 100%)',
                     WebkitMask:
                       'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
                     WebkitMaskComposite: 'xor',

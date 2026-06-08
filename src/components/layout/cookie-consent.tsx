@@ -43,7 +43,7 @@ export function CookieConsent() {
           aria-labelledby="cookie-title"
           aria-describedby="cookie-desc"
         >
-          <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card px-5 py-4 shadow-[0_20px_50px_-12px_oklch(0.2_0.02_264/0.2)]">
+          <div className="relative overflow-hidden rounded-2xl border border-border/60 bg-card px-5 py-4 shadow-[0_20px_50px_-12px_oklch(0.2_0.02_150/0.2)]">
             {/* Halo violet subtil top-right (cohérent DA) */}
             <div
               className="pointer-events-none absolute -top-16 -right-16 size-40 rounded-full bg-primary/10 blur-3xl"
@@ -55,7 +55,7 @@ export function CookieConsent() {
               aria-hidden
               style={{
                 background:
-                  'linear-gradient(135deg, oklch(0.55 0.2 285 / 0.35) 0%, oklch(0.91 0.012 264 / 0.5) 50%, oklch(0.55 0.2 285 / 0.35) 100%)',
+                  'linear-gradient(135deg, oklch(0.45 0.1 150 / 0.35) 0%, oklch(0.91 0.012 95 / 0.5) 50%, oklch(0.45 0.1 150 / 0.35) 100%)',
                 WebkitMask:
                   'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
                 WebkitMaskComposite: 'xor',
@@ -141,10 +141,10 @@ export function CookieConsent() {
                 </button>
                 <button
                   onClick={handleAccept}
-                  className="group/cta relative inline-flex h-9 items-center overflow-hidden rounded-xl px-4 text-xs font-semibold text-primary-foreground shadow-[0_4px_14px_-4px_oklch(0.48_0.22_285/0.5)] transition-all hover:shadow-[0_6px_20px_-4px_oklch(0.48_0.22_285/0.6)] active:translate-y-px"
+                  className="group/cta relative inline-flex h-9 items-center overflow-hidden rounded-xl px-4 text-xs font-semibold text-primary-foreground shadow-[0_4px_14px_-4px_oklch(0.34_0.08_150/0.5)] transition-all hover:shadow-[0_6px_20px_-4px_oklch(0.34_0.08_150/0.6)] active:translate-y-px"
                 >
                   <span
-                    className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[oklch(0.42_0.22_280)] dark:from-primary dark:via-primary dark:to-[oklch(0.65_0.18_280)]"
+                    className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[oklch(0.28_0.08_150)] dark:from-primary dark:via-primary dark:to-[oklch(0.7_0.1_150)]"
                     aria-hidden
                   />
                   <span

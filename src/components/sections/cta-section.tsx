@@ -66,14 +66,14 @@ export function CtaSection() {
   const cta = data.cta ?? defaults
 
   return (
-    <section className="bg-[oklch(0.975_0.012_285)] dark:bg-[oklch(0.16_0.02_285)]">
+    <section className="bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.55, ease }}
-          className="relative overflow-hidden rounded-[2rem] border border-border/80 bg-white dark:bg-zinc-900 shadow-[var(--shadow-lg)]"
+          className="relative overflow-hidden rounded-[4px] border border-border/80 bg-white dark:bg-zinc-900 shadow-[var(--shadow-lg)]"
         >
 
           <div className="relative flex items-stretch min-h-[420px] sm:min-h-[460px]">
@@ -89,7 +89,7 @@ export function CtaSection() {
                 {cta.description}
               </p>
               <Button size="lg" className="group" asChild>
-                <Link href="/contact">
+                <Link href="/reserver">
                   {cta.button}
                   <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
                 </Link>

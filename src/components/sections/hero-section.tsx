@@ -1,13 +1,12 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowRight, Star } from 'lucide-react'
+import { ChevronDown, Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { ValuesMarquee } from '@/components/sections/values-marquee'
-import { Button } from '@/components/ui/button'
 import { useContent } from '@/hooks/use-content'
 import { heroContent as defaults } from '@/lib/site-content'
 
@@ -62,9 +61,9 @@ export function HeroSection() {
             />
           </motion.div>
         </AnimatePresence>
-        {/* Overlay sombre pour lisibilité du texte */}
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+        {/* Overlay minimal — la photo reste lumineuse (style Otonali) */}
+        <div className="absolute inset-0 bg-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/25" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">
@@ -80,11 +79,11 @@ export function HeroSection() {
           </p>
 
           {/* Titre avec mot accentué en serif italic + violet uni */}
-          <h1 className="mt-6 font-display text-balance pb-1 text-4xl leading-[1.15] font-semibold tracking-[-0.035em] text-white sm:text-5xl lg:text-6xl">
+          <h1 className="mt-6 font-display text-balance pb-1 text-4xl leading-[1.15] font-semibold tracking-[-0.035em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.45)] sm:text-5xl lg:text-6xl">
             {lead ? (
               <>
                 {lead}{' '}
-                <span className="relative inline-block pb-1 font-serif italic font-normal tracking-[-0.01em] text-[oklch(0.78_0.15_285)]">
+                <span className="relative inline-block pb-1 font-serif italic font-normal tracking-[-0.01em] text-[oklch(0.82_0.12_150)]">
                   {accent}
                 </span>
               </>
@@ -93,69 +92,37 @@ export function HeroSection() {
             )}
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white/75 sm:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-white/85 [text-shadow:0_1px_14px_rgba(0,0,0,0.45)] sm:text-xl">
             {hero.description}
           </p>
 
-          {/* CTAs */}
+          {/* CTAs — boîtes carrées, MAJUSCULES espacées (style Otonali) */}
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            {/* CTA primary premium */}
             <Link
               href="/contact"
-              className="group/cta relative inline-flex h-11 items-center gap-2 overflow-hidden rounded-xl px-5 text-sm font-medium text-primary-foreground shadow-[0_8px_24px_-8px_oklch(0.48_0.22_285/0.5)] transition-all hover:shadow-[0_12px_32px_-8px_oklch(0.48_0.22_285/0.6)] active:translate-y-px"
+              className="inline-flex h-12 items-center justify-center rounded-[2px] bg-primary px-9 text-xs font-medium uppercase tracking-[0.2em] text-primary-foreground transition-colors hover:bg-[oklch(0.29_0.08_150)]"
             >
-              <span
-                className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[oklch(0.42_0.22_280)] dark:from-primary dark:via-primary dark:to-[oklch(0.65_0.18_280)]"
-                aria-hidden
-              />
-              <span
-                className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 ease-out group-hover/cta:translate-x-full"
-                aria-hidden
-              />
-              <span
-                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                aria-hidden
-              />
-              <span className="relative">{hero.button1}</span>
-              <ArrowRight
-                className="relative size-4 transition-transform duration-300 group-hover/cta:translate-x-0.5"
-                aria-hidden
-              />
+              {hero.button1}
             </Link>
 
-            <Button
-              size="lg"
-              variant="outline"
-              className="h-11 rounded-xl border-white/25 bg-white/10 px-5 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
-              asChild
+            <Link
+              href="/a-propos"
+              className="inline-flex h-12 items-center justify-center rounded-[2px] border border-white/45 bg-white/5 px-9 text-xs font-medium uppercase tracking-[0.2em] text-white backdrop-blur-sm transition-colors hover:bg-white/15"
             >
-              <Link href="/services">{hero.button2}</Link>
-            </Button>
+              {hero.button2}
+            </Link>
           </div>
 
-          {/* Social proof : rating + avatars */}
-          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-5">
-            <div className="flex -space-x-2">
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="size-7 rounded-full ring-2 ring-black/30"
-                  style={{
-                    background: `linear-gradient(135deg, oklch(${0.55 + i * 0.05} 0.18 ${260 + i * 15} / 0.85), oklch(${0.65 + i * 0.04} 0.15 ${285 + i * 10} / 0.65))`,
-                  }}
-                  aria-hidden
-                />
-              ))}
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-              <div className="flex items-center gap-0.5 text-amber-300">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <Star key={i} className="size-3.5 fill-current" aria-hidden />
-                ))}
-              </div>
-              <span className="font-medium text-white">4.9/5</span>
-              <span className="text-white/70">· 200+ clients satisfaits</span>
-            </div>
+          {/* Réassurance : repères de l'auberge */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-white/80">
+            <span className="flex items-center gap-1.5">
+              <Star className="size-3.5 fill-current text-amber-300" aria-hidden />
+              Hôtel ★★
+            </span>
+            <span className="hidden h-3 w-px bg-white/25 sm:block" aria-hidden />
+            <span>Vallée d'Aspe · Accous</span>
+            <span className="hidden h-3 w-px bg-white/25 sm:block" aria-hidden />
+            <span>Vue sur le Cirque d'Iseye</span>
           </div>
         </motion.div>
 
@@ -175,6 +142,11 @@ export function HeroSection() {
             ))}
           </div>
         )}
+
+        {/* Indicateur de défilement (chevron) */}
+        <div className="mt-12 flex justify-center">
+          <ChevronDown className="size-6 animate-bounce text-white/70" aria-hidden />
+        </div>
       </div>
 
       <div className="relative">

@@ -11,14 +11,14 @@ const defaultPopup = {
   buttonLink: '#',
   imageUrl: '',
   bgColor: '#ffffff',
-  textColor: '#111827',
-  buttonColor: '#2563eb',
+  textColor: '#1d2420',
+  buttonColor: '#274923',
   delay: 5,
   banner: {
     enabled: false,
     text: '',
     link: '',
-    bgColor: '#111827',
+    bgColor: '#274923',
     textColor: '#ffffff',
   },
 }

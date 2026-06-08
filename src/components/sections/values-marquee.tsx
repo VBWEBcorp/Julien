@@ -1,24 +1,24 @@
 import {
-  Eye,
-  Handshake,
+  Bike,
+  Footprints,
   HeartHandshake,
-  Lightbulb,
-  Rocket,
-  Shield,
-  Sparkles,
-  Target,
+  Mountain,
+  Sun,
+  TreePine,
+  UtensilsCrossed,
+  Wine,
   type LucideIcon,
 } from 'lucide-react'
 
 const values: { icon: LucideIcon; label: string }[] = [
-  { icon: Sparkles, label: 'Excellence' },
-  { icon: Handshake, label: 'Confiance' },
-  { icon: Lightbulb, label: 'Innovation' },
-  { icon: Eye, label: 'Transparence' },
-  { icon: Rocket, label: 'Performance' },
-  { icon: HeartHandshake, label: 'Proximité' },
-  { icon: Shield, label: 'Fiabilité' },
-  { icon: Target, label: 'Sur mesure' },
+  { icon: Mountain, label: "Vallée d'Aspe" },
+  { icon: TreePine, label: 'Pleine nature' },
+  { icon: UtensilsCrossed, label: 'Cuisine locale' },
+  { icon: Wine, label: 'Bar & terrasse' },
+  { icon: Footprints, label: 'Randonnée' },
+  { icon: Bike, label: 'Vélo & cyclo' },
+  { icon: HeartHandshake, label: 'Accueil chaleureux' },
+  { icon: Sun, label: 'Grand air' },
 ]
 
 function ValuesTrack({
@@ -39,10 +39,6 @@ function ValuesTrack({
     variant === 'dark'
       ? 'text-white/30'
       : 'text-primary/50'
-  const separatorClass =
-    variant === 'dark'
-      ? 'text-white/20'
-      : 'text-border'
 
   const items = values.map((v) => (
     <span
@@ -51,9 +47,6 @@ function ValuesTrack({
     >
       <v.icon className={`size-4 ${iconClass}`} aria-hidden />
       {v.label}
-      <span className={separatorClass} aria-hidden>
-        ·
-      </span>
     </span>
   ))
 

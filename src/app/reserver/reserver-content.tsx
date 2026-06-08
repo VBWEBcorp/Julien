@@ -1,0 +1,179 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import {
+  BedDouble,
+  CalendarDays,
+  CreditCard,
+  ExternalLink,
+  Loader2,
+  Lock,
+  Maximize2,
+} from 'lucide-react'
+import { useState } from 'react'
+
+import { PremiumHero } from '@/components/sections/premium-hero'
+import { useContent } from '@/hooks/use-content'
+import { getIcon } from '@/lib/icons'
+import { siteConfig } from '@/lib/seo'
+import { images as siteImages, reserverContent } from '@/lib/site-content'
+
+const ease = [0.22, 1, 0.36, 1] as const
+const telHref = `tel:${siteConfig.phone.replace(/\s+/g, '')}`
+
+const steps = [
+  { icon: CalendarDays, label: 'Vos dates', description: "Arrivée & départ" },
+  { icon: BedDouble, label: 'Votre chambre', description: 'Selon vos envies' },
+  { icon: CreditCard, label: 'Paiement sécurisé', description: 'Confirmation immédiate' },
+]
+
+const defaults = {
+  hero: reserverContent.hero,
+  reassurance: reserverContent.reassurance,
+  note: reserverContent.note,
+}
+
+export function ReserverContent() {
+  const { data } = useContent('reserver', defaults)
+  const hero = data.hero ?? defaults.hero
+  const reassurance = data.reassurance ?? defaults.reassurance
+  const note = data.note ?? defaults.note
+
+  const [isLoading, setIsLoading] = useState(true)
+
+  return (
+    <>
+      <PremiumHero
+        eyebrow={hero.eyebrow}
+        title={hero.title}
+        description={hero.description}
+        breadcrumb="Réserver"
+        compact
+        backgroundImage={siteImages.heroCarousel[2]}
+      />
+
+      <section className="border-b border-border/60 bg-background">
+        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          {/* Réassurance */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+            {reassurance.map((item: any, i: number) => {
+              const Icon = getIcon(item.iconName)
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease }}
+                  className="flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-4 text-left sm:flex-col sm:p-6 sm:text-center"
+                >
+                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary sm:size-11">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-sm font-semibold text-foreground sm:mt-1 sm:text-base">
+                      {item.title}
+                    </h3>
+                    <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">{item.description}</p>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+
+          {/* Bloc moteur Amenitiz */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, ease }}
+            className="mt-12"
+          >
+            <div className="text-center">
+              <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-foreground sm:text-3xl">
+                Réservez votre séjour
+              </h2>
+              <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                {note}
+              </p>
+            </div>
+
+            {/* Tunnel en 3 étapes */}
+            <ol className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-4">
+              {steps.map((step, i) => (
+                <li
+                  key={step.label}
+                  className="flex flex-1 items-center gap-3 rounded-2xl border border-border/60 bg-card px-4 py-3"
+                >
+                  <span className="relative inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <step.icon className="size-4" aria-hidden />
+                    <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                      {i + 1}
+                    </span>
+                  </span>
+                  <div className="min-w-0">
+                    <p className="truncate font-display text-sm font-semibold text-foreground">{step.label}</p>
+                    <p className="truncate text-xs text-muted-foreground">{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            {/* Moteur de réservation Amenitiz embarqué (résa + paiement sur le site) */}
+            <div className="mt-6 overflow-hidden rounded-3xl border border-border/60 bg-card shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.25)]">
+              {/* Barre d'en-tête « navigateur » */}
+              <div className="flex items-center justify-between gap-3 border-b border-border/60 bg-[oklch(0.975_0.008_95)] px-4 py-3 dark:bg-[oklch(0.19_0.015_150)]">
+                <div className="flex items-center gap-2 text-sm font-medium text-foreground">
+                  <Lock className="size-4 text-primary" aria-hidden />
+                  <span>Réservation en direct · sécurisée</span>
+                </div>
+                <span className="hidden rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary sm:inline">
+                  Meilleur tarif garanti
+                </span>
+              </div>
+
+              {/* Conteneur iframe + overlay de chargement */}
+              <div className="relative">
+                {isLoading && (
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-card">
+                    <Loader2 className="size-7 animate-spin text-primary" aria-hidden />
+                    <p className="text-sm text-muted-foreground">Chargement du moteur de réservation…</p>
+                  </div>
+                )}
+                <iframe
+                  src={siteConfig.booking.amenitizUrl}
+                  title="Moteur de réservation — Auberge Le Permayou"
+                  loading="lazy"
+                  onLoad={() => setIsLoading(false)}
+                  className="h-[680px] w-full border-0 sm:h-[780px]"
+                  allow="payment"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+
+            {/* Secours */}
+            <div className="mt-6 flex flex-col items-center gap-3 text-sm text-muted-foreground">
+              <a
+                href={siteConfig.booking.amenitizUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 font-medium text-primary hover:underline"
+              >
+                <Maximize2 className="size-3.5" aria-hidden />
+                Ouvrir le moteur en plein écran
+                <ExternalLink className="size-3.5" aria-hidden />
+              </a>
+              <p>
+                Une question, un groupe, un séminaire ? Appelez-nous :{' '}
+                <a href={telHref} className="font-medium text-primary hover:underline">
+                  {siteConfig.phone}
+                </a>
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </>
+  )
+}

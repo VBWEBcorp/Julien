@@ -1,4 +1,4 @@
-import { Globe } from 'lucide-react'
+import { Mountain } from 'lucide-react'
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
@@ -18,7 +18,7 @@ export function Logo({ className }: LogoProps) {
       )}
     >
       <span className="flex size-9 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-transform duration-300 group-hover:scale-[1.03]">
-        <Globe className="size-[18px]" aria-hidden />
+        <Mountain className="size-[18px]" aria-hidden />
       </span>
       <span>{siteConfig.name}</span>
     </Link>

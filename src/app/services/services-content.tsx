@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useRef } from 'react'
 
 import { CtaSection } from '@/components/sections/cta-section'
+import { ImageGallery } from '@/components/sections/image-gallery'
 import { PremiumHero } from '@/components/sections/premium-hero'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
@@ -12,6 +13,15 @@ import { images as siteImages, servicesContent } from '@/lib/site-content'
 
 const ease = [0.22, 1, 0.36, 1] as const
 const defaultImages = siteImages.services
+
+const galleryImages = [
+  { src: siteImages.services[0], caption: 'Nos chambres' },
+  { src: siteImages.services[6], caption: 'La façade' },
+  { src: siteImages.services[5], caption: 'Espaces communs' },
+  { src: siteImages.servicesHero, caption: "L'hôtel ★★" },
+  { src: siteImages.services[7], caption: 'Vue sur les Pyrénées' },
+  { src: siteImages.contactHero, caption: 'Au grand air' },
+]
 
 const defaults = {
   hero: { ...servicesContent.hero, image: '' as string },
@@ -57,7 +67,7 @@ function ServiceRow({
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.75, ease }}
         whileHover={{ y: -4 }}
-        className="group relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_20px_50px_-20px_oklch(0.2_0.02_264/0.25)] ring-1 ring-border/60"
+        className="group relative aspect-[4/3] overflow-hidden rounded-3xl shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.25)] ring-1 ring-border/60"
       >
         {/* Wrapper interne avec parallax Y au scroll */}
         <motion.div className="absolute inset-0 -inset-y-10" style={{ y: imageY }}>
@@ -186,7 +196,7 @@ export function ServicesContent() {
         eyebrow={hero.eyebrow}
         title={hero.title}
         description={hero.description}
-        breadcrumb="Services"
+        breadcrumb="L'Hôtel"
         compact
         backgroundImage={siteImages.servicesHero}
       >
@@ -217,6 +227,8 @@ export function ServicesContent() {
           </div>
         </div>
       </section>
+
+      <ImageGallery eyebrow="En images" title="L'hôtel en images" images={galleryImages} />
 
       <CtaSection />
     </>
