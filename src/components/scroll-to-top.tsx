@@ -2,9 +2,11 @@
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 export function ScrollToTop() {
+  const t = useTranslations('common')
   const [visible, setVisible] = useState(false)
   const reduceMotion = useReducedMotion()
 
@@ -28,7 +30,7 @@ export function ScrollToTop() {
         <motion.button
           type="button"
           onClick={handleClick}
-          aria-label="Retour en haut"
+          aria-label={t('backToTop')}
           initial={{ opacity: 0, scale: 0.7, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.7, y: 12 }}

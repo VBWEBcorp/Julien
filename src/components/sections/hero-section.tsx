@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown, Star } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { useEffect, useState } from 'react'
 
 import { ValuesMarquee } from '@/components/sections/values-marquee'

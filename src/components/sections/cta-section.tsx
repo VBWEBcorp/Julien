@@ -1,11 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 
-import { Button } from '@/components/ui/button'
+import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { useContent } from '@/hooks/use-content'
 import { ctaContent } from '@/lib/site-content'
 
@@ -65,6 +65,9 @@ export function CtaSection() {
   const { data } = useContent('home', { cta: defaults })
   const cta = data.cta ?? defaults
 
+  // Teinte vert forêt du bloc — sert aussi de couleur de fondu pour les colonnes d'images.
+  const fade = 'oklch(0.18 0.032 150)'
+
   return (
     <section className="bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -73,37 +76,40 @@ export function CtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.55, ease }}
-          className="relative overflow-hidden rounded-[4px] border border-border/80 bg-white dark:bg-zinc-900 shadow-[var(--shadow-lg)]"
+          className="relative isolate overflow-hidden rounded-[4px] text-white shadow-[var(--shadow-lg)]"
         >
+          {/* Décor signature : vert forêt + halos + montagne (repris du menu) */}
+          <MountainBackdrop tone="dark" />
 
           <div className="relative flex items-stretch min-h-[420px] sm:min-h-[460px]">
             {/* Left - Text content */}
             <div className="relative z-10 flex-1 flex flex-col justify-center p-10 sm:p-14 space-y-6">
-              <p className="font-display text-xs font-semibold tracking-[0.22em] text-primary uppercase">
+              <p className="font-display text-xs font-semibold tracking-[0.22em] uppercase text-[oklch(0.82_0.1_62)]">
                 {cta.eyebrow}
               </p>
-              <h2 className="max-w-xl font-display text-balance text-3xl tracking-tight text-foreground sm:text-4xl">
+              <h2 className="max-w-xl font-display text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 {cta.title}
               </h2>
-              <p className="max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p className="max-w-lg text-base leading-relaxed text-white/70 sm:text-lg">
                 {cta.description}
               </p>
-              <Button size="lg" className="group" asChild>
-                <Link href="/reserver">
+              <div>
+                <Link
+                  href="/reserver"
+                  className="group inline-flex h-12 items-center gap-2 rounded-[3px] bg-[oklch(0.73_0.15_62)] px-8 text-xs font-semibold uppercase tracking-[0.22em] text-[oklch(0.2_0.03_150)] transition-colors hover:bg-[oklch(0.78_0.15_62)]"
+                >
                   {cta.button}
-                  <ArrowRight className="transition-transform group-hover:translate-x-0.5" />
+                  <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
-              </Button>
+              </div>
             </div>
 
             {/* Right - Scrolling images, clipped to card */}
             <div className="hidden md:block relative w-[300px] lg:w-[340px] shrink-0 overflow-hidden">
-              {/* Fade top */}
-              <div className="pointer-events-none absolute top-0 left-0 right-0 h-28 bg-gradient-to-b from-white dark:from-zinc-900 to-transparent z-20" />
-              {/* Fade bottom */}
-              <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 bg-gradient-to-t from-white dark:from-zinc-900 to-transparent z-20" />
-              {/* Fade left, smooth blend into text area */}
-              <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-20 bg-gradient-to-r from-white dark:from-zinc-900 to-transparent z-20" />
+              {/* Fondus vers la teinte vert forêt du bloc */}
+              <div className="pointer-events-none absolute top-0 left-0 right-0 h-28 z-20" style={{ background: `linear-gradient(to bottom, ${fade}, transparent)` }} />
+              <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 z-20" style={{ background: `linear-gradient(to top, ${fade}, transparent)` }} />
+              <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-24 z-20" style={{ background: `linear-gradient(to right, ${fade}, transparent)` }} />
 
               <div className="absolute inset-0 overflow-hidden">
                 <div className="flex gap-3 -rotate-6 translate-x-[10%]" style={{ height: '140%', marginTop: '-20%' }}>

@@ -4,10 +4,14 @@ import { GalleryImage } from '@/models/Gallery'
 import { verifyAuth } from '@/lib/auth'
 
 // GET all gallery images (public - only active)
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     await connectDB()
-    const images = await GalleryImage.find({ active: true })
+    const filter: Record<string, unknown> = { active: true }
+    // Optional ?locale= scopes the result to a single locale.
+    const locale = request.nextUrl.searchParams.get('locale')
+    if (locale) filter.locale = locale
+    const images = await GalleryImage.find(filter)
       .sort({ order: 1 })
       .lean()
     return NextResponse.json(images, {
@@ -30,7 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     await connectDB()
-    const { title, description, imageUrl, category, order } = await request.json()
+    const { title, description, imageUrl, category, order, locale } = await request.json()
 
     if (!title || !imageUrl) {
       return NextResponse.json(
@@ -45,6 +49,7 @@ export async function POST(request: NextRequest) {
       imageUrl,
       category: category || 'general',
       order: order || 0,
+      locale: ['fr', 'en', 'es'].includes(locale) ? locale : 'fr',
     })
 
     return NextResponse.json(image, { status: 201 })

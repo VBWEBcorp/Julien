@@ -131,7 +131,11 @@ export default function AdminMarketingPage() {
             <ArrowLeft className="size-4" />
           </Link>
           <div>
-            <h1 className="text-lg font-bold text-foreground">Marketing</h1>
+            <p className="inline-flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+              <span className="h-px w-5 bg-[oklch(0.73_0.15_62)]" aria-hidden />
+              Diffusion
+            </p>
+            <h1 className="font-display text-xl font-bold tracking-[-0.02em] text-foreground sm:text-2xl">Marketing</h1>
             <p className="text-xs text-muted-foreground">
               {tab === 'popup'
                 ? 'Popup promotionnelle affichée aux visiteurs'

@@ -5,20 +5,28 @@ import { verifyAuth } from '@/lib/auth'
 
 type Params = Promise<{ pageId: string }>
 
+const LOCALES = ['fr', 'en', 'es'] as const
+type Locale = (typeof LOCALES)[number]
+
+function resolveLocale(value: string | null): Locale {
+  return LOCALES.includes(value as Locale) ? (value as Locale) : 'fr'
+}
+
 const CACHE_HEADERS = {
   'Cache-Control': 'public, max-age=30, s-maxage=60, stale-while-revalidate=300',
 }
 
-// GET page content (public)
+// GET page content (public) — ?locale=fr|en|es (défaut fr)
 export async function GET(request: NextRequest, { params }: { params: Params }) {
   try {
     const { pageId } = await params
+    const locale = resolveLocale(request.nextUrl.searchParams.get('locale'))
     await connectDB()
 
-    const page = await SiteContent.findOne({ pageId }).lean()
+    const page = await SiteContent.findOne({ pageId, locale }).lean()
     if (!page) {
       return NextResponse.json(
-        { pageId, content: {} },
+        { pageId, locale, content: {} },
         { headers: CACHE_HEADERS }
       )
     }
@@ -30,7 +38,7 @@ export async function GET(request: NextRequest, { params }: { params: Params }) 
   }
 }
 
-// PUT update page content (admin only)
+// PUT update page content (admin only) — locale via ?locale= ou body.locale
 export async function PUT(request: NextRequest, { params }: { params: Params }) {
   try {
     const { authenticated, user } = await verifyAuth(request)
@@ -41,11 +49,15 @@ export async function PUT(request: NextRequest, { params }: { params: Params }) 
     const { pageId } = await params
     await connectDB()
 
-    const { content } = await request.json()
+    const body = await request.json()
+    const locale = resolveLocale(
+      request.nextUrl.searchParams.get('locale') ?? body?.locale ?? null
+    )
+    const { content } = body
 
     const page = await SiteContent.findOneAndUpdate(
-      { pageId },
-      { pageId, content },
+      { pageId, locale },
+      { pageId, locale, content },
       { upsert: true, new: true }
     )
 

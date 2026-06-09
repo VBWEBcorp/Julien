@@ -2,7 +2,9 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 
+import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { getIcon } from '@/lib/icons'
+import { BRAND_ACCENTS, splitAccentTitle } from '@/lib/utils'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -36,20 +38,35 @@ export function FeatureCards({
   columns = 3,
 }: FeatureCardsProps) {
   const reduceMotion = useReducedMotion()
+  const { lead, accent } = title ? splitAccentTitle(title) : { lead: '', accent: '' }
 
   return (
-    <section className="border-b border-border/60 bg-background">
+    <section className="relative isolate overflow-hidden border-b border-border/60 bg-background">
+      {/* Signature montagne + halos discrets (DA accueil) */}
+      <MountainBackdrop tone="light" />
+
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         {(eyebrow || title || description) && (
-          <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-16">
+          <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center text-center lg:mb-16">
             {eyebrow && (
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+              <p className="inline-flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+                <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
                 {eyebrow}
+                <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
               </p>
             )}
             {title && (
               <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl">
-                {title}
+                {lead ? (
+                  <>
+                    {lead}{' '}
+                    <span className="font-serif italic font-normal tracking-[-0.01em] text-primary">
+                      {accent}
+                    </span>
+                  </>
+                ) : (
+                  title
+                )}
               </h2>
             )}
             {description && (
@@ -72,6 +89,15 @@ export function FeatureCards({
                 transition={{ duration: 0.55, delay: i * 0.06, ease }}
                 className="group relative flex flex-col rounded-2xl border border-border/60 bg-card p-7 shadow-[0_2px_8px_oklch(0.2_0.02_150/0.04)] transition-shadow hover:shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.25)]"
               >
+                {/* Numéro signature (couleur de marque) */}
+                <span
+                  className="absolute right-6 top-6 font-mono text-[11px] tabular-nums tracking-[0.2em]"
+                  style={{ color: BRAND_ACCENTS[i % BRAND_ACCENTS.length] }}
+                  aria-hidden
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+
                 <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-primary/20">
                   <Icon className="size-5" aria-hidden />
                 </span>

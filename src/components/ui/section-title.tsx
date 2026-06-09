@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn, splitAccentTitle } from '@/lib/utils'
 
 type SectionTitleProps = {
   eyebrow?: string
@@ -15,21 +15,39 @@ export function SectionTitle({
   align = 'center',
   className,
 }: SectionTitleProps) {
+  const { lead, accent } = splitAccentTitle(title)
+  const centered = align === 'center'
   return (
     <div
       className={cn(
         'mx-auto max-w-2xl space-y-4',
-        align === 'center' && 'text-center',
+        centered && 'text-center',
         className
       )}
     >
       {eyebrow ? (
-        <p className="font-display text-xs font-semibold tracking-[0.22em] text-primary uppercase">
+        <p
+          className={cn(
+            'inline-flex items-center gap-3 font-display text-xs font-semibold tracking-[0.22em] text-primary uppercase',
+            centered && 'justify-center'
+          )}
+        >
+          <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
           {eyebrow}
+          {centered && <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />}
         </p>
       ) : null}
       <h2 className="font-display text-balance text-3xl leading-[1.12] tracking-[-0.02em] text-foreground sm:text-4xl md:text-[2.6rem]">
-        {title}
+        {lead ? (
+          <>
+            {lead}{' '}
+            <span className="font-serif italic font-normal tracking-[-0.01em] text-primary">
+              {accent}
+            </span>
+          </>
+        ) : (
+          title
+        )}
       </h2>
       {description ? (
         <p className="text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">

@@ -14,9 +14,14 @@ export async function GET(request: NextRequest) {
 
     const { authenticated, user } = await verifyAuth(request)
     const isAdmin = authenticated && user?.role === 'admin'
-    const filter = isAdmin
+    const filter: Record<string, unknown> = isAdmin
       ? { $or: [visiblePostFilter(), { published: false }] }
       : visiblePostFilter()
+
+    // Public callers can scope the list to a single locale via ?locale=.
+    // When absent (e.g. the admin UI), all locales are returned.
+    const locale = request.nextUrl.searchParams.get('locale')
+    if (locale) filter.locale = locale
 
     const posts = await BlogPost.find(filter)
       .sort({ publishedAt: -1, createdAt: -1 })
@@ -66,6 +71,9 @@ export async function POST(request: NextRequest) {
     if (body.published && !body.publishedAt) {
       body.publishedAt = new Date()
     }
+
+    // Each post belongs to a single locale (defaults to FR for legacy data).
+    body.locale = ['fr', 'en', 'es'].includes(body.locale) ? body.locale : 'fr'
 
     const post = await BlogPost.create(body)
     return NextResponse.json(post, { status: 201 })

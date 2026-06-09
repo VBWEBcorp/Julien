@@ -48,9 +48,10 @@ interface SectionEditorProps {
 
 export function SectionEditor({ title, children }: SectionEditorProps) {
   return (
-    <div className="rounded-xl bg-card border border-border/40 overflow-hidden">
-      <div className="px-5 py-3 border-b border-border/40 bg-muted/30">
-        <h3 className="text-xs font-bold text-muted-foreground/60 uppercase tracking-widest">{title}</h3>
+    <div className="overflow-hidden rounded-2xl border border-border/60 bg-card shadow-[0_2px_8px_oklch(0.2_0.02_150/0.04)]">
+      <div className="flex items-center gap-2.5 border-b border-border/60 bg-muted/30 px-5 py-3.5">
+        <span className="h-3.5 w-1 rounded-full bg-[oklch(0.73_0.15_62)]" aria-hidden />
+        <h3 className="font-display text-sm font-semibold text-foreground">{title}</h3>
       </div>
       <div className="p-5 space-y-4">
         {children}

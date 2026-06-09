@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "hotel": "El Hotel",
+    "restaurant": "El Restaurante",
+    "bar": "El Bar y la Terraza",
+    "valley": "El Valle de Aspe",
+    "auberge": "El Albergue",
+    "gallery": "Galería",
+    "journal": "El Diario",
+    "contact": "Contacto",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "openMenu": "Abrir el menú",
+    "closeMenu": "Cerrar el menú",
+    "book": "Reservar",
+    "brandKicker": "Albergue",
+    "brandLocation": "Accous · Valle de Aspe"
+  },
+  "footer": {
+    "navigation": "Navegación",
+    "legal": "Legal",
+    "contact": "Contacto",
+    "rights": "Todos los derechos reservados",
+    "mentionsLegales": "Aviso legal",
+    "confidentialite": "Privacidad",
+    "cgu": "Condiciones",
+    "cookies": "Cookies",
+    "demoNoticeTitle": "Maqueta de demostración, Propiedad exclusiva de",
+    "demoNoticeBody": "Este sitio es una presentación con fines de demostración únicamente. Queda estrictamente prohibida cualquier reproducción, explotación o uso con fines profesionales o comerciales."
+  },
+  "cookies": {
+    "title": "Usamos cookies",
+    "description": "Para mejorar su experiencia. Al continuar navegando, acepta nuestro uso de cookies.",
+    "learnMore": "Saber más",
+    "refuse": "Rechazar",
+    "accept": "Aceptar",
+    "close": "Cerrar"
+  },
+  "breadcrumb": {
+    "home": "Inicio",
+    "ariaLabel": "Ruta de navegación"
+  },
+  "common": {
+    "backToTop": "Volver arriba",
+    "call": "Llamar",
+    "book": "Reservar"
+  },
+  "faq": {
+    "noAnswer": "¿No encuentra su respuesta?",
+    "contactUs": "Contáctenos directamente"
+  },
+  "values": {
+    "valley": "Valle de Aspe",
+    "nature": "Plena naturaleza",
+    "cuisine": "Cocina local",
+    "bar": "Bar y terraza",
+    "hiking": "Senderismo",
+    "cycling": "Ciclismo",
+    "welcome": "Acogida cálida",
+    "freshAir": "Aire libre"
+  },
+  "contact": {
+    "breadcrumb": "Contacto",
+    "trust": {
+      "reply24h": "Respuesta en 24h",
+      "freeQuote": "Presupuesto gratuito",
+      "available": "Disponible esta semana"
+    },
+    "form": {
+      "title": "Enviar un mensaje",
+      "subtitle": "Todos los campos son obligatorios salvo indicación",
+      "firstName": "Nombre",
+      "firstNamePlaceholder": "Juan",
+      "lastName": "Apellido",
+      "lastNamePlaceholder": "García",
+      "email": "Correo electrónico",
+      "emailPlaceholder": "juan@ejemplo.es",
+      "phone": "Teléfono",
+      "optional": "(opcional)",
+      "phonePlaceholder": "06 12 34 56 78",
+      "subject": "Motivo de su consulta",
+      "message": "Su mensaje",
+      "messagePlaceholder": "Fechas, número de personas, su solicitud...",
+      "submit": "Enviar mensaje",
+      "sending": "Enviando…"
+    },
+    "subjects": {
+      "stay": "Reserva / estancia (hotel)",
+      "table": "Reservar una mesa (restaurante)",
+      "group": "Grupo / seminario",
+      "other": "Otra consulta"
+    },
+    "success": {
+      "title": "¡Mensaje enviado!",
+      "body": "Gracias, hemos recibido su solicitud y le responderemos en un plazo de 24 horas.",
+      "retry": "Enviar otro mensaje"
+    },
+    "errors": {
+      "generic": "Se ha producido un error. Inténtelo de nuevo o escríbanos directamente por correo electrónico.",
+      "network": "No se ha podido enviar el mensaje. Compruebe su conexión o escríbanos por correo electrónico."
+    },
+    "directContact": {
+      "title": "Contáctenos directamente",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "address": "Dirección",
+      "statusToday": "Disponible hoy",
+      "hours": "· Lun-Vie 9h-18h"
+    },
+    "map": {
+      "placeholder": "Inserte aquí su mapa de Google Maps",
+      "hint": "iframe o API de Google Maps"
+    }
+  },
+  "reserver": {
+    "breadcrumb": "Reservar",
+    "steps": {
+      "dates": "Sus fechas",
+      "datesDesc": "Llegada y salida",
+      "room": "Su habitación",
+      "roomDesc": "Según sus deseos",
+      "payment": "Pago seguro",
+      "paymentDesc": "Confirmación inmediata"
+    },
+    "sectionTitle": "Reserve su estancia",
+    "engineHeader": "Reserva directa · segura",
+    "badge": "Mejor tarifa garantizada",
+    "loading": "Cargando el motor de reservas…",
+    "fullscreen": "Abrir el motor en pantalla completa",
+    "support": "¿Una pregunta, un grupo, un seminario? Llámenos:"
+  },
+  "meta": {
+    "restaurant": {
+      "title": "El Restaurante",
+      "description": "El restaurante del Auberge Le Permayou en Accous: cocina tradicional y de temporada, productos del Valle de Aspe y especialidades del Béarn. Abierto al mediodía y por la noche, con bar y comida ligera."
+    },
+    "services": {
+      "title": "El Hotel",
+      "description": "El hotel ★★ del Auberge Le Permayou en Accous: 8 habitaciones acogedoras, algunas con vistas a la montaña y una habitación accesible para personas con movilidad reducida. La etapa ideal en el Valle de Aspe para senderistas y ciclistas."
+    },
+    "barTerrasse": {
+      "title": "El Bar y la Terraza",
+      "description": "El bar y la terraza del Auberge Le Permayou en Accous, con vistas al Circo de Iseye. Un bar de pueblo abierto a todos: aperitivo, parada ciclista y café frente a las montañas."
+    },
+    "valleeDAspe": {
+      "title": "El Valle de Aspe",
+      "description": "El Valle de Aspe desde el Auberge Le Permayou: senderismo (GR10, Camino de Santiago), ciclismo (puerto del Somport), fauna salvaje y patrimonio. Su campo base en el corazón de los Pirineos."
+    },
+    "reserver": {
+      "title": "Reservar",
+      "description": "Reserve su estancia en el Auberge Le Permayou, en Accous, en el Valle de Aspe. 8 habitaciones, una de ellas accesible para personas con movilidad reducida. Reserva en línea segura o por teléfono."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "Póngase en contacto con nosotros para hablar de su estancia. Respuesta rápida y una cálida bienvenida."
+    },
+    "aPropos": {
+      "title": "La Posada",
+      "description": "Coline y Julien, los nuevos propietarios del Auberge Le Permayou en Accous. Nuestra historia, nuestros valores y el espíritu de una posada de montaña en el corazón del Valle de Aspe."
+    }
+  }
+}

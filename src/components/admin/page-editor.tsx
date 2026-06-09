@@ -5,7 +5,15 @@ import { motion } from 'framer-motion'
 import { Save, Check, ArrowLeft, Eye, X, ExternalLink, Monitor, Smartphone } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { localizedContent } from '@/lib/localized-content'
 import { cn } from '@/lib/utils'
+
+type Locale = 'fr' | 'en' | 'es'
+const LOCALES: { code: Locale; label: string }[] = [
+  { code: 'fr', label: 'FR' },
+  { code: 'en', label: 'EN' },
+  { code: 'es', label: 'ES' },
+]
 
 interface PageEditorProps {
   pageId: string
@@ -21,11 +29,23 @@ const previewPaths: Record<string, string> = {
   home: '/',
   about: '/a-propos',
   services: '/services',
+  restaurant: '/restaurant',
+  'bar-terrasse': '/bar-terrasse',
+  'vallee-aspe': '/vallee-d-aspe',
+  reserver: '/reserver',
   contact: '/contact',
   testimonials: '/#temoignages',
 }
 
+// Defaults de base pour une page et une langue : defaults FR fournis par
+// l'éditeur, écrasés par la 1ère passe de traduction (en/es) si présente.
+function baseDefaults(pageId: string, locale: Locale, frDefaults: Record<string, any>) {
+  if (locale === 'fr') return frDefaults
+  return { ...frDefaults, ...(localizedContent[locale]?.[pageId] ?? {}) }
+}
+
 export function PageEditor({ pageId, title, defaultContent, children }: PageEditorProps) {
+  const [locale, setLocale] = useState<Locale>('fr')
   const [content, setContent] = useState(defaultContent)
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -36,9 +56,18 @@ export function PageEditor({ pageId, title, defaultContent, children }: PageEdit
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
 
   const previewPath = previewPaths[pageId]
-  const previewSrc = previewPath
+  // Chemin d'aperçu préfixé par la locale (FR reste à la racine).
+  const localizedPreviewPath = previewPath
     ? (() => {
         const [path, hash] = previewPath.split('#')
+        const prefixed =
+          locale === 'fr' ? path : `/${locale}${path === '/' ? '' : path}`
+        return hash ? `${prefixed}#${hash}` : prefixed
+      })()
+    : ''
+  const previewSrc = localizedPreviewPath
+    ? (() => {
+        const [path, hash] = localizedPreviewPath.split('#')
         const sep = path.includes('?') ? '&' : '?'
         return `${path}${sep}preview=${encodeURIComponent(pageId)}${hash ? `#${hash}` : ''}`
       })()
@@ -54,35 +83,40 @@ export function PageEditor({ pageId, title, defaultContent, children }: PageEdit
       if (msg && msg.type === 'preview-ready' && msg.pageId === pageId) {
         setPreviewReady(true)
         iframeRef.current?.contentWindow?.postMessage(
-          { type: 'preview-content', pageId, content },
+          { type: 'preview-content', pageId, locale, content },
           '*'
         )
       }
     }
     window.addEventListener('message', handler)
     return () => window.removeEventListener('message', handler)
-  }, [previewOpen, pageId, content])
+  }, [previewOpen, pageId, content, locale])
 
   useEffect(() => {
     if (previewOpen && previewReady) {
       iframeRef.current?.contentWindow?.postMessage(
-        { type: 'preview-content', pageId, content },
+        { type: 'preview-content', pageId, locale, content },
         '*'
       )
     }
-  }, [content, previewOpen, previewReady, pageId])
+  }, [content, previewOpen, previewReady, pageId, locale])
 
   useEffect(() => {
     const fetchContent = async () => {
+      setLoading(true)
+      const base = baseDefaults(pageId, locale, defaultContent)
       try {
-        const response = await fetch(`/api/content/${pageId}`)
+        const response = await fetch(`/api/content/${pageId}?locale=${locale}`)
         const result = await response.json()
 
         if (result.content && Object.keys(result.content).length > 0) {
-          setContent({ ...defaultContent, ...result.content })
+          setContent({ ...base, ...result.content })
+        } else {
+          setContent(base)
         }
       } catch (error) {
         console.error('Failed to load content:', error)
+        setContent(base)
       } finally {
         setLoading(false)
       }
@@ -90,7 +124,7 @@ export function PageEditor({ pageId, title, defaultContent, children }: PageEdit
 
     fetchContent()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageId])
+  }, [pageId, locale])
 
   const updateField = useCallback((path: string, value: any) => {
     setSaved(false)
@@ -111,13 +145,13 @@ export function PageEditor({ pageId, title, defaultContent, children }: PageEdit
     setSaving(true)
     try {
       const token = localStorage.getItem('authToken')
-      const response = await fetch(`/api/content/${pageId}`, {
+      const response = await fetch(`/api/content/${pageId}?locale=${locale}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ content }),
+        body: JSON.stringify({ content, locale }),
       })
 
       if (response.ok) {
@@ -142,18 +176,45 @@ export function PageEditor({ pageId, title, defaultContent, children }: PageEdit
   return (
     <div className="p-4 sm:p-6 lg:p-8">
       {/* Header sticky */}
-      <div className="sticky top-0 z-10 -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 lg:-mx-8 lg:-mt-8 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-4 bg-muted/30 backdrop-blur-sm border-b border-border/30 mb-6">
+      <div className="sticky top-0 z-10 -mx-4 -mt-4 sm:-mx-6 sm:-mt-6 lg:-mx-8 lg:-mt-8 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-4 bg-background/90 backdrop-blur-md border-b border-border/40 mb-6">
         <div className="flex items-center justify-between max-w-4xl pt-8 md:pt-0">
           <div className="flex items-center gap-3">
             <Link
               href="/admin/dashboard"
-              className="flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-card hover:text-foreground transition-colors"
+              className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
             >
               <ArrowLeft className="size-4" />
             </Link>
-            <h1 className="text-lg font-bold text-foreground">{title}</h1>
+            <div>
+              <p className="inline-flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+                <span className="h-px w-5 bg-[oklch(0.73_0.15_62)]" aria-hidden />
+                Édition de page
+              </p>
+              <h1 className="font-display text-xl font-bold tracking-[-0.02em] text-foreground sm:text-2xl">
+                {title}
+              </h1>
+            </div>
           </div>
           <div className="flex items-center gap-2">
+            {/* Onglets de langue : chaque langue est éditée et enregistrée séparément. */}
+            <div className="flex items-center gap-0.5 rounded-lg bg-muted/60 p-0.5">
+              {LOCALES.map((l) => (
+                <button
+                  key={l.code}
+                  type="button"
+                  onClick={() => setLocale(l.code)}
+                  className={cn(
+                    'px-2.5 py-1 rounded-md text-xs font-semibold transition-colors',
+                    locale === l.code
+                      ? 'bg-white text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground'
+                  )}
+                  aria-pressed={locale === l.code}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
             {previewPaths[pageId] && (
               <Button
                 onClick={() => setPreviewOpen(true)}
@@ -207,7 +268,7 @@ export function PageEditor({ pageId, title, defaultContent, children }: PageEdit
               <div className="flex items-center gap-2 text-xs text-muted-foreground truncate min-w-0">
                 <Eye className="size-3.5 shrink-0" />
                 <span className="font-medium">Aperçu</span>
-                <span className="truncate hidden sm:inline">{previewPath}</span>
+                <span className="truncate hidden sm:inline">{localizedPreviewPath}</span>
               </div>
 
               <div className="flex items-center gap-1 rounded-lg bg-muted/60 p-0.5">
@@ -241,7 +302,7 @@ export function PageEditor({ pageId, title, defaultContent, children }: PageEdit
 
               <div className="flex items-center gap-1">
                 <a
-                  href={previewPath}
+                  href={localizedPreviewPath}
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Ouvrir dans un onglet"

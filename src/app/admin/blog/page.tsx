@@ -20,6 +20,7 @@ interface BlogPost {
   _id: string
   title: string
   slug: string
+  locale?: string
   excerpt: string
   coverImage: string
   category: string
@@ -170,7 +171,15 @@ export default function AdminBlogPage() {
           >
             <ArrowLeft className="size-4" />
           </Link>
-          <h1 className="text-lg font-bold text-foreground">Blog</h1>
+          <div>
+            <p className="inline-flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+              <span className="h-px w-5 bg-[oklch(0.73_0.15_62)]" aria-hidden />
+              Contenu
+            </p>
+            <h1 className="font-display text-xl font-bold tracking-[-0.02em] text-foreground sm:text-2xl">
+              Le Journal
+            </h1>
+          </div>
 
           {/* Toggle enable */}
           <label className="flex items-center gap-2 ml-2 cursor-pointer">
@@ -317,6 +326,9 @@ export default function AdminBlogPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
                       <p className="font-medium text-foreground truncate">{post.title}</p>
+                      <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide text-sky-600 bg-sky-500/10 px-1.5 py-0.5 rounded">
+                        {post.locale || 'fr'}
+                      </span>
                       {post.published ? (
                         <span className="shrink-0 text-[10px] font-semibold uppercase tracking-wide text-emerald-600 bg-emerald-500/10 px-1.5 py-0.5 rounded">
                           Publié

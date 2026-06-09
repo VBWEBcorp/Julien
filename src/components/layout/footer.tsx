@@ -1,25 +1,29 @@
-import { ArrowUpRight, Facebook, Instagram, Mountain } from 'lucide-react'
-import Link from 'next/link'
+import { ArrowUpRight, Facebook, Instagram } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
+import Image from 'next/image'
 
+import { Link } from '@/i18n/navigation'
 import { siteConfig } from '@/lib/seo'
 
-const navLinks = [
-  { label: 'Accueil', to: '/' },
-  { label: "L'Hôtel", to: '/services' },
-  { label: "L'auberge", to: '/a-propos' },
-  { label: 'Galerie', to: '/gallery' },
-  { label: 'Le Journal', to: '/blog' },
-  { label: 'Contact', to: '/contact' },
-]
+export async function Footer() {
+  const t = await getTranslations()
 
-const legalLinks = [
-  { label: 'Mentions légales', to: '/mentions-legales' },
-  { label: 'Confidentialité', to: '/politique-de-confidentialite' },
-  { label: 'CGU', to: '/conditions-generales' },
-  { label: 'Cookies', to: '/politique-cookies' },
-]
+  const navLinks = [
+    { label: t('nav.home'), to: '/' },
+    { label: t('nav.hotel'), to: '/services' },
+    { label: t('nav.auberge'), to: '/a-propos' },
+    { label: t('nav.gallery'), to: '/gallery' },
+    { label: t('nav.journal'), to: '/blog' },
+    { label: t('nav.contact'), to: '/contact' },
+  ]
 
-export function Footer() {
+  const legalLinks = [
+    { label: t('footer.mentionsLegales'), to: '/mentions-legales' },
+    { label: t('footer.confidentialite'), to: '/politique-de-confidentialite' },
+    { label: t('footer.cgu'), to: '/conditions-generales' },
+    { label: t('footer.cookies'), to: '/politique-cookies' },
+  ]
+
   return (
     <footer className="bg-[oklch(0.24_0.04_150)] text-[oklch(0.9_0.015_95)]">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -27,14 +31,14 @@ export function Footer() {
         <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] lg:gap-16">
           {/* Brand */}
           <div className="space-y-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 font-display text-base font-semibold tracking-tight text-[oklch(0.97_0.01_95)]"
-            >
-              <span className="flex size-7 items-center justify-center rounded-lg bg-[oklch(0.97_0.01_95)] text-[oklch(0.3_0.06_150)]">
-                <Mountain className="size-3.5" aria-hidden />
-              </span>
-              {siteConfig.name}
+            <Link href="/" aria-label={siteConfig.name} className="inline-block">
+              <Image
+                src="/permayou/logo-white.png"
+                alt={siteConfig.name}
+                width={180}
+                height={118}
+                className="h-16 w-auto object-contain"
+              />
             </Link>
             <p className="max-w-sm text-sm leading-relaxed text-[oklch(0.82_0.02_150)]">
               {siteConfig.description}
@@ -42,9 +46,9 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <nav aria-label="Navigation">
+          <nav aria-label={t('footer.navigation')}>
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[oklch(0.72_0.05_150)]">
-              Navigation
+              {t('footer.navigation')}
             </h3>
             <ul className="mt-5 space-y-3">
               {navLinks.map((l) => (
@@ -64,9 +68,9 @@ export function Footer() {
           </nav>
 
           {/* Legal */}
-          <nav aria-label="Légal">
+          <nav aria-label={t('footer.legal')}>
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[oklch(0.72_0.05_150)]">
-              Légal
+              {t('footer.legal')}
             </h3>
             <ul className="mt-5 space-y-3">
               {legalLinks.map((l) => (
@@ -88,7 +92,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[oklch(0.72_0.05_150)]">
-              Contact
+              {t('footer.contact')}
             </h3>
             <ul className="mt-5 space-y-3 text-sm">
               <li>
@@ -146,27 +150,7 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}
           </p>
           <p className="text-xs text-[oklch(0.7_0.03_150)]">
-            Tous droits réservés
-          </p>
-        </div>
-      </div>
-
-      {/* Bandeau de protection — mention anti-reproduction */}
-      <div className="bg-red-600 text-white">
-        <div className="mx-auto max-w-6xl px-4 py-4 text-center sm:px-6 lg:px-8">
-          <p className="text-sm font-bold uppercase tracking-wide">
-            Maquette de démonstration — Propriété exclusive de{' '}
-            <a
-              href={siteConfig.url}
-              className="underline underline-offset-2 transition-opacity hover:opacity-80"
-            >
-              {siteConfig.url.replace(/^https?:\/\/(www\.)?/, '').toUpperCase()}
-            </a>
-          </p>
-          <p className="mt-1 text-xs leading-relaxed text-white/90">
-            Ce site est une présentation à but de démonstration uniquement. Toute reproduction,
-            exploitation ou utilisation à des fins professionnelles ou commerciales est strictement
-            interdite.
+            {t('footer.rights')}
           </p>
         </div>
       </div>

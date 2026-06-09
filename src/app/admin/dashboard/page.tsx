@@ -8,13 +8,17 @@ import { motion } from 'framer-motion'
 import {
   Home,
   Users,
-  Briefcase,
   Phone,
   MessageSquare,
   Images,
   ArrowRight,
   FileText,
   Database,
+  UtensilsCrossed,
+  BedDouble,
+  Wine,
+  CalendarCheck,
+  Mountain,
 } from 'lucide-react'
 
 interface AdminUser {
@@ -23,11 +27,16 @@ interface AdminUser {
 }
 
 const modules = [
-  { href: '/admin/pages/accueil', label: 'Accueil', desc: 'Hero, histoire, CTA, bandeau', icon: Home },
-  { href: '/admin/pages/a-propos', label: 'À propos', desc: 'Présentation, valeurs, galerie', icon: Users },
-  { href: '/admin/pages/services', label: 'Services', desc: 'Liste des services', icon: Briefcase },
-  { href: '/admin/pages/contact', label: 'Contact', desc: 'Formulaire, coordonnées', icon: Phone },
+  { href: '/admin/pages/accueil', label: 'Accueil', desc: 'Hero, histoire, FAQ, CTA', icon: Home },
+  { href: '/admin/pages/a-propos', label: "L'auberge", desc: 'Histoire, valeurs, galerie', icon: Users },
+  { href: '/admin/pages/services', label: "L'Hôtel", desc: 'Chambres & services', icon: BedDouble },
+  { href: '/admin/pages/restaurant', label: 'Le Restaurant', desc: 'Sections & horaires', icon: UtensilsCrossed },
+  { href: '/admin/pages/bar-terrasse', label: 'Le Bar & la Terrasse', desc: 'Moments & ambiance', icon: Wine },
+  { href: '/admin/pages/vallee-d-aspe', label: "La Vallée d'Aspe", desc: 'Activités autour', icon: Mountain },
+  { href: '/admin/pages/reserver', label: 'Réserver', desc: 'Hero & réassurance', icon: CalendarCheck },
+  { href: '/admin/pages/contact', label: 'Contact', desc: 'Hero & coordonnées', icon: Phone },
   { href: '/admin/pages/temoignages', label: 'Témoignages', desc: 'Avis clients', icon: MessageSquare },
+  { href: '/admin/cartes', label: 'Cartes resto', desc: 'Carte du moment, semaine, boissons', icon: UtensilsCrossed },
   { href: '/admin/gallery', label: 'Galerie', desc: 'Photos du site', icon: Images },
   { href: '/admin/blog', label: 'Blog', desc: 'Articles et actualités', icon: FileText },
 ]
@@ -66,9 +75,9 @@ export default function AdminDashboardPage() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background image */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=75"
+          src="/permayou/vallee.jpg"
           alt=""
           fill
           sizes="100vw"
@@ -79,12 +88,12 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Ambient glows */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute -top-32 -left-24 size-[480px] rounded-full bg-primary/20 blur-[140px]" />
         <div className="absolute -bottom-40 -right-20 size-[420px] rounded-full bg-sky-400/15 blur-[140px]" />
       </div>
 
-      <div className="space-y-6 p-4 pt-12 sm:p-6 sm:pt-12 lg:p-8 lg:pt-12">
+      <div className="relative z-10 space-y-6 p-4 pt-12 sm:p-6 sm:pt-12 lg:p-8 lg:pt-12">
         {/* Hero Banner — glassmorphism */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

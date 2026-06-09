@@ -3,12 +3,21 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 
 import { SectionTitle } from '@/components/ui/section-title'
+import { useContent } from '@/hooks/use-content'
 import { polesContent } from '@/lib/site-content'
 
 const ease = [0.22, 1, 0.36, 1] as const
+
+// Couleurs de marque (= celles des menus) pour numéroter les tuiles en alternance.
+const ACCENTS = [
+  'oklch(0.78 0.14 62)', // orange ambré
+  'oklch(0.66 0.16 25)', // brique
+  'oklch(0.68 0.16 268)', // bleu
+  'oklch(0.72 0.1 150)', // vert mousse
+]
 
 // Placement de chaque tuile dans la grille (desktop) — mosaïque asymétrique :
 // grande image à gauche (2 lignes), large en haut à droite, 2 petites en bas.
@@ -21,12 +30,14 @@ const layout = [
 
 export function PolesMosaic() {
   const reduceMotion = useReducedMotion()
-  const items = polesContent.items
+  const { data } = useContent('home', { poles: polesContent })
+  const poles = data.poles ?? polesContent
+  const items = poles.items ?? polesContent.items
 
   return (
     <section className="border-b border-border/60">
       <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <SectionTitle eyebrow={polesContent.eyebrow} title={polesContent.title} />
+        <SectionTitle eyebrow={poles.eyebrow} title={poles.title} />
 
         <motion.div
           initial="hidden"
@@ -64,6 +75,15 @@ export function PolesMosaic() {
                   className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent transition-colors duration-500 group-hover:from-black/75"
                   aria-hidden
                 />
+
+                {/* Numéro signature (couleur de marque) */}
+                <span
+                  className="absolute left-6 top-5 font-mono text-[11px] tabular-nums tracking-[0.2em] [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] sm:left-7 sm:top-6"
+                  style={{ color: ACCENTS[i % ACCENTS.length] }}
+                  aria-hidden
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
 
                 {/* Label */}
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6 sm:p-7">

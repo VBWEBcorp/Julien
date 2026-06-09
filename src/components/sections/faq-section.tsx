@@ -2,10 +2,12 @@
 
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Plus } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 import { SectionTitle } from '@/components/ui/section-title'
 import { useContent } from '@/hooks/use-content'
+import { Link } from '@/i18n/navigation'
 import { faqContent } from '@/lib/site-content'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -108,6 +110,7 @@ function FaqAccordionItem({
 }
 
 export function FaqSection() {
+  const t = useTranslations('faq')
   const { data } = useContent('home', { faq: defaults.faq })
   const faq = data.faq ?? defaults.faq
   const items: FaqItem[] = faq.items ?? defaults.faq.items
@@ -154,15 +157,15 @@ export function FaqSection() {
           className="mx-auto mt-12 flex max-w-2xl flex-col items-center justify-center gap-3 text-center sm:flex-row sm:gap-4"
         >
           <p className="text-sm text-muted-foreground">
-            Vous ne trouvez pas votre réponse ?
+            {t('noAnswer')}
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-primary/80"
           >
-            Contactez-nous directement
+            {t('contactUs')}
             <span aria-hidden>→</span>
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "hotel": "L'Hôtel",
+    "restaurant": "Le Restaurant",
+    "bar": "Le Bar & la Terrasse",
+    "valley": "La Vallée d'Aspe",
+    "auberge": "L'auberge",
+    "gallery": "Galerie",
+    "journal": "Le Journal",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Fermer",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "book": "Réserver",
+    "brandKicker": "Auberge",
+    "brandLocation": "Accous · Vallée d'Aspe"
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "legal": "Légal",
+    "contact": "Contact",
+    "rights": "Tous droits réservés",
+    "mentionsLegales": "Mentions légales",
+    "confidentialite": "Confidentialité",
+    "cgu": "CGU",
+    "cookies": "Cookies",
+    "demoNoticeTitle": "Maquette de démonstration, Propriété exclusive de",
+    "demoNoticeBody": "Ce site est une présentation à but de démonstration uniquement. Toute reproduction, exploitation ou utilisation à des fins professionnelles ou commerciales est strictement interdite."
+  },
+  "cookies": {
+    "title": "Nous utilisons des cookies",
+    "description": "Pour améliorer votre expérience. En continuant votre navigation, vous acceptez notre utilisation des cookies.",
+    "learnMore": "En savoir plus",
+    "refuse": "Refuser",
+    "accept": "Accepter",
+    "close": "Fermer"
+  },
+  "breadcrumb": {
+    "home": "Accueil",
+    "ariaLabel": "Fil d'Ariane"
+  },
+  "common": {
+    "backToTop": "Retour en haut",
+    "call": "Appeler",
+    "book": "Réserver"
+  },
+  "faq": {
+    "noAnswer": "Vous ne trouvez pas votre réponse ?",
+    "contactUs": "Contactez-nous directement"
+  },
+  "values": {
+    "valley": "Vallée d'Aspe",
+    "nature": "Pleine nature",
+    "cuisine": "Cuisine locale",
+    "bar": "Bar & terrasse",
+    "hiking": "Randonnée",
+    "cycling": "Vélo & cyclo",
+    "welcome": "Accueil chaleureux",
+    "freshAir": "Grand air"
+  },
+  "contact": {
+    "breadcrumb": "Contact",
+    "trust": {
+      "reply24h": "Réponse sous 24h",
+      "freeQuote": "Devis gratuit",
+      "available": "Disponible cette semaine"
+    },
+    "form": {
+      "title": "Envoyer un message",
+      "subtitle": "Tous les champs sont obligatoires sauf indication",
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Jean",
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Dupont",
+      "email": "Email",
+      "emailPlaceholder": "jean@exemple.fr",
+      "phone": "Téléphone",
+      "optional": "(optionnel)",
+      "phonePlaceholder": "06 12 34 56 78",
+      "subject": "Objet de la demande",
+      "message": "Votre message",
+      "messagePlaceholder": "Dates, nombre de personnes, votre demande...",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours…"
+    },
+    "subjects": {
+      "stay": "Réservation / séjour (hôtel)",
+      "table": "Réserver une table (restaurant)",
+      "group": "Groupe / séminaire",
+      "other": "Autre demande"
+    },
+    "success": {
+      "title": "Message bien envoyé !",
+      "body": "Merci, nous avons bien reçu votre demande et vous répondrons sous 24h.",
+      "retry": "Envoyer un autre message"
+    },
+    "errors": {
+      "generic": "Une erreur est survenue. Réessayez ou écrivez-nous directement par email.",
+      "network": "Impossible d'envoyer le message. Vérifiez votre connexion ou écrivez-nous par email."
+    },
+    "directContact": {
+      "title": "Nous joindre directement",
+      "phone": "Téléphone",
+      "email": "Email",
+      "address": "Adresse",
+      "statusToday": "Disponible aujourd'hui",
+      "hours": "· Lun-Ven 9h-18h"
+    },
+    "map": {
+      "placeholder": "Intégrez ici votre carte Google Maps",
+      "hint": "iframe ou API Google Maps"
+    }
+  },
+  "reserver": {
+    "breadcrumb": "Réserver",
+    "steps": {
+      "dates": "Vos dates",
+      "datesDesc": "Arrivée & départ",
+      "room": "Votre chambre",
+      "roomDesc": "Selon vos envies",
+      "payment": "Paiement sécurisé",
+      "paymentDesc": "Confirmation immédiate"
+    },
+    "sectionTitle": "Réservez votre séjour",
+    "engineHeader": "Réservation en direct · sécurisée",
+    "badge": "Meilleur tarif garanti",
+    "loading": "Chargement du moteur de réservation…",
+    "fullscreen": "Ouvrir le moteur en plein écran",
+    "support": "Une question, un groupe, un séminaire ? Appelez-nous :"
+  },
+  "meta": {
+    "restaurant": {
+      "title": "Le Restaurant",
+      "description": "Le restaurant de l'Auberge Le Permayou à Accous : cuisine traditionnelle et de saison, produits de la Vallée d'Aspe et spécialités du Béarn. Ouvert midi et soir, bar et snacking."
+    },
+    "services": {
+      "title": "L'Hôtel",
+      "description": "L'hôtel ★★ de l'Auberge Le Permayou à Accous : 8 chambres chaleureuses, dont des chambres avec vue sur la montagne et une chambre accessible PMR. Étape idéale dans la Vallée d'Aspe pour randonneurs et cyclistes."
+    },
+    "barTerrasse": {
+      "title": "Le Bar & la Terrasse",
+      "description": "Le bar et la terrasse de l'Auberge Le Permayou à Accous, avec vue sur le Cirque d'Iseye. Un bar de village ouvert à tous, apéro, pause cycliste et café face aux montagnes."
+    },
+    "valleeDAspe": {
+      "title": "La Vallée d'Aspe",
+      "description": "La Vallée d'Aspe depuis l'Auberge Le Permayou : randonnée (GR10, Saint-Jacques), vélo (col du Somport), faune sauvage et patrimoine. Votre camp de base au cœur des Pyrénées."
+    },
+    "reserver": {
+      "title": "Réserver",
+      "description": "Réservez votre séjour à l'Auberge Le Permayou, à Accous dans la Vallée d'Aspe. 8 chambres dont une accessible PMR. Réservation en ligne sécurisée ou par téléphone."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contactez-nous pour discuter de votre projet. Devis gratuit, réponse rapide."
+    },
+    "aPropos": {
+      "title": "L'auberge",
+      "description": "Coline & Julien, les repreneurs de l'Auberge Le Permayou à Accous. Notre histoire, nos valeurs et l'esprit d'une auberge de montagne au cœur de la Vallée d'Aspe."
+    }
+  }
+}

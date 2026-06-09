@@ -207,6 +207,9 @@
 
   html {
     scroll-behavior: smooth;
+    /* Réserve la gouttière du scrollbar : évite le saut de mise en page
+       quand on verrouille le scroll à l'ouverture du menu plein écran. */
+    scrollbar-gutter: stable;
   }
 
   body {

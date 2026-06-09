@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from 'mongoose'
 export interface IBlogPost extends Document {
   title: string
   slug: string
+  locale: 'fr' | 'en' | 'es'
   excerpt: string
   content: string
   coverImage: string
@@ -31,6 +32,7 @@ const BlogPostSchema = new Schema<IBlogPost>(
   {
     title: { type: String, required: [true, 'Title is required'] },
     slug: { type: String, required: true, unique: true },
+    locale: { type: String, enum: ['fr', 'en', 'es'], default: 'fr', index: true },
     excerpt: { type: String, default: '' },
     content: { type: String, default: '' },
     coverImage: { type: String, default: '' },

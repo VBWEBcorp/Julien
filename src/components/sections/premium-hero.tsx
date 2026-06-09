@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion'
 import { ChevronRight, Home } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import type { ReactNode } from 'react'
+
+import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -67,14 +69,11 @@ export function PremiumHero({
               className="object-cover"
             />
           </div>
-          {/* Overlay sombre uniforme en haut + s'estompe sur le dernier quart (sinon ça crée du gris quand le fade blanc arrive) */}
+          {/* Voile léger — la photo reste lumineuse (même DA que le hero d'accueil) */}
+          <div className="absolute inset-0 -z-10 bg-black/25" aria-hidden />
           <div
-            className="absolute inset-0 -z-10"
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-black/50 via-transparent to-black/25"
             aria-hidden
-            style={{
-              background:
-                'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.40) 70%, rgba(0,0,0,0) 100%)',
-            }}
           />
           {/* Fade vers le bg uniquement sur les ~96px du bas */}
           <div
@@ -83,6 +82,9 @@ export function PremiumHero({
           />
         </>
       )}
+
+      {/* Décor signature montagne + halos (repris du menu) */}
+      <MountainBackdrop tone={hasBgImage ? 'overlay' : 'light'} />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
@@ -138,7 +140,7 @@ export function PremiumHero({
                   {lead}{' '}
                   <span
                     className={`relative inline-block pb-1 font-serif italic font-normal tracking-[-0.01em] ${
-                      darkOver ? 'text-[oklch(0.55_0.1_150)]' : 'text-primary'
+                      darkOver ? 'text-[oklch(0.82_0.12_150)]' : 'text-primary'
                     }`}
                   >
                     {accent}

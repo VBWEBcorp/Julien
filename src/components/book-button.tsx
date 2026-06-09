@@ -1,5 +1,6 @@
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
+import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -24,12 +25,13 @@ export function BookButton({
   variant = 'default',
   size = 'default',
   className,
-  label = 'Réserver',
+  label,
   href = '/reserver',
 }: BookButtonProps) {
+  const t = useTranslations('common')
   return (
     <Button asChild variant={variant} size={size} className={cn(className)}>
-      <Link href={href}>{label}</Link>
+      <Link href={href}>{label ?? t('book')}</Link>
     </Button>
   )
 }

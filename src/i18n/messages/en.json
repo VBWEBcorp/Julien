@@ -1,0 +1,163 @@
+{
+  "nav": {
+    "home": "Home",
+    "hotel": "The Hotel",
+    "restaurant": "The Restaurant",
+    "bar": "The Bar & Terrace",
+    "valley": "The Aspe Valley",
+    "auberge": "The Inn",
+    "gallery": "Gallery",
+    "journal": "The Journal",
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "book": "Book",
+    "brandKicker": "Inn",
+    "brandLocation": "Accous · Aspe Valley"
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "legal": "Legal",
+    "contact": "Contact",
+    "rights": "All rights reserved",
+    "mentionsLegales": "Legal notice",
+    "confidentialite": "Privacy",
+    "cgu": "Terms",
+    "cookies": "Cookies",
+    "demoNoticeTitle": "Demonstration mockup, Exclusive property of",
+    "demoNoticeBody": "This website is a demonstration presentation only. Any reproduction, exploitation or use for professional or commercial purposes is strictly prohibited."
+  },
+  "cookies": {
+    "title": "We use cookies",
+    "description": "To improve your experience. By continuing to browse, you accept our use of cookies.",
+    "learnMore": "Learn more",
+    "refuse": "Decline",
+    "accept": "Accept",
+    "close": "Close"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "ariaLabel": "Breadcrumb"
+  },
+  "common": {
+    "backToTop": "Back to top",
+    "call": "Call",
+    "book": "Book"
+  },
+  "faq": {
+    "noAnswer": "Can't find your answer?",
+    "contactUs": "Contact us directly"
+  },
+  "values": {
+    "valley": "Aspe Valley",
+    "nature": "Unspoilt nature",
+    "cuisine": "Local cuisine",
+    "bar": "Bar & terrace",
+    "hiking": "Hiking",
+    "cycling": "Cycling",
+    "welcome": "Warm welcome",
+    "freshAir": "Fresh air"
+  },
+  "contact": {
+    "breadcrumb": "Contact",
+    "trust": {
+      "reply24h": "Reply within 24h",
+      "freeQuote": "Free quote",
+      "available": "Available this week"
+    },
+    "form": {
+      "title": "Send a message",
+      "subtitle": "All fields are required unless stated otherwise",
+      "firstName": "First name",
+      "firstNamePlaceholder": "John",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Doe",
+      "email": "Email",
+      "emailPlaceholder": "john@example.com",
+      "phone": "Phone",
+      "optional": "(optional)",
+      "phonePlaceholder": "06 12 34 56 78",
+      "subject": "Reason for your enquiry",
+      "message": "Your message",
+      "messagePlaceholder": "Dates, number of guests, your request...",
+      "submit": "Send message",
+      "sending": "Sending…"
+    },
+    "subjects": {
+      "stay": "Booking / stay (hotel)",
+      "table": "Book a table (restaurant)",
+      "group": "Group / seminar",
+      "other": "Other enquiry"
+    },
+    "success": {
+      "title": "Message sent!",
+      "body": "Thank you, we have received your request and will reply within 24 hours.",
+      "retry": "Send another message"
+    },
+    "errors": {
+      "generic": "Something went wrong. Please try again or email us directly.",
+      "network": "Unable to send your message. Please check your connection or email us."
+    },
+    "directContact": {
+      "title": "Reach us directly",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "statusToday": "Available today",
+      "hours": "· Mon-Fri 9am-6pm"
+    },
+    "map": {
+      "placeholder": "Embed your Google Maps map here",
+      "hint": "iframe or Google Maps API"
+    }
+  },
+  "reserver": {
+    "breadcrumb": "Book",
+    "steps": {
+      "dates": "Your dates",
+      "datesDesc": "Arrival & departure",
+      "room": "Your room",
+      "roomDesc": "To suit your wishes",
+      "payment": "Secure payment",
+      "paymentDesc": "Instant confirmation"
+    },
+    "sectionTitle": "Book your stay",
+    "engineHeader": "Direct booking · secure",
+    "badge": "Best rate guaranteed",
+    "loading": "Loading the booking engine…",
+    "fullscreen": "Open the engine in fullscreen",
+    "support": "A question, a group, a seminar? Call us:"
+  },
+  "meta": {
+    "restaurant": {
+      "title": "The Restaurant",
+      "description": "The restaurant at Auberge Le Permayou in Accous: traditional, seasonal cuisine, produce from the Aspe Valley and Béarn specialities. Open for lunch and dinner, with a bar and snacks."
+    },
+    "services": {
+      "title": "The Hotel",
+      "description": "The 2-star hotel at Auberge Le Permayou in Accous: 8 warm rooms, including rooms with mountain views and one wheelchair-accessible room. The perfect base in the Aspe Valley for hikers and cyclists."
+    },
+    "barTerrasse": {
+      "title": "The Bar & Terrace",
+      "description": "The bar and terrace at Auberge Le Permayou in Accous, with views over the Cirque d'Iseye. A village bar open to all: apéritifs, a cyclist's break and coffee facing the mountains."
+    },
+    "valleeDAspe": {
+      "title": "The Aspe Valley",
+      "description": "The Aspe Valley from Auberge Le Permayou: hiking (GR10, Way of St James), cycling (Col du Somport), wildlife and heritage. Your base camp in the heart of the Pyrenees."
+    },
+    "reserver": {
+      "title": "Book",
+      "description": "Book your stay at Auberge Le Permayou, in Accous in the Aspe Valley. 8 rooms, including one wheelchair-accessible room. Secure online booking or by phone."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch to talk about your stay. Quick reply, friendly welcome."
+    },
+    "aPropos": {
+      "title": "The Inn",
+      "description": "Coline & Julien, the new owners of Auberge Le Permayou in Accous. Our story, our values and the spirit of a mountain inn in the heart of the Aspe Valley."
+    }
+  }
+}

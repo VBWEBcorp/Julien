@@ -1,4 +1,4 @@
-import { siteConfig } from '@/lib/seo'
+import { siteConfig, localizedUrl } from '@/lib/seo'
 
 export function organizationJsonLd() {
   return {
@@ -11,7 +11,7 @@ export function organizationJsonLd() {
       '@type': 'ContactPoint',
       telephone: siteConfig.phone,
       contactType: 'customer service',
-      availableLanguage: 'French',
+      availableLanguage: ['French', 'English', 'Spanish'],
     },
     sameAs: [] as string[],
   }
@@ -49,14 +49,16 @@ export function webSiteJsonLd() {
 export function webPageJsonLd(
   name: string,
   description: string,
-  path: string
+  path: string,
+  locale: string = 'fr'
 ) {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name,
     description,
-    url: `${siteConfig.url}${path}`,
+    url: localizedUrl(path, locale),
+    inLanguage: locale,
     isPartOf: {
       '@type': 'WebSite',
       name: siteConfig.name,
@@ -83,7 +85,8 @@ export function faqJsonLd(faqs: { question: string; answer: string }[]) {
 export function serviceJsonLd(
   name: string,
   description: string,
-  path: string
+  path: string,
+  locale: string = 'fr'
 ) {
   return {
     '@context': 'https://schema.org',
@@ -95,12 +98,13 @@ export function serviceJsonLd(
       name: siteConfig.name,
       url: siteConfig.url,
     },
-    url: `${siteConfig.url}${path}`,
+    url: localizedUrl(path, locale),
   }
 }
 
 export function breadcrumbJsonLd(
-  items: { name: string; path: string }[]
+  items: { name: string; path: string }[],
+  locale: string = 'fr'
 ) {
   return {
     '@context': 'https://schema.org',
@@ -109,7 +113,7 @@ export function breadcrumbJsonLd(
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: `${siteConfig.url}${item.path}`,
+      item: localizedUrl(item.path, locale),
     })),
   }
 }

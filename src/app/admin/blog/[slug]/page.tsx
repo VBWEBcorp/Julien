@@ -15,6 +15,7 @@ interface BlogPost {
   _id?: string
   title: string
   slug: string
+  locale: 'fr' | 'en' | 'es'
   excerpt: string
   content: string
   coverImage: string
@@ -30,6 +31,7 @@ interface BlogPost {
 const emptyPost: BlogPost = {
   title: '',
   slug: '',
+  locale: 'fr',
   excerpt: '',
   content: '',
   coverImage: '',
@@ -70,7 +72,7 @@ export default function BlogPostEditor({ params }: { params: Promise<{ slug: str
         const response = await fetch(`/api/blog/posts/${slug}`)
         if (response.ok) {
           const data = await response.json()
-          setPost(data)
+          setPost({ ...data, locale: data.locale || 'fr' })
           setTagsInput(data.tags?.join(', ') || '')
         }
       } catch (error) {
@@ -297,6 +299,31 @@ export default function BlogPostEditor({ params }: { params: Promise<{ slug: str
             </h3>
           </div>
           <div className="p-5 space-y-4">
+            <div className="space-y-1.5">
+              <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                Langue de l&apos;article
+              </Label>
+              <div className="flex gap-1 p-0.5 rounded-md bg-muted/50 w-fit">
+                {(['fr', 'en', 'es'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    type="button"
+                    onClick={() => updateField('locale', lang)}
+                    className={
+                      'px-3 py-1 rounded text-xs font-medium uppercase transition-colors ' +
+                      (post.locale === lang
+                        ? 'bg-card text-foreground shadow-sm'
+                        : 'text-muted-foreground hover:text-foreground')
+                    }
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
+              <p className="text-[11px] text-muted-foreground/60">
+                L&apos;article ne sera affiché que sur la version du site correspondant à cette langue.
+              </p>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
                 <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">

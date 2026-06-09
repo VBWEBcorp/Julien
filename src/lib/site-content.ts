@@ -1,114 +1,124 @@
 /**
- * site-content.ts — Contenu adaptable de la template
+ * site-content.ts, Contenu adaptable de la template
  *
  * Toute la copie + tous les visuels par défaut sont centralisés ici.
  * Pour adapter la template à un nouveau métier (restaurant, artisan, avocat,
- * conseil, e-commerce, etc.) il suffit d'éditer ce fichier — aucun composant
+ * conseil, e-commerce, etc.) il suffit d'éditer ce fichier, aucun composant
  * React à toucher.
  *
  * Le CMS (via /api/content/[pageId]) peut surcharger n'importe quelle valeur
  * en runtime ; ce qui est ici sert de fallback / d'état initial.
  *
- * Pour les icônes : passe une chaîne ("Globe", "Phone", "Heart"...) — elle est
+ * Pour les icônes : passe une chaîne ("Globe", "Phone", "Heart"...), elle est
  * résolue par `getIcon()` côté composant. Liste complète des icônes :
  * https://lucide.dev/icons/
  */
 
 // ============================================================================
-//                          IMAGES — pool de visuels
+//                          IMAGES, pool de visuels
 // ============================================================================
 // Remplace ces URLs Unsplash par les vraies photos du client (locaux, équipe,
 // produits, ateliers, plats, chantiers, etc.). Garde le format auto+fit pour
 // la performance.
 
-// ⚠️ PLACEHOLDERS — visuels d'appoint (montagne / auberge / table) le temps
+// ⚠️ PLACEHOLDERS, visuels d'appoint (montagne / auberge / table) le temps
 // du shooting photo pro (nov./déc. 2026). À remplacer par les vraies photos
 // du Permayou via le back-office, sans toucher au code.
 
+// Photos réelles de l'auberge (fournies par le client, juin 2026), stockées dans
+// /public/permayou. Remplaçables ensuite via le CMS (shooting pro nov./déc. 2026).
+// ⚠️ Pas de photo de plat / d'intérieur du bar pour l'instant : on réutilise les
+// vues terrasse / façade / montagne en attendant le shooting.
 export const images = {
-  // Hero homepage — vallée, salle/terrasse, chambre
+  // Hero homepage : façade emblématique, vallée, chambre
   heroCarousel: [
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80', // vallée de montagne
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80', // salle de restaurant
-    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1920&q=80', // chambre chaleureuse
+    '/permayou/facade.jpg', // façade « LE PERMAYOU » face aux sommets
+    '/permayou/vallee.jpg', // jardin & terrasse face à la montagne
+    '/permayou/chambre-double-vue.jpg', // chambre vue montagne
   ],
 
   // Section "Notre histoire / l'auberge" sur la home
-  story:
-    'https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=1200&q=80', // auberge de montagne
+  story: '/permayou/terrasse.jpg', // terrasse & jardin de l'auberge
 
-  // Page L'auberge — image principale du hero
-  aboutHero:
-    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1920&q=80', // montagnes
+  // Page L'auberge, image principale du hero
+  aboutHero: '/permayou/vallee.jpg', // jardin face aux Pyrénées
 
-  // Page L'hôtel / Restaurant — image de fond du hero
-  servicesHero:
-    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1920&q=80', // hôtel
+  // Page L'hôtel / Restaurant, image de fond du hero
+  servicesHero: '/permayou/facade.jpg', // façade de l'auberge
 
-  // Page Contact — image de fond du hero
-  contactHero:
-    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1920&q=80', // paysage montagne
+  // Page Contact, image de fond du hero
+  contactHero: '/permayou/terrasse.jpg', // terrasse de l'auberge
 
-  // Page L'auberge — galerie (8 images, grille 4 colonnes)
+  // Page L'auberge, galerie (8 images, grille 4 colonnes)
   aboutGallery: [
-    'https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=600&q=80', // façade auberge
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80', // sommets
-    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80', // table / plat
-    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=600&q=80', // chambre
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80', // salle / terrasse
-    'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80', // bar
-    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80', // randonnée
-    'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80', // montagnes
+    '/permayou/facade.jpg',
+    '/permayou/vallee.jpg',
+    '/permayou/terrasse-jardin.jpg',
+    '/permayou/chambre-double-vue.jpg',
+    '/permayou/chambre-double-vue-2.jpg',
+    '/permayou/salle-de-bain.jpg',
+    '/permayou/chambre-triple.jpg',
+    '/permayou/terrasse.jpg',
   ],
 
-  // Images illustrant les 3 pôles + la vallée
+  // Images illustrant les 3 pôles + la vallée (tableau partagé par plusieurs pages)
   services: [
-    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1200&q=80', // hôtel / chambre
-    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80', // restaurant / plat
-    'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80', // bar
-    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80', // vallée
-    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=80', // randonnée
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80', // terrasse / salle
-    'https://images.unsplash.com/photo-1455587734955-081b22074882?auto=format&fit=crop&w=1200&q=80', // façade auberge
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80', // sommets
+    '/permayou/chambre-double-vue.jpg', // 0 hôtel / chambre
+    '/permayou/terrasse.jpg', // 1 restaurant (terrasse)
+    '/permayou/terrasse-jardin.jpg', // 2 bar (terrasse jardin)
+    '/permayou/vallee.jpg', // 3 vallée
+    '/permayou/facade.jpg', // 4 façade & sentiers
+    '/permayou/terrasse.jpg', // 5 terrasse / espaces communs
+    '/permayou/facade.jpg', // 6 façade auberge
+    '/permayou/vallee.jpg', // 7 sommets / vue
   ],
 
-  // Section CTA — 2 colonnes d'images animées en marquee vertical
+  // Photos dédiées aux 5 types de chambres (page Hôtel)
+  rooms: {
+    doubleVue: '/permayou/chambre-double-vue.jpg',
+    doubleJumeaux: '/permayou/chambre-jumeaux.jpg',
+    tripleVue: '/permayou/chambre-triple.jpg',
+    tripleClassique: '/permayou/chambre-familiale.jpg',
+    pmr: '/permayou/chambre-double.jpg',
+    services: '/permayou/salle-de-bain.jpg',
+  },
+
+  // Section CTA, 2 colonnes d'images animées en marquee vertical
   ctaScrollColumns: {
     col1: [
-      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=500&fit=crop&q=75',
+      '/permayou/vallee.jpg',
+      '/permayou/chambre-double-vue.jpg',
+      '/permayou/terrasse.jpg',
+      '/permayou/chambre-triple.jpg',
     ],
     col2: [
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1455587734955-081b22074882?w=400&h=500&fit=crop&q=75',
-      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=500&fit=crop&q=75',
+      '/permayou/facade.jpg',
+      '/permayou/terrasse-jardin.jpg',
+      '/permayou/chambre-jumeaux.jpg',
+      '/permayou/salle-de-bain.jpg',
     ],
   },
 
   // GalleryCarousel sur la home
   homeGallery: [
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=720&q=80',
-    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=720&q=80',
+    '/permayou/facade.jpg',
+    '/permayou/chambre-double-vue.jpg',
+    '/permayou/terrasse.jpg',
+    '/permayou/vallee.jpg',
+    '/permayou/terrasse-jardin.jpg',
+    '/permayou/chambre-triple.jpg',
   ],
 }
 
 // ============================================================================
-//                          HOME — Hero + sections
+//                          HOME, Hero + sections
 // ============================================================================
 
 export const heroContent = {
   eyebrow: "Accous · Vallée d'Aspe",
   title: "Une auberge de montagne au cœur des Pyrénées",
   description:
-    "Hôtel, restaurant et bar au cœur de la Vallée d'Aspe. On y vient pour une pause gourmande, une nuit d'étape ou un séjour au grand air — dans une ambiance simple et conviviale.",
+    "Hôtel, restaurant et bar au cœur de la Vallée d'Aspe. On y vient pour une pause gourmande, une nuit d'étape ou un séjour au grand air, dans une ambiance simple et conviviale.",
   button1: 'Réserver',
   button2: "Découvrir l'auberge",
   images: images.heroCarousel,
@@ -120,7 +130,7 @@ export const storyContent = {
   paragraph1:
     "Au cœur de la vallée d'Aspe, à Accous, Le Permayou est une auberge de montagne où l'on vient aussi bien pour une pause gourmande que pour un séjour au grand air. Entre les sommets pyrénéens, les sentiers de randonnée et l'authenticité du Béarn, nous accueillons voyageurs, randonneurs, habitants de la vallée et amoureux de nature dans une ambiance simple et conviviale.",
   paragraph2:
-    "Le Permayou, c'est un restaurant mettant à l'honneur les produits locaux, un hôtel chaleureux de huit chambres, un bar vivant ouvert à tous et un point presse — un lieu où l'on se sent bien, que l'on vienne pour un café, un repas entre amis ou plusieurs jours à la découverte des Pyrénées.",
+    "Le Permayou, c'est un restaurant mettant à l'honneur les produits locaux, un hôtel chaleureux de huit chambres, un bar vivant ouvert à tous et un point presse, un lieu où l'on se sent bien, que l'on vienne pour un café, un repas entre amis ou plusieurs jours à la découverte des Pyrénées.",
   image: images.story,
 }
 
@@ -206,7 +216,7 @@ export const faqContent = {
     {
       question: "Quels sont vos horaires d'ouverture ?",
       answer:
-        "En été (juin à septembre), l'auberge est ouverte de 7h à 23h. Les horaires du reste de l'année seront précisés prochainement — n'hésitez pas à nous contacter.",
+        "En été (juin à septembre), l'auberge est ouverte de 7h à 23h. Les horaires du reste de l'année seront précisés prochainement, n'hésitez pas à nous contacter.",
     },
     {
       question: 'Comment réserver une chambre ?',
@@ -216,7 +226,7 @@ export const faqContent = {
     {
       question: 'Le restaurant est-il ouvert à tous ?',
       answer:
-        "Oui, le restaurant et le bar sont ouverts aussi bien aux clients de l'hôtel qu'aux habitants et voyageurs de passage. On y sert midi et soir une cuisine de tradition et des spécialités de la gastronomie aspoise — garbure, palombe en saison — ainsi que des snacks pour une étape simple. L'apéro avec tapas se prend en terrasse face aux montagnes. Réservation conseillée, surtout en saison.",
+        "Oui, le restaurant et le bar sont ouverts aussi bien aux clients de l'hôtel qu'aux habitants et voyageurs de passage. On y sert midi et soir une cuisine de tradition et des spécialités de la gastronomie aspoise, garbure, palombe en saison, ainsi que des snacks pour une étape simple. L'apéro avec tapas se prend en terrasse face aux montagnes. Réservation conseillée, surtout en saison.",
     },
     {
       question: 'Disposez-vous d\'un accès pour les personnes à mobilité réduite ?',
@@ -242,7 +252,7 @@ export const faqContent = {
 }
 
 // ============================================================================
-//                          ABOUT — page À propos
+//                          ABOUT, page À propos
 // ============================================================================
 
 export const aboutContent = {
@@ -302,7 +312,7 @@ export const aboutContent = {
 }
 
 // ============================================================================
-//                          SERVICES — page Services
+//                          SERVICES, page Services
 // ============================================================================
 
 export const servicesContent = {
@@ -310,7 +320,7 @@ export const servicesContent = {
     eyebrow: "L'Hôtel ★★",
     title: 'Huit chambres au pied des montagnes',
     description:
-      "Un hôtel chaleureux de 8 chambres, dont plusieurs avec vue sur la montagne et une chambre accessible aux personnes à mobilité réduite. Étape incontournable de la Vallée d'Aspe sur le chemin de Saint-Jacques de Compostelle — idéale pour les randonneurs, les cyclistes et tous les voyageurs de passage.",
+      "Un hôtel chaleureux de 8 chambres, dont plusieurs avec vue sur la montagne et une chambre accessible aux personnes à mobilité réduite. Étape incontournable de la Vallée d'Aspe sur le chemin de Saint-Jacques de Compostelle, idéale pour les randonneurs, les cyclistes et tous les voyageurs de passage.",
   },
   kpis: [
     { value: '8', label: 'chambres' },
@@ -321,51 +331,51 @@ export const servicesContent = {
   list: [
     {
       iconName: 'BedDouble',
-      title: 'Chambre Double — Vue Montagne',
+      title: 'Chambre Double, Vue Montagne',
       description: "Une chambre confortable avec un grand lit et une vue dégagée sur les sommets pyrénéens. Idéale pour un séjour en couple.",
       points: ['1 lit double', 'Vue montagne', 'Salle de bain privative'],
-      image: images.services[0],
+      image: images.rooms.doubleVue,
     },
     {
       iconName: 'BedDouble',
-      title: 'Chambre Double ou Lits Jumeaux — Vue Montagnes',
+      title: 'Chambre Double ou Lits Jumeaux, Vue Montagnes',
       description: "Modulable selon vos besoins : un grand lit ou deux lits simples, avec une belle vue sur la vallée.",
       points: ['Lit double ou 2 lits', 'Vue montagnes', 'Configuration flexible'],
-      image: images.services[7],
+      image: images.rooms.doubleJumeaux,
     },
     {
       iconName: 'BedDouble',
-      title: 'Chambre Triple — Vue Montagne',
+      title: 'Chambre Triple, Vue Montagne',
       description: "Spacieuse, parfaite pour les familles ou les groupes d'amis, avec vue sur la montagne.",
       points: ['Jusqu’à 3 personnes', 'Vue montagne', 'Espace généreux'],
-      image: images.services[4],
+      image: images.rooms.tripleVue,
     },
     {
       iconName: 'BedDouble',
       title: 'Chambre Triple Classique',
       description: "Une chambre triple chaleureuse et fonctionnelle, idéale pour une étape confortable à plusieurs.",
       points: ['Jusqu’à 3 personnes', 'Confort cosy', 'Bon rapport qualité-prix'],
-      image: images.services[6],
+      image: images.rooms.tripleClassique,
     },
     {
       iconName: 'Accessibility',
-      title: 'Chambre Double — Accessible PMR',
+      title: 'Chambre Double, Accessible PMR',
       description: "Une chambre double spécialement aménagée et accessible aux personnes à mobilité réduite, pour un séjour serein.",
       points: ['Accès PMR', 'Aménagement adapté', 'Plain-pied'],
-      image: images.services[5],
+      image: images.rooms.pmr,
     },
     {
       iconName: 'Coffee',
       title: 'Les services de l’hôtel',
       description: "Petit-déjeuner, demi-pension, Wi-Fi gratuit dans toutes les chambres, point presse (tabac & journaux) et animaux acceptés. Chaque chambre dispose d'une télévision à écran plat, d'une salle de bain privative et d'un sèche-cheveux.",
       points: ['Petit-déj & demi-pension', 'Wi-Fi gratuit · TV écran plat', 'Animaux acceptés · Point presse'],
-      image: images.services[1],
+      image: images.rooms.services,
     },
   ],
 }
 
 // ============================================================================
-//                          CONTACT — page Contact
+//                          CONTACT, page Contact
 // ============================================================================
 
 export const contactContent = {
@@ -379,7 +389,7 @@ export const contactContent = {
 }
 
 // ============================================================================
-//                          RESTAURANT — page /restaurant
+//                          RESTAURANT, page /restaurant
 // ============================================================================
 
 export const restaurantContent = {
@@ -387,7 +397,7 @@ export const restaurantContent = {
     eyebrow: 'Le Restaurant',
     title: 'Une cuisine de tradition, généreuse et locale',
     description:
-      "Au Permayou, on cuisine les produits de la Vallée d'Aspe et les spécialités du Béarn — garbure, palombe en saison, viandes du pays. Une table conviviale ouverte aux voyageurs comme aux habitants de la vallée, midi et soir.",
+      "Au Permayou, on cuisine les produits de la Vallée d'Aspe et les spécialités du Béarn, garbure, palombe en saison, viandes du pays. Une table conviviale ouverte aux voyageurs comme aux habitants de la vallée, midi et soir.",
   },
   sections: [
     {
@@ -415,12 +425,12 @@ export const restaurantContent = {
   hours: {
     eyebrow: 'Horaires de service',
     title: 'Quand venir',
-    note: "En été (juin à septembre), service midi et soir. Réservation conseillée, surtout en saison. Les horaires du reste de l'année seront précisés prochainement — n'hésitez pas à nous contacter.",
+    note: "En été (juin à septembre), service midi et soir. Réservation conseillée, surtout en saison. Les horaires du reste de l'année seront précisés prochainement, n'hésitez pas à nous contacter.",
   },
 }
 
 // ============================================================================
-//                       BAR & TERRASSE — page /bar-terrasse
+//                       BAR & TERRASSE, page /bar-terrasse
 // ============================================================================
 
 export const barTerrasseContent = {
@@ -456,7 +466,7 @@ export const barTerrasseContent = {
 }
 
 // ============================================================================
-//                     VALLÉE D'ASPE — page /vallee-d-aspe
+//                     VALLÉE D'ASPE, page /vallee-d-aspe
 // ============================================================================
 
 export const valleeAspeContent = {
@@ -495,7 +505,7 @@ export const valleeAspeContent = {
 }
 
 // ============================================================================
-//                          RÉSERVER — page /reserver
+//                          RÉSERVER, page /reserver
 // ============================================================================
 
 export const reserverContent = {
@@ -514,7 +524,7 @@ export const reserverContent = {
 }
 
 // ============================================================================
-//                       PRESETS — exemples par métier
+//                       PRESETS, exemples par métier
 // ============================================================================
 //
 // Pour basculer rapidement la template sur un autre domaine, décommente l'un

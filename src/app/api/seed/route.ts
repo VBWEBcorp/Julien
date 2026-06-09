@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { connectDB } from '@/lib/db'
 import { GalleryImage, GallerySettings } from '@/models/Gallery'
 import { BlogPost, BlogSettings } from '@/models/Blog'
+import Carte from '@/models/Menu'
 import { verifyAuth } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
@@ -21,7 +22,7 @@ export async function POST(request: NextRequest) {
         {
           title: "Façade de l'auberge",
           description: "Le Permayou, au cœur d'Accous dans la vallée d'Aspe.",
-          imageUrl: 'https://images.unsplash.com/photo-1455587734955-081b22074882?w=800&q=80',
+          imageUrl: '/permayou/facade.jpg',
           category: 'auberge',
           order: 1,
           active: true,
@@ -29,7 +30,7 @@ export async function POST(request: NextRequest) {
         {
           title: 'Une chambre chaleureuse',
           description: 'Confort montagnard et vue sur les sommets.',
-          imageUrl: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80',
+          imageUrl: '/permayou/chambre-double-vue.jpg',
           category: 'chambres',
           order: 2,
           active: true,
@@ -37,7 +38,7 @@ export async function POST(request: NextRequest) {
         {
           title: 'La table du Permayou',
           description: 'Cuisine de tradition et produits du terroir aspois.',
-          imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+          imageUrl: '/permayou/terrasse.jpg',
           category: 'restaurant',
           order: 3,
           active: true,
@@ -45,7 +46,7 @@ export async function POST(request: NextRequest) {
         {
           title: "Les sommets de la vallée d'Aspe",
           description: 'Les Pyrénées béarnaises depuis l\'auberge.',
-          imageUrl: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+          imageUrl: '/permayou/vallee.jpg',
           category: 'vallee',
           order: 4,
           active: true,
@@ -82,7 +83,7 @@ export async function POST(request: NextRequest) {
           slug: '5-randonnees-depart-permayou',
           excerpt: "Du sentier familial à la grande boucle d'altitude, voici nos cinq randonnées préférées à faire directement depuis l'auberge.",
           content: `<p>L'un des grands atouts du Permayou, c'est de pouvoir partir marcher dès la sortie de l'auberge.</p><h2>Le tour d'Accous (facile)</h2><p>Une boucle douce autour du village, idéale en fin de journée ou pour les familles, avec un beau point de vue sur les sommets.</p><h2>Le plateau de Lhers</h2><p>Un grand plateau d'altitude réputé pour sa tranquillité et sa faune. Avec un peu de chance, vous apercevrez des isards.</p><h2>Vers le Cirque d'Iseye</h2><p>Notre coup de cœur : une montée progressive jusqu'à l'amphithéâtre de montagnes du Cirque d'Iseye.</p><p>Au retour, la terrasse et un bon repas vous attendent. Bonne marche !</p>`,
-          coverImage: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80',
+          coverImage: '/permayou/facade.jpg',
           category: 'Randonnées & itinéraires',
           tags: ['randonnée', 'GR10', "vallée d'Aspe", 'montagne'],
           author: 'Coline & Julien',
@@ -96,7 +97,7 @@ export async function POST(request: NextRequest) {
           slug: 'cuisine-saison-vallee-aspe',
           excerpt: "Garbure, fromages d'estive, viandes du pays… Au Permayou, on cuisine la vallée.",
           content: `<p>Manger au Permayou, c'est goûter la vallée d'Aspe. Nous travaillons autant que possible avec les producteurs du coin, au rythme des saisons.</p><h2>La garbure, notre incontournable</h2><p>Cette soupe béarnaise complète réchauffe les marcheurs comme les habitués.</p><h2>Les produits du terroir</h2><p>Fromages de brebis d'estive, charcuteries du pays, miel de montagne, légumes de saison. En saison, la palombe et les viandes locales s'invitent à la carte.</p><p>La table du Permayou est ouverte midi et soir, dans une ambiance simple et conviviale.</p>`,
-          coverImage: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80',
+          coverImage: '/permayou/terrasse.jpg',
           category: 'La table',
           tags: ['cuisine', 'produits locaux', 'garbure', 'terroir'],
           author: 'Coline & Julien',
@@ -130,6 +131,32 @@ export async function POST(request: NextRequest) {
       results.push('Blog activé avec catégories')
     } else {
       results.push('Blog déjà peuplé, ignoré')
+    }
+
+    // ─── Cartes du restaurant : 2 exemples (du moment / de la semaine) ───
+    const existingCartes = await Carte.countDocuments()
+    if (existingCartes === 0) {
+      await Carte.insertMany([
+        {
+          title: 'Carte du moment',
+          description: 'Mise à jour chaque mois au rythme des saisons.',
+          fileUrl: 'https://images.unsplash.com/photo-1541557435984-1c79685a082b?w=1000&q=80',
+          fileType: 'image',
+          order: 0,
+          active: true,
+        },
+        {
+          title: 'Carte de la semaine',
+          description: 'Les suggestions du chef, renouvelées chaque semaine.',
+          fileUrl: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1000&q=80',
+          fileType: 'image',
+          order: 1,
+          active: true,
+        },
+      ])
+      results.push('2 cartes restaurant créées')
+    } else {
+      results.push('Cartes déjà peuplées, ignorées')
     }
 
     return NextResponse.json({ success: true, results })

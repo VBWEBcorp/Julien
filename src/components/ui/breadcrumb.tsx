@@ -1,5 +1,9 @@
+'use client'
+
 import { ChevronRight, Home } from 'lucide-react'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
+
+import { Link } from '@/i18n/navigation'
 
 export type BreadcrumbItem = {
   label: string
@@ -11,9 +15,10 @@ type BreadcrumbProps = {
 }
 
 export function Breadcrumb({ items }: BreadcrumbProps) {
+  const t = useTranslations('breadcrumb')
   return (
     <nav
-      aria-label="Fil d'Ariane"
+      aria-label={t('ariaLabel')}
       className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 lg:px-8"
     >
       <ol className="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
@@ -23,7 +28,7 @@ export function Breadcrumb({ items }: BreadcrumbProps) {
             className="flex items-center gap-1 transition-colors hover:text-foreground"
           >
             <Home className="size-3" aria-hidden />
-            <span>Accueil</span>
+            <span>{t('home')}</span>
           </Link>
         </li>
         {items.map((item, i) => {

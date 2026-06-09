@@ -5,8 +5,6 @@ import { generateToken } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
   try {
-    await connectDB()
-
     const { email, password } = await request.json()
 
     // Validation
@@ -16,6 +14,25 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+
+    // Admin unique défini par variables d'environnement (ADMIN_EMAIL / ADMIN_PASSWORD).
+    // Permet de se connecter sans créer de compte en base. À définir dans .env.
+    const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase()
+    const adminPassword = process.env.ADMIN_PASSWORD
+    if (
+      adminEmail &&
+      adminPassword &&
+      email.toLowerCase() === adminEmail &&
+      password === adminPassword
+    ) {
+      const token = generateToken({ userId: 'env-admin', email: adminEmail, role: 'admin' })
+      return NextResponse.json({
+        token,
+        user: { id: 'env-admin', email: adminEmail, name: 'Le Permayou', role: 'admin' },
+      })
+    }
+
+    await connectDB()
 
     // Find user and get password field
     const user = await User.findOne({ email: email.toLowerCase() }).select('+password')

@@ -23,7 +23,10 @@ export const siteConfig = {
   // Phase 2 : iframe embarqué sur /reserver. ⚠️ URL réelle à fournir une fois
   // l'accès admin Amenitiz débloqué (code SMS auprès du propriétaire actuel).
   booking: {
-    amenitizUrl: 'https://le-permayou.amenitiz.io/fr/booking', // moteur Amenitiz du Permayou
+    // Amenitiz met la langue dans le chemin (/fr /en /es). On construit l'URL
+    // selon la locale via amenitizBookingUrl(). amenitizUrl = défaut FR (fallback).
+    amenitizBase: 'https://le-permayou.amenitiz.io',
+    amenitizUrl: 'https://le-permayou.amenitiz.io/fr/booking',
   },
 } as const
 
@@ -40,6 +43,42 @@ export type SeoMeta = {
 export function buildTitle(page?: string) {
   if (!page) return siteConfig.name
   return `${page} - ${siteConfig.name}`
+}
+
+export const SEO_LOCALES = ['fr', 'en', 'es'] as const
+export type SeoLocale = (typeof SEO_LOCALES)[number]
+
+/** URL du moteur de réservation Amenitiz dans la langue de la page (fallback FR). */
+export function amenitizBookingUrl(locale: string): string {
+  const lang = (SEO_LOCALES as readonly string[]).includes(locale) ? locale : 'fr'
+  return `${siteConfig.booking.amenitizBase}/${lang}/booking`
+}
+
+// URL absolue d'une page pour une locale donnée. FR à la racine (pas de
+// préfixe), EN/ES préfixés. `path` est un chemin « FR » (ex. '/restaurant').
+export function localizedUrl(path: string, locale: string): string {
+  const clean = path === '/' ? '' : path
+  const prefix = locale === 'fr' ? '' : `/${locale}`
+  return `${siteConfig.url}${prefix}${clean}` || siteConfig.url
+}
+
+// Bloc `alternates` Next pour une page : canonical propre à la locale +
+// liens hreflang vers toutes les langues (+ x-default → FR).
+export function alternatesFor(path: string, locale: string) {
+  return {
+    canonical: localizedUrl(path, locale),
+    languages: {
+      fr: localizedUrl(path, 'fr'),
+      en: localizedUrl(path, 'en'),
+      es: localizedUrl(path, 'es'),
+      'x-default': localizedUrl(path, 'fr'),
+    },
+  }
+}
+
+// Locale → balise OpenGraph (fr_FR, en_US, es_ES).
+export function ogLocale(locale: string): string {
+  return locale === 'en' ? 'en_US' : locale === 'es' ? 'es_ES' : 'fr_FR'
 }
 
 export const routes = [

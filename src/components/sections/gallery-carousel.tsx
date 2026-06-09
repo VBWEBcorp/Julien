@@ -15,10 +15,30 @@ const defaults = galleryContent
 const GAP = 20
 const CARD_WIDTH = 340
 
+// Couleurs de marque (= celles des menus) pour numéroter les cartes en alternance.
+const ACCENTS = [
+  'oklch(0.78 0.14 62)', // orange ambré
+  'oklch(0.66 0.16 25)', // brique
+  'oklch(0.68 0.16 268)', // bleu
+  'oklch(0.72 0.1 150)', // vert mousse
+]
+
+// Détache le ou les derniers mots du titre pour l'accent serif italique.
+function splitTitle(title: string): { lead: string; accent: string } {
+  const words = title.trim().split(/\s+/)
+  if (words.length <= 2) return { lead: '', accent: title }
+  const accentCount = Math.min(2, Math.max(1, Math.floor(words.length / 3)))
+  return {
+    lead: words.slice(0, words.length - accentCount).join(' '),
+    accent: words.slice(words.length - accentCount).join(' '),
+  }
+}
+
 export function GalleryCarousel() {
   const { data } = useContent('home', { gallery: defaults })
   const gallery = data.gallery ?? defaults
   const images = gallery.images ?? defaultImages
+  const { lead, accent } = splitTitle(gallery.title)
 
   const trackRef = useRef<HTMLDivElement>(null)
   const [maxScroll, setMaxScroll] = useState(0)
@@ -50,11 +70,21 @@ export function GalleryCarousel() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="flex items-end justify-between gap-4">
           <div className="space-y-3">
-            <p className="font-display text-xs font-semibold tracking-[0.22em] text-primary uppercase">
+            <p className="inline-flex items-center gap-3 font-display text-xs font-semibold tracking-[0.22em] text-primary uppercase">
+              <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
               {gallery.eyebrow}
             </p>
-            <h2 className="font-display text-2xl tracking-tight text-foreground sm:text-3xl">
-              {gallery.title}
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              {lead ? (
+                <>
+                  {lead}{' '}
+                  <span className="font-serif italic font-normal tracking-[-0.01em] text-primary">
+                    {accent}
+                  </span>
+                </>
+              ) : (
+                gallery.title
+              )}
             </h2>
           </div>
           <div className="flex shrink-0 gap-2">
@@ -88,6 +118,14 @@ export function GalleryCarousel() {
                       loading="lazy"
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
+                    {/* Numéro signature (couleur de marque) */}
+                    <span
+                      className="pointer-events-none absolute left-4 top-3 font-mono text-[11px] tabular-nums tracking-[0.2em] [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]"
+                      style={{ color: ACCENTS[i % ACCENTS.length] }}
+                      aria-hidden
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
                   </div>
                 </div>
               </motion.div>

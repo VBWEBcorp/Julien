@@ -20,8 +20,15 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 })
     }
 
-    // Vérifier le type
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
+    // Vérifier le type (images + PDF pour les cartes du restaurant)
+    const allowedTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/webp',
+      'image/gif',
+      'image/svg+xml',
+      'application/pdf',
+    ]
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json({ error: 'File type not allowed' }, { status: 400 })
     }
@@ -34,8 +41,9 @@ export async function POST(request: NextRequest) {
     const rawBuffer = Buffer.from(await file.arrayBuffer())
     const uniqueId = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
 
-    // SVG: pas d'optimisation
+    // SVG et PDF : pas d'optimisation Sharp, on stocke tel quel.
     const isSvg = file.type === 'image/svg+xml'
+    const isPdf = file.type === 'application/pdf'
 
     let finalBuffer: Buffer
     let contentType: string
@@ -45,6 +53,10 @@ export async function POST(request: NextRequest) {
       finalBuffer = rawBuffer
       contentType = 'image/svg+xml'
       filename = `${uniqueId}.svg`
+    } else if (isPdf) {
+      finalBuffer = rawBuffer
+      contentType = 'application/pdf'
+      filename = `${uniqueId}.pdf`
     } else {
       // Optimiser avec Sharp → WebP
       const optimized = await optimizeImage(rawBuffer)

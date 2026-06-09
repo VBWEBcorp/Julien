@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { Cookie, X } from 'lucide-react'
 
+import { Link } from '@/i18n/navigation'
+
 export function CookieConsent() {
+  const t = useTranslations('cookies')
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -118,15 +121,15 @@ export function CookieConsent() {
               {/* Texte */}
               <div className="flex-1 pr-8 sm:pr-0">
                 <p id="cookie-title" className="font-display text-sm font-semibold text-foreground">
-                  Nous utilisons des cookies
+                  {t('title')}
                 </p>
                 <p id="cookie-desc" className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                  Pour améliorer votre expérience. En continuant votre navigation, vous acceptez notre utilisation des cookies.{' '}
+                  {t('description')}{' '}
                   <Link
                     href="/politique-cookies"
                     className="text-primary underline-offset-2 hover:underline"
                   >
-                    En savoir plus
+                    {t('learnMore')}
                   </Link>
                 </p>
               </div>
@@ -137,7 +140,7 @@ export function CookieConsent() {
                   onClick={handleRefuse}
                   className="rounded-xl border border-border bg-background px-4 py-2 text-xs font-medium text-foreground transition-colors hover:bg-muted"
                 >
-                  Refuser
+                  {t('refuse')}
                 </button>
                 <button
                   onClick={handleAccept}
@@ -155,7 +158,7 @@ export function CookieConsent() {
                     className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"
                     aria-hidden
                   />
-                  <span className="relative">Accepter</span>
+                  <span className="relative">{t('accept')}</span>
                 </button>
               </div>
 
@@ -163,7 +166,7 @@ export function CookieConsent() {
               <button
                 type="button"
                 onClick={handleClose}
-                aria-label="Fermer"
+                aria-label={t('close')}
                 className="absolute right-0 top-0 flex size-7 items-center justify-center rounded-full text-muted-foreground/60 transition-colors hover:bg-foreground/[0.06] hover:text-foreground sm:relative sm:right-auto sm:top-auto"
               >
                 <X className="size-4" strokeWidth={2} />

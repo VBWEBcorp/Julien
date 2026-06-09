@@ -9,7 +9,6 @@ import {
   LogOut,
   Home,
   Users,
-  Briefcase,
   Phone,
   MessageSquare,
   PanelLeftClose,
@@ -21,6 +20,11 @@ import {
   Megaphone,
   FilePen,
   ChevronDown,
+  UtensilsCrossed,
+  Mountain,
+  BedDouble,
+  Wine,
+  CalendarCheck,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/components/admin/sidebar-context'
@@ -31,13 +35,18 @@ const navItems = [
 
 const pageEditItems = [
   { href: '/admin/pages/accueil', label: 'Accueil', icon: Home },
-  { href: '/admin/pages/a-propos', label: 'À propos', icon: Users },
-  { href: '/admin/pages/services', label: 'Services', icon: Briefcase },
+  { href: '/admin/pages/a-propos', label: "L'auberge", icon: Users },
+  { href: '/admin/pages/services', label: "L'Hôtel", icon: BedDouble },
+  { href: '/admin/pages/restaurant', label: 'Le Restaurant', icon: UtensilsCrossed },
+  { href: '/admin/pages/bar-terrasse', label: 'Le Bar & la Terrasse', icon: Wine },
+  { href: '/admin/pages/vallee-d-aspe', label: "La Vallée d'Aspe", icon: Mountain },
+  { href: '/admin/pages/reserver', label: 'Réserver', icon: CalendarCheck },
   { href: '/admin/pages/contact', label: 'Contact', icon: Phone },
   { href: '/admin/pages/temoignages', label: 'Témoignages', icon: MessageSquare },
 ]
 
 const moduleItems = [
+  { href: '/admin/cartes', label: 'Cartes resto', icon: UtensilsCrossed },
   { href: '/admin/gallery', label: 'Galerie', icon: Images },
   { href: '/admin/blog', label: 'Blog', icon: FileText },
   { href: '/admin/marketing', label: 'Marketing', icon: Megaphone },
@@ -57,7 +66,7 @@ function NavLink({
           collapsed ? 'justify-center px-2 py-2.5' : 'px-3 py-2.5',
           isActive
             ? 'bg-primary text-white shadow-sm'
-            : 'text-zinc-400 hover:bg-white/10 hover:text-white'
+            : 'text-[oklch(0.74_0.03_150)] hover:bg-white/10 hover:text-white'
         )}
       >
         <Icon className="size-[18px] shrink-0" />
@@ -72,7 +81,7 @@ export function MobileMenuButton() {
   return (
     <button
       onClick={toggle}
-      className="md:hidden fixed top-3 left-3 z-[60] p-2 rounded-lg bg-zinc-900 text-white shadow-lg"
+      className="md:hidden fixed top-3 left-3 z-[60] p-2 rounded-lg bg-[oklch(0.2_0.025_150)] text-white shadow-lg"
     >
       {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
     </button>
@@ -102,7 +111,7 @@ export function AdminSidebar() {
   const sidebarContent = (
     <aside
       className={cn(
-        'fixed left-0 top-0 h-screen bg-zinc-900 border-r border-white/10 flex flex-col z-50 transition-all duration-200',
+        'fixed left-0 top-0 h-screen bg-[oklch(0.2_0.025_150)] border-r border-white/10 flex flex-col z-50 transition-all duration-200',
         isMobile ? 'w-[260px]' : collapsed ? 'w-[60px]' : 'w-[220px]'
       )}
     >
@@ -112,22 +121,27 @@ export function AdminSidebar() {
         isMobile ? 'justify-between px-4' : collapsed ? 'justify-center px-2' : 'justify-between px-4'
       )}>
         {(!collapsed || isMobile) && (
-          <div>
-            <p className="text-sm font-bold text-white leading-tight">Admin</p>
-            <p className="text-[10px] text-zinc-400">Gestion du site</p>
+          <div className="flex items-center gap-2.5">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[oklch(0.73_0.15_62)] text-[oklch(0.2_0.025_150)]">
+              <Mountain className="size-4" />
+            </span>
+            <div>
+              <p className="font-display text-sm font-bold leading-tight text-white">Le Permayou</p>
+              <p className="text-[10px] text-[oklch(0.74_0.03_150)]">Administration</p>
+            </div>
           </div>
         )}
         {isMobile ? (
           <button
             onClick={() => setMobileOpen(false)}
-            className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-md text-[oklch(0.74_0.03_150)] hover:text-white hover:bg-white/10 transition-colors"
           >
             <X className="size-4" />
           </button>
         ) : (
           <button
             onClick={toggle}
-            className="p-1.5 rounded-md text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-md text-[oklch(0.74_0.03_150)] hover:text-white hover:bg-white/10 transition-colors"
             title={collapsed ? 'Ouvrir le menu' : 'Réduire le menu'}
           >
             {collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
@@ -148,7 +162,7 @@ export function AdminSidebar() {
 
         <div className="space-y-1">
           {(!collapsed || isMobile) && (
-            <p className="px-3 pb-1 text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+            <p className="px-3 pb-1 text-[10px] font-bold text-[oklch(0.62_0.035_150)] uppercase tracking-widest">
               Contenus
             </p>
           )}
@@ -164,7 +178,7 @@ export function AdminSidebar() {
                   'w-full flex items-center gap-3 rounded-lg px-3 py-2.5 text-[13px] font-medium transition-all',
                   pagesSectionActive
                     ? 'text-white'
-                    : 'text-zinc-400 hover:bg-white/10 hover:text-white'
+                    : 'text-[oklch(0.74_0.03_150)] hover:bg-white/10 hover:text-white'
                 )}
                 aria-expanded={pagesOpen}
               >
@@ -216,7 +230,7 @@ export function AdminSidebar() {
       )}>
         <Link href="/" target="_blank" title={collapsed && !isMobile ? 'Voir le site' : undefined} onClick={closeMobile}>
           <div className={cn(
-            'flex items-center gap-3 rounded-lg text-[13px] font-medium text-zinc-400 hover:bg-white/10 hover:text-white transition-colors',
+            'flex items-center gap-3 rounded-lg text-[13px] font-medium text-[oklch(0.74_0.03_150)] hover:bg-white/10 hover:text-white transition-colors',
             !isMobile && collapsed ? 'justify-center px-2 py-2.5' : 'px-3 py-2.5'
           )}>
             <ExternalLink className="size-[18px]" />
@@ -227,7 +241,7 @@ export function AdminSidebar() {
           onClick={handleLogout}
           title={collapsed && !isMobile ? 'Déconnexion' : undefined}
           className={cn(
-            'flex w-full items-center gap-3 rounded-lg text-[13px] font-medium text-zinc-400 hover:bg-red-500/10 hover:text-red-400 transition-colors',
+            'flex w-full items-center gap-3 rounded-lg text-[13px] font-medium text-[oklch(0.74_0.03_150)] hover:bg-red-500/10 hover:text-red-400 transition-colors',
             !isMobile && collapsed ? 'justify-center px-2 py-2.5' : 'px-3 py-2.5'
           )}
         >

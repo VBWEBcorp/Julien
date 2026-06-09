@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from 'mongoose'
 
 export interface IGalleryImage extends Document {
   title: string
+  locale: 'fr' | 'en' | 'es'
   description?: string
   imageUrl: string
   category?: string
@@ -26,6 +27,7 @@ const GalleryImageSchema = new Schema<IGalleryImage>(
       type: String,
       required: [true, 'Title is required'],
     },
+    locale: { type: String, enum: ['fr', 'en', 'es'], default: 'fr', index: true },
     description: String,
     imageUrl: {
       type: String,

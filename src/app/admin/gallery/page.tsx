@@ -18,6 +18,7 @@ interface GalleryImage {
   description?: string
   imageUrl: string
   category?: string
+  locale?: string
   active: boolean
 }
 
@@ -33,7 +34,7 @@ export default function AdminGalleryPage() {
   const router = useRouter()
   const [settings, setSettings] = useState<GallerySettings>({ enabled: false, title: 'Nos réalisations', eyebrow: 'Galerie', description: 'Découvrez nos projets récents et laissez-vous inspirer par notre savoir-faire.', heroImage: '' })
   const [images, setImages] = useState<GalleryImage[]>([])
-  const [newImage, setNewImage] = useState({ title: '', description: '', imageUrl: '', category: '' })
+  const [newImage, setNewImage] = useState({ title: '', description: '', imageUrl: '', category: '', locale: 'fr' })
   const [editingId, setEditingId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -113,7 +114,7 @@ export default function AdminGalleryPage() {
       if (response.ok) {
         const image = await response.json()
         setImages([...images, image])
-        setNewImage({ title: '', description: '', imageUrl: '', category: '' })
+        setNewImage({ title: '', description: '', imageUrl: '', category: '', locale: newImage.locale })
         alert('✅ Image ajoutée')
       }
     } catch (error) {
@@ -173,15 +174,23 @@ export default function AdminGalleryPage() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-8 space-y-6">
-      {/* Header */}
-      <div className="flex items-center gap-3 mb-2 pt-8 md:pt-0">
+      {/* Header DA */}
+      <div className="flex items-start gap-3 mb-2 pt-8 md:pt-0">
         <Link
           href="/admin/dashboard"
-          className="flex size-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-card hover:text-foreground transition-colors"
+          className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
         >
           <ArrowLeft className="size-4" />
         </Link>
-        <h1 className="text-lg font-bold text-foreground">Galerie Photos</h1>
+        <div>
+          <p className="inline-flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-primary">
+            <span className="h-px w-5 bg-[oklch(0.73_0.15_62)]" aria-hidden />
+            Médias
+          </p>
+          <h1 className="font-display text-xl font-bold tracking-[-0.02em] text-foreground sm:text-2xl">
+            Galerie photos
+          </h1>
+        </div>
       </div>
       {/* Settings - Hero */}
       <div className="rounded-xl bg-card border border-border/40 overflow-hidden max-w-2xl">
@@ -313,6 +322,30 @@ export default function AdminGalleryPage() {
             />
           </div>
 
+          <div className="space-y-2">
+            <Label>Langue</Label>
+            <div className="flex gap-1 p-0.5 rounded-md bg-muted/50 w-fit">
+              {(['fr', 'en', 'es'] as const).map((lang) => (
+                <button
+                  key={lang}
+                  type="button"
+                  onClick={() => setNewImage({ ...newImage, locale: lang })}
+                  className={
+                    'px-3 py-1 rounded text-xs font-medium uppercase transition-colors ' +
+                    (newImage.locale === lang
+                      ? 'bg-card text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground')
+                  }
+                >
+                  {lang}
+                </button>
+              ))}
+            </div>
+            <p className="text-[11px] text-muted-foreground/60">
+              L&apos;image n&apos;apparaîtra que sur la version du site correspondant à cette langue.
+            </p>
+          </div>
+
           <Button
             onClick={handleAddImage}
             disabled={saving}
@@ -339,7 +372,12 @@ export default function AdminGalleryPage() {
                   className="flex items-center justify-between p-4 rounded-lg border border-border/50 hover:bg-muted/50 transition"
                 >
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-foreground truncate">{image.title}</p>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium text-foreground truncate">{image.title}</p>
+                      <span className="shrink-0 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+                        {image.locale || 'fr'}
+                      </span>
+                    </div>
                     <p className="text-sm text-muted-foreground truncate">{image.imageUrl}</p>
                     {image.category && (
                       <p className="text-xs text-primary mt-1">{image.category}</p>
