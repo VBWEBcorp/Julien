@@ -53,10 +53,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       />
       <HeroSection />
       <PolesMosaic />
-      <FaqSection />
       <StorySection />
       <TestimonialsSection />
       <GalleryCarousel />
+      <FaqSection />
       <CtaSection />
       <ValuesMarquee />
     </>
