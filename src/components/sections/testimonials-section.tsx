@@ -30,7 +30,7 @@ function TestimonialCard({
   testimonial: { name: string; company: string; text: string; stars: number }
 }) {
   return (
-    <figure className="flex h-[200px] w-[300px] shrink-0 flex-col overflow-hidden rounded-xl border border-border/60 bg-card/80 px-5 py-4 shadow-[var(--shadow-xs)] ring-1 ring-foreground/[0.03] backdrop-blur-sm">
+    <figure className="mr-6 flex h-[200px] w-[300px] shrink-0 flex-col overflow-hidden rounded-xl border border-border/60 bg-card/80 px-5 py-4 shadow-[var(--shadow-xs)] ring-1 ring-foreground/[0.03] backdrop-blur-sm">
       <div className="flex items-center justify-between shrink-0">
         <div className="flex items-center gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (
@@ -68,20 +68,21 @@ function MarqueeRow({
   items: { name: string; company: string; text: string; stars: number }[]
   direction: 'left' | 'right'
 }) {
-  const animationClass = direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'
+  const animationClass =
+    direction === 'left' ? 'animate-marquee-half-left' : 'animate-marquee-half-right'
+
+  // Piste unique = contenu affiché une fois puis dupliqué. La translation de
+  // -50 % ramène exactement le doublon à la position de départ : boucle continue
+  // sans saut. L'espacement est porté par la marge droite de chaque carte.
+  const loop = [...items, ...items]
 
   return (
-    <div className="group relative flex gap-6 overflow-hidden">
+    <div className="group relative flex overflow-hidden">
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[oklch(0.975_0.008_95)] to-transparent dark:from-[oklch(0.19_0.015_150)] sm:w-24" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[oklch(0.975_0.008_95)] to-transparent dark:from-[oklch(0.19_0.015_150)] sm:w-24" />
-      <div className={`flex shrink-0 gap-6 py-2 ${animationClass} group-hover:[animation-play-state:paused]`}>
-        {items.map((t, i) => (
+      <div className={`flex w-max shrink-0 py-2 ${animationClass} group-hover:[animation-play-state:paused]`}>
+        {loop.map((t, i) => (
           <TestimonialCard key={`${t.name}-${i}`} testimonial={t} />
-        ))}
-      </div>
-      <div aria-hidden className={`flex shrink-0 gap-6 py-2 ${animationClass} group-hover:[animation-play-state:paused]`}>
-        {items.map((t, i) => (
-          <TestimonialCard key={`${t.name}-dup-${i}`} testimonial={t} />
         ))}
       </div>
     </div>

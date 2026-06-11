@@ -3,27 +3,19 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { BarTerrasseContent } from './bar-terrasse-content'
 import { breadcrumbJsonLd, webPageJsonLd } from '@/components/seo/json-ld'
-import { alternatesFor, ogLocale, siteConfig } from '@/lib/seo'
+import { buildPageMetadata } from '@/lib/seo-content'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('meta')
-  const title = t('barTerrasse.title')
-  const description = t('barTerrasse.description')
-  return {
-    title,
-    description,
-    alternates: alternatesFor('/bar-terrasse', locale),
-    openGraph: {
-      type: 'website',
-      locale: ogLocale(locale),
-      title,
-      description,
-      url: alternatesFor('/bar-terrasse', locale).canonical,
-      siteName: siteConfig.name,
-    },
-  }
+  return buildPageMetadata({
+    pageId: 'bar-terrasse',
+    path: '/bar-terrasse',
+    locale,
+    title: t('barTerrasse.title'),
+    description: t('barTerrasse.description'),
+  })
 }
 
 export default async function BarTerrassePage({ params }: { params: Promise<{ locale: string }> }) {

@@ -1,6 +1,7 @@
 'use client'
 
 import { PageEditor } from '@/components/admin/page-editor'
+import { SeoEditor } from '@/components/admin/seo-editor'
 import { FieldEditor, SectionEditor } from '@/components/admin/field-editor'
 import { reserverContent } from '@/lib/site-content'
 
@@ -34,6 +35,7 @@ export default function AdminReserverPage() {
           <SectionEditor title="Note sous le moteur de réservation">
             <FieldEditor label="Note" value={content.note} onChange={(v) => update('note', v)} type="textarea" />
           </SectionEditor>
+          <SeoEditor content={content} update={update} />
         </>
       )}
     </PageEditor>

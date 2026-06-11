@@ -3,6 +3,7 @@
 import { Plus, Trash2 } from 'lucide-react'
 
 import { PageEditor } from '@/components/admin/page-editor'
+import { SeoEditor } from '@/components/admin/seo-editor'
 import { FieldEditor, SectionEditor, ImageField } from '@/components/admin/field-editor'
 import { Button } from '@/components/ui/button'
 import { heroContent, storyContent, ctaContent, faqContent } from '@/lib/site-content'
@@ -89,6 +90,7 @@ export default function AdminHomePage() {
             <FieldEditor label="Description" value={content.cta?.description} onChange={(v) => update('cta.description', v)} type="textarea" />
             <FieldEditor label="Bouton" value={content.cta?.button} onChange={(v) => update('cta.button', v)} />
           </SectionEditor>
+          <SeoEditor content={content} update={update} />
         </>
       )}
     </PageEditor>

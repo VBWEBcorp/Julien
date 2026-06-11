@@ -131,32 +131,36 @@
     "support": "A question, a group, a seminar? Call us:"
   },
   "meta": {
+    "home": {
+      "title": "Hotel-Restaurant Aspe Valley – Auberge Le Permayou",
+      "description": "Inn, hotel, restaurant and bar in Accous, in the heart of the Aspe Valley. 8 rooms, local cuisine and a terrace facing the Pyrenees. A stop on the Way of St James."
+    },
     "restaurant": {
-      "title": "The Restaurant",
+      "title": "Restaurant in Accous, Aspe Valley",
       "description": "The restaurant at Auberge Le Permayou in Accous: traditional, seasonal cuisine, produce from the Aspe Valley and Béarn specialities. Open for lunch and dinner, with a bar and snacks."
     },
     "services": {
-      "title": "The Hotel",
+      "title": "Hotel in Accous, Aspe Valley",
       "description": "The 2-star hotel at Auberge Le Permayou in Accous: 8 warm rooms, including rooms with mountain views and one wheelchair-accessible room. The perfect base in the Aspe Valley for hikers and cyclists."
     },
     "barTerrasse": {
-      "title": "The Bar & Terrace",
+      "title": "Bar & terrace facing the mountains",
       "description": "The bar and terrace at Auberge Le Permayou in Accous, with views over the Cirque d'Iseye. A village bar open to all: apéritifs, a cyclist's break and coffee facing the mountains."
     },
     "valleeDAspe": {
-      "title": "The Aspe Valley",
+      "title": "Things to do in the Aspe Valley",
       "description": "The Aspe Valley from Auberge Le Permayou: hiking (GR10, Way of St James), cycling (Col du Somport), wildlife and heritage. Your base camp in the heart of the Pyrenees."
     },
     "reserver": {
-      "title": "Book",
+      "title": "Book a room in Accous",
       "description": "Book your stay at Auberge Le Permayou, in Accous in the Aspe Valley. 8 rooms, including one wheelchair-accessible room. Secure online booking or by phone."
     },
     "contact": {
-      "title": "Contact",
-      "description": "Get in touch to talk about your stay. Quick reply, friendly welcome."
+      "title": "Contact & directions – Accous",
+      "description": "Contact Auberge Le Permayou in Accous (Aspe Valley): phone, email and directions. We'll gladly answer your questions about rooms, the restaurant or your stay."
     },
     "aPropos": {
-      "title": "The Inn",
+      "title": "The inn – Coline & Julien",
       "description": "Coline & Julien, the new owners of Auberge Le Permayou in Accous. Our story, our values and the spirit of a mountain inn in the heart of the Aspe Valley."
     }
   }

@@ -131,32 +131,36 @@
     "support": "Une question, un groupe, un séminaire ? Appelez-nous :"
   },
   "meta": {
+    "home": {
+      "title": "Hôtel-Restaurant Vallée d'Aspe – Auberge Le Permayou",
+      "description": "Auberge hôtel-restaurant-bar à Accous, au cœur de la Vallée d'Aspe. 8 chambres, cuisine aspoise et terrasse face aux Pyrénées. Étape du chemin de Saint-Jacques."
+    },
     "restaurant": {
-      "title": "Le Restaurant",
+      "title": "Restaurant à Accous, Vallée d'Aspe",
       "description": "Le restaurant de l'Auberge Le Permayou à Accous : cuisine traditionnelle et de saison, produits de la Vallée d'Aspe et spécialités du Béarn. Ouvert midi et soir, bar et snacking."
     },
     "services": {
-      "title": "L'Hôtel",
+      "title": "Hôtel à Accous, Vallée d'Aspe",
       "description": "L'hôtel ★★ de l'Auberge Le Permayou à Accous : 8 chambres chaleureuses, dont des chambres avec vue sur la montagne et une chambre accessible PMR. Étape idéale dans la Vallée d'Aspe pour randonneurs et cyclistes."
     },
     "barTerrasse": {
-      "title": "Le Bar & la Terrasse",
+      "title": "Bar & terrasse face aux montagnes",
       "description": "Le bar et la terrasse de l'Auberge Le Permayou à Accous, avec vue sur le Cirque d'Iseye. Un bar de village ouvert à tous, apéro, pause cycliste et café face aux montagnes."
     },
     "valleeDAspe": {
-      "title": "La Vallée d'Aspe",
+      "title": "Que faire en Vallée d'Aspe ?",
       "description": "La Vallée d'Aspe depuis l'Auberge Le Permayou : randonnée (GR10, Saint-Jacques), vélo (col du Somport), faune sauvage et patrimoine. Votre camp de base au cœur des Pyrénées."
     },
     "reserver": {
-      "title": "Réserver",
+      "title": "Réserver une chambre à Accous",
       "description": "Réservez votre séjour à l'Auberge Le Permayou, à Accous dans la Vallée d'Aspe. 8 chambres dont une accessible PMR. Réservation en ligne sécurisée ou par téléphone."
     },
     "contact": {
-      "title": "Contact",
-      "description": "Contactez-nous pour discuter de votre projet. Devis gratuit, réponse rapide."
+      "title": "Contact & accès – Accous",
+      "description": "Contactez l'Auberge Le Permayou à Accous (Vallée d'Aspe) : téléphone, email et accès. Nous répondons à vos questions sur les chambres, le restaurant ou votre séjour."
     },
     "aPropos": {
-      "title": "L'auberge",
+      "title": "L'auberge – Coline & Julien",
       "description": "Coline & Julien, les repreneurs de l'Auberge Le Permayou à Accous. Notre histoire, nos valeurs et l'esprit d'une auberge de montagne au cœur de la Vallée d'Aspe."
     }
   }

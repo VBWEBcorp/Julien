@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { CtaSection } from '@/components/sections/cta-section'
 import { FaqSection } from '@/components/sections/faq-section'
@@ -15,25 +15,26 @@ import {
   webPageJsonLd,
   webSiteJsonLd,
 } from '@/components/seo/json-ld'
-import { alternatesFor, ogLocale, siteConfig } from '@/lib/seo'
+import { buildPageMetadata } from '@/lib/seo-content'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   setRequestLocale(locale)
-  return {
-    alternates: alternatesFor('/', locale),
-    openGraph: {
-      type: 'website',
-      locale: ogLocale(locale),
-      url: alternatesFor('/', locale).canonical,
-      siteName: siteConfig.name,
-    },
-  }
+  const t = await getTranslations('meta')
+  return buildPageMetadata({
+    pageId: 'home',
+    path: '/',
+    locale,
+    title: t('home.title'),
+    description: t('home.description'),
+    absoluteTitle: true,
+  })
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
+  const t = await getTranslations('meta')
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -41,7 +42,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       webSiteJsonLd(),
       organizationJsonLd(),
       localBusinessJsonLd(),
-      webPageJsonLd(siteConfig.name, siteConfig.description, '/', locale),
+      webPageJsonLd(t('home.title'), t('home.description'), '/', locale),
     ],
   }
 

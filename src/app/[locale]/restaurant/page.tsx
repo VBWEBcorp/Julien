@@ -3,27 +3,19 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { RestaurantContent } from './restaurant-content'
 import { breadcrumbJsonLd, webPageJsonLd } from '@/components/seo/json-ld'
-import { alternatesFor, ogLocale, siteConfig } from '@/lib/seo'
+import { buildPageMetadata } from '@/lib/seo-content'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('meta')
-  const title = t('restaurant.title')
-  const description = t('restaurant.description')
-  return {
-    title,
-    description,
-    alternates: alternatesFor('/restaurant', locale),
-    openGraph: {
-      type: 'website',
-      locale: ogLocale(locale),
-      title,
-      description,
-      url: alternatesFor('/restaurant', locale).canonical,
-      siteName: siteConfig.name,
-    },
-  }
+  return buildPageMetadata({
+    pageId: 'restaurant',
+    path: '/restaurant',
+    locale,
+    title: t('restaurant.title'),
+    description: t('restaurant.description'),
+  })
 }
 
 export default async function RestaurantPage({ params }: { params: Promise<{ locale: string }> }) {

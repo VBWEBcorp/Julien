@@ -3,27 +3,19 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { ValleeContent } from './vallee-content'
 import { breadcrumbJsonLd, webPageJsonLd } from '@/components/seo/json-ld'
-import { alternatesFor, ogLocale, siteConfig } from '@/lib/seo'
+import { buildPageMetadata } from '@/lib/seo-content'
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
   setRequestLocale(locale)
   const t = await getTranslations('meta')
-  const title = t('valleeDAspe.title')
-  const description = t('valleeDAspe.description')
-  return {
-    title,
-    description,
-    alternates: alternatesFor('/vallee-d-aspe', locale),
-    openGraph: {
-      type: 'website',
-      locale: ogLocale(locale),
-      title,
-      description,
-      url: alternatesFor('/vallee-d-aspe', locale).canonical,
-      siteName: siteConfig.name,
-    },
-  }
+  return buildPageMetadata({
+    pageId: 'vallee-aspe',
+    path: '/vallee-d-aspe',
+    locale,
+    title: t('valleeDAspe.title'),
+    description: t('valleeDAspe.description'),
+  })
 }
 
 export default async function ValleePage({ params }: { params: Promise<{ locale: string }> }) {

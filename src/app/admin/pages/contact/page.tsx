@@ -1,6 +1,7 @@
 'use client'
 
 import { PageEditor } from '@/components/admin/page-editor'
+import { SeoEditor } from '@/components/admin/seo-editor'
 import { FieldEditor, SectionEditor } from '@/components/admin/field-editor'
 import { contactContent } from '@/lib/site-content'
 import { siteConfig } from '@/lib/seo'
@@ -38,6 +39,7 @@ export default function AdminContactPage() {
               <FieldEditor label="Ville" value={content.info?.city} onChange={(v) => update('info.city', v)} placeholder="Accous" />
             </div>
           </SectionEditor>
+          <SeoEditor content={content} update={update} />
         </>
       )}
     </PageEditor>

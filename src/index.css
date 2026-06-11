@@ -189,6 +189,15 @@
   .animate-marquee-bar {
     animation: marquee-left 30s linear infinite;
   }
+  /* Marquee « sans couture » pour les avis : une seule piste contenant le
+     contenu dupliqué, translatée de -50 % (= exactement une copie). Évite le
+     saut de la largeur du gap qui « coupait » les avis à chaque cycle. */
+  .animate-marquee-half-left {
+    animation: marquee-half-left 45s linear infinite;
+  }
+  .animate-marquee-half-right {
+    animation: marquee-half-right 45s linear infinite;
+  }
 }
 
 @keyframes marquee-left {
@@ -197,6 +206,14 @@
 }
 @keyframes marquee-right {
   from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+@keyframes marquee-half-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-half-right {
+  from { transform: translateX(-50%); }
   to { transform: translateX(0); }
 }
 

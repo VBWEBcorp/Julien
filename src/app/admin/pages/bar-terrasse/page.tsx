@@ -1,6 +1,7 @@
 'use client'
 
 import { PageEditor } from '@/components/admin/page-editor'
+import { SeoEditor } from '@/components/admin/seo-editor'
 import { FieldEditor, SectionEditor } from '@/components/admin/field-editor'
 import { barTerrasseContent } from '@/lib/site-content'
 
@@ -40,6 +41,7 @@ export default function AdminBarTerrassePage() {
               </div>
             ))}
           </SectionEditor>
+          <SeoEditor content={content} update={update} />
         </>
       )}
     </PageEditor>

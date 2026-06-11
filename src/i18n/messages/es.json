@@ -131,32 +131,36 @@
     "support": "¿Una pregunta, un grupo, un seminario? Llámenos:"
   },
   "meta": {
+    "home": {
+      "title": "Hotel-Restaurante Valle de Aspe – Le Permayou",
+      "description": "Posada, hotel, restaurante y bar en Accous, en el corazón del Valle de Aspe. 8 habitaciones, cocina local y terraza frente a los Pirineos. Etapa del Camino de Santiago."
+    },
     "restaurant": {
-      "title": "El Restaurante",
+      "title": "Restaurante en Accous, Valle de Aspe",
       "description": "El restaurante del Auberge Le Permayou en Accous: cocina tradicional y de temporada, productos del Valle de Aspe y especialidades del Béarn. Abierto al mediodía y por la noche, con bar y comida ligera."
     },
     "services": {
-      "title": "El Hotel",
+      "title": "Hotel en Accous, Valle de Aspe",
       "description": "El hotel ★★ del Auberge Le Permayou en Accous: 8 habitaciones acogedoras, algunas con vistas a la montaña y una habitación accesible para personas con movilidad reducida. La etapa ideal en el Valle de Aspe para senderistas y ciclistas."
     },
     "barTerrasse": {
-      "title": "El Bar y la Terraza",
+      "title": "Bar y terraza frente a las montañas",
       "description": "El bar y la terraza del Auberge Le Permayou en Accous, con vistas al Circo de Iseye. Un bar de pueblo abierto a todos: aperitivo, parada ciclista y café frente a las montañas."
     },
     "valleeDAspe": {
-      "title": "El Valle de Aspe",
+      "title": "Qué hacer en el Valle de Aspe",
       "description": "El Valle de Aspe desde el Auberge Le Permayou: senderismo (GR10, Camino de Santiago), ciclismo (puerto del Somport), fauna salvaje y patrimonio. Su campo base en el corazón de los Pirineos."
     },
     "reserver": {
-      "title": "Reservar",
+      "title": "Reservar una habitación en Accous",
       "description": "Reserve su estancia en el Auberge Le Permayou, en Accous, en el Valle de Aspe. 8 habitaciones, una de ellas accesible para personas con movilidad reducida. Reserva en línea segura o por teléfono."
     },
     "contact": {
-      "title": "Contacto",
-      "description": "Póngase en contacto con nosotros para hablar de su estancia. Respuesta rápida y una cálida bienvenida."
+      "title": "Contacto y cómo llegar – Accous",
+      "description": "Contacte con el Auberge Le Permayou en Accous (Valle de Aspe): teléfono, correo y cómo llegar. Respondemos con gusto a sus preguntas sobre habitaciones, restaurante o su estancia."
     },
     "aPropos": {
-      "title": "La Posada",
+      "title": "La posada – Coline y Julien",
       "description": "Coline y Julien, los nuevos propietarios del Auberge Le Permayou en Accous. Nuestra historia, nuestros valores y el espíritu de una posada de montaña en el corazón del Valle de Aspe."
     }
   }

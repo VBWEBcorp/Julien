@@ -1,6 +1,7 @@
 'use client'
 
 import { PageEditor } from '@/components/admin/page-editor'
+import { SeoEditor } from '@/components/admin/seo-editor'
 import { FieldEditor, SectionEditor } from '@/components/admin/field-editor'
 import { restaurantContent } from '@/lib/site-content'
 
@@ -46,6 +47,7 @@ export default function AdminRestaurantPage() {
             <FieldEditor label="Titre" value={content.hours?.title} onChange={(v) => update('hours.title', v)} />
             <FieldEditor label="Note" value={content.hours?.note} onChange={(v) => update('hours.note', v)} type="textarea" />
           </SectionEditor>
+          <SeoEditor content={content} update={update} />
         </>
       )}
     </PageEditor>

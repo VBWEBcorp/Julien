@@ -1,6 +1,7 @@
 'use client'
 
 import { PageEditor } from '@/components/admin/page-editor'
+import { SeoEditor } from '@/components/admin/seo-editor'
 import { FieldEditor, SectionEditor, ImageField } from '@/components/admin/field-editor'
 import { servicesContent } from '@/lib/site-content'
 
@@ -47,6 +48,7 @@ export default function AdminServicesPage() {
               </div>
             ))}
           </SectionEditor>
+          <SeoEditor content={content} update={update} />
         </>
       )}
     </PageEditor>
