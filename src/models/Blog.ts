@@ -31,7 +31,10 @@ export interface IBlogSettings extends Document {
 const BlogPostSchema = new Schema<IBlogPost>(
   {
     title: { type: String, required: [true, 'Title is required'] },
-    slug: { type: String, required: true, unique: true },
+    // Le slug est unique PAR LANGUE, pas globalement : une même actualité existe
+    // sous le même slug en fr/en/es (URLs /blog/x, /en/blog/x, /es/blog/x, et
+    // hreflang cohérents). L'unicité est portée par l'index composite ci-dessous.
+    slug: { type: String, required: true },
     locale: { type: String, enum: ['fr', 'en', 'es'], default: 'fr', index: true },
     excerpt: { type: String, default: '' },
     content: { type: String, default: '' },
@@ -46,6 +49,9 @@ const BlogPostSchema = new Schema<IBlogPost>(
   },
   { timestamps: true }
 )
+
+// Unicité du couple (slug, locale) : autorise les traductions à partager le slug.
+BlogPostSchema.index({ slug: 1, locale: 1 }, { unique: true })
 
 const BlogSettingsSchema = new Schema<IBlogSettings>(
   {
