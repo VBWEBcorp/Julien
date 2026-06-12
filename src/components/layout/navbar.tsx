@@ -19,6 +19,8 @@ interface NavLink {
 }
 
 const ease = [0.22, 1, 0.36, 1] as const
+// Ease « rideau » (ease-in-out marqué) pour la montée du panneau plein écran.
+const curtain = [0.76, 0, 0.24, 1] as const
 
 // Couleurs de marque (= celles des menus) pour numéroter les liens en alternance.
 const ACCENTS = [
@@ -123,21 +125,17 @@ export function Navbar() {
             aria-label={open ? t('closeMenu') : t('openMenu')}
             onClick={() => setOpen((v) => !v)}
           >
-            {/* Burger animé maison (deux traits → croix) */}
-            <span className="relative flex h-3.5 w-5 flex-col justify-between">
+            {/* Burger animé maison : deux traits (espacés de 7px) qui se croisent
+                pile au centre en × à l'ouverture. */}
+            <span className="relative flex h-4 w-7 flex-col justify-center gap-[7px]">
               <motion.span
                 className="block h-px w-full origin-center rounded-full bg-current"
-                animate={open ? { rotate: 45, y: 6.5 } : { rotate: 0, y: 0 }}
+                animate={open ? { rotate: 45, y: 4 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease }}
               />
               <motion.span
                 className="block h-px w-full origin-center rounded-full bg-current"
-                animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
-                transition={{ duration: 0.2, ease }}
-              />
-              <motion.span
-                className="block h-px w-full origin-center rounded-full bg-current"
-                animate={open ? { rotate: -45, y: -6.5 } : { rotate: 0, y: 0 }}
+                animate={open ? { rotate: -45, y: -4 } : { rotate: 0, y: 0 }}
                 transition={{ duration: 0.3, ease }}
               />
             </span>
@@ -190,10 +188,10 @@ export function Navbar() {
         {open ? (
           <motion.div
             id="main-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease }}
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ duration: 0.6, ease: curtain }}
             className="fixed inset-0 -z-10 h-[100dvh] overflow-y-auto text-white"
             style={{
               background:
@@ -230,8 +228,10 @@ export function Navbar() {
                       key={l.to}
                       initial={{ opacity: 0, y: 24 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 12 }}
-                      transition={{ duration: 0.5, delay: 0.08 + i * 0.05, ease }}
+                      // Exit rapide et sans delay : sinon AnimatePresence attend la
+                      // fin des exits imbriqués (~1,2s) et la fermeture traîne.
+                      exit={{ opacity: 0, y: 12, transition: { duration: 0.2, ease } }}
+                      transition={{ duration: 0.5, delay: 0.32 + i * 0.05, ease }}
                     >
                       <Link
                         href={l.to}
@@ -268,8 +268,8 @@ export function Navbar() {
               <motion.aside
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.18, ease }}
+                exit={{ opacity: 0, transition: { duration: 0.2, ease } }}
+                transition={{ duration: 0.5, delay: 0.42, ease }}
                 className="flex flex-col gap-8 lg:border-l lg:border-white/10 lg:pl-16"
               >
                 <Link

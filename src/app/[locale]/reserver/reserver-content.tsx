@@ -13,12 +13,11 @@ import {
 import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
-import { PremiumHero } from '@/components/sections/premium-hero'
 import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
 import { amenitizBookingUrl, siteConfig } from '@/lib/seo'
-import { images as siteImages, reserverContent } from '@/lib/site-content'
+import { reserverContent } from '@/lib/site-content'
 import { splitAccentTitle } from '@/lib/utils'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -35,7 +34,6 @@ export function ReserverContent() {
   const locale = useLocale()
   const bookingUrl = amenitizBookingUrl(locale)
   const { data } = useContent('reserver', defaults)
-  const hero = data.hero ?? defaults.hero
   const reassurance = data.reassurance ?? defaults.reassurance
   const note = data.note ?? defaults.note
 
@@ -49,44 +47,35 @@ export function ReserverContent() {
 
   return (
     <>
-      <PremiumHero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        description={hero.description}
-        breadcrumb={t('breadcrumb')}
-        compact
-        backgroundImage={siteImages.heroCarousel[2]}
-      />
-
       <section className="relative isolate overflow-hidden border-b border-border/60 bg-background">
         <MountainBackdrop tone="light" />
-        <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          {/* Réassurance */}
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
-            {reassurance.map((item: any, i: number) => {
-              const Icon = getIcon(item.iconName)
-              return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease }}
-                  className="flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-4 text-left sm:flex-col sm:p-6 sm:text-center"
-                >
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary sm:size-11">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="font-display text-sm font-semibold text-foreground sm:mt-1 sm:text-base">
-                      {item.title}
-                    </h3>
-                    <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">{item.description}</p>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
+        <div className="mx-auto max-w-4xl px-4 pt-28 pb-16 sm:px-6 lg:px-8 lg:pt-36 lg:pb-24">
+          {/* En-tête — remplace l'ancien hero image : titre + sous-titre directs */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease }}
+            className="text-center"
+          >
+            <h1 className="font-display text-3xl font-semibold tracking-[-0.02em] text-foreground sm:text-4xl md:text-[2.6rem]">
+              {(() => {
+                const { lead, accent } = splitAccentTitle(t('sectionTitle'))
+                return lead ? (
+                  <>
+                    {lead}{' '}
+                    <span className="font-serif italic font-normal tracking-[-0.01em] text-primary">
+                      {accent}
+                    </span>
+                  </>
+                ) : (
+                  t('sectionTitle')
+                )
+              })()}
+            </h1>
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              {note}
+            </p>
+          </motion.div>
 
           {/* Bloc moteur Amenitiz */}
           <motion.div
@@ -96,27 +85,6 @@ export function ReserverContent() {
             transition={{ duration: 0.6, ease }}
             className="mt-12"
           >
-            <div className="text-center">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.02em] text-foreground sm:text-3xl">
-                {(() => {
-                  const { lead, accent } = splitAccentTitle(t('sectionTitle'))
-                  return lead ? (
-                    <>
-                      {lead}{' '}
-                      <span className="font-serif italic font-normal tracking-[-0.01em] text-primary">
-                        {accent}
-                      </span>
-                    </>
-                  ) : (
-                    t('sectionTitle')
-                  )
-                })()}
-              </h2>
-              <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                {note}
-              </p>
-            </div>
-
             {/* Tunnel en 3 étapes */}
             <ol className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-4">
               {steps.map((step, i) => (
@@ -192,6 +160,33 @@ export function ReserverContent() {
               </p>
             </div>
           </motion.div>
+
+          {/* Réassurance — sous le moteur de réservation */}
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+            {reassurance.map((item: any, i: number) => {
+              const Icon = getIcon(item.iconName)
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease }}
+                  className="flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-4 text-left sm:flex-col sm:p-6 sm:text-center"
+                >
+                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary sm:size-11">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
+                  <div>
+                    <h3 className="font-display text-sm font-semibold text-foreground sm:mt-1 sm:text-base">
+                      {item.title}
+                    </h3>
+                    <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">{item.description}</p>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
         </div>
       </section>
     </>
