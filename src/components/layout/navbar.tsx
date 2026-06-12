@@ -23,13 +23,6 @@ const ease = [0.22, 1, 0.36, 1] as const
 const curtain = [0.76, 0, 0.24, 1] as const
 
 // Couleurs de marque (= celles des menus) pour numéroter les liens en alternance.
-const ACCENTS = [
-  'oklch(0.73 0.15 62)', // orange ambré
-  'oklch(0.6 0.14 25)', // brique
-  'oklch(0.62 0.16 268)', // bleu
-  'oklch(0.66 0.1 150)', // vert mousse
-]
-
 export function Navbar() {
   const t = useTranslations('nav')
   const [open, setOpen] = useState(false)
@@ -218,7 +211,7 @@ export function Navbar() {
               <path d="M0 320 L320 90 L520 220 L760 40 L1010 210 L1230 110 L1440 240 L1440 320 Z" />
             </svg>
 
-            <div className="relative mx-auto grid min-h-[100dvh] max-w-7xl grid-cols-1 gap-12 px-6 pb-14 pt-24 sm:px-10 sm:pt-28 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-20 lg:pt-20">
+            <div className="relative mx-auto grid min-h-[100dvh] max-w-7xl grid-cols-1 gap-12 px-6 pb-14 pt-24 sm:px-10 sm:pt-28 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-20 lg:pb-10 lg:pt-20">
               {/* Colonne liens */}
               <nav aria-label="Navigation principale" className="flex flex-col">
                 {links.map((l, i) => {
@@ -236,17 +229,11 @@ export function Navbar() {
                       <Link
                         href={l.to}
                         onClick={() => setOpen(false)}
-                        className="group flex items-baseline gap-4 border-b border-white/10 py-3.5 sm:py-4"
+                        className="group flex items-baseline gap-4 border-b border-white/10 py-3.5 sm:py-4 lg:py-2.5"
                       >
                         <span
-                          className="font-mono text-[11px] tabular-nums tracking-widest transition-colors"
-                          style={{ color: ACCENTS[i % ACCENTS.length] }}
-                        >
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        <span
                           className={cn(
-                            'font-display text-3xl font-medium uppercase tracking-[0.02em] transition-all duration-300 sm:text-4xl lg:text-[2.75rem]',
+                            'font-display text-3xl font-medium uppercase leading-none tracking-[0.02em] transition-all duration-300 sm:text-4xl lg:text-[2.25rem]',
                             isActive
                               ? 'text-white'
                               : 'text-white/60 group-hover:translate-x-2 group-hover:text-white'
