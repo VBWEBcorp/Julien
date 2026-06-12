@@ -71,10 +71,15 @@ function MarqueeRow({
   const animationClass =
     direction === 'left' ? 'animate-marquee-half-left' : 'animate-marquee-half-right'
 
-  // Piste unique = contenu affiché une fois puis dupliqué. La translation de
-  // -50 % ramène exactement le doublon à la position de départ : boucle continue
-  // sans saut. L'espacement est porté par la marge droite de chaque carte.
-  const loop = [...items, ...items]
+  // Une demi-piste doit couvrir toute la largeur de l'écran, sinon un vide
+  // apparaît à droite quand la boucle défile (cas des lignes à peu d'avis). On
+  // répète donc les avis jusqu'à avoir assez de cartes (~324px chacune) pour les
+  // grands écrans, PUIS on duplique l'ensemble : la translation de -50 % ramène
+  // exactement le doublon à la position de départ (boucle continue, sans saut).
+  const MIN_CARDS = 8
+  const filled = items.length ? [...items] : []
+  while (filled.length && filled.length < MIN_CARDS) filled.push(...items)
+  const loop = [...filled, ...filled]
 
   return (
     <div className="group relative flex overflow-hidden">
@@ -113,7 +118,7 @@ export function TestimonialsSection() {
               ))}
             </div>
             <span className="text-xs font-semibold text-foreground">
-              5,0 sur Google
+              4,2 sur Google
             </span>
           </div>
         </div>

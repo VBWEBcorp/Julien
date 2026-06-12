@@ -16,14 +16,14 @@ export function SeoEditor({
   const description: string = content.seo?.description ?? ''
 
   return (
-    <SectionEditor title="SEO — référencement Google">
+    <SectionEditor title="SEO · référencement Google">
       <p className="-mt-1 text-xs text-muted-foreground">
         Laissez vide pour utiliser le texte optimisé par défaut. Ces champs sont
         propres à la langue sélectionnée (FR / EN / ES).
       </p>
       <div className="space-y-1">
         <FieldEditor
-          label="Titre SEO — balise title (~60 caractères)"
+          label="Titre SEO · balise title (~60 caractères)"
           value={title}
           onChange={(v) => update('seo.title', v)}
           placeholder="Ex. Restaurant à Accous, Vallée d'Aspe"

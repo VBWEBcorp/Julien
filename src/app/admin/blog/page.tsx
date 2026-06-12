@@ -69,8 +69,13 @@ export default function AdminBlogPage() {
           }),
         ])
         const settingsData = await settingsRes.json()
-        setSettings({ ...settingsData, categories: settingsData.categories || [] })
-        setPosts(await postsRes.json())
+        if (settingsData && !settingsData.error) {
+          setSettings((prev) => ({ ...prev, ...settingsData, categories: settingsData.categories || [] }))
+        }
+        // L'API peut renvoyer { error } (ex. base indisponible) : on garde un
+        // tableau pour éviter le crash de posts.filter().
+        const postsData = await postsRes.json()
+        setPosts(Array.isArray(postsData) ? postsData : [])
       } catch (error) {
         console.error('Failed to load blog:', error)
       } finally {

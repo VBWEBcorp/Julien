@@ -325,12 +325,12 @@ export const es: Record<string, Record<string, any>> = {
   },
   "testimonials": {
     "testimonials": [
-      { "name": "Marie & Paul", "company": "Randonneurs · GR10", "text": "Etapa perfecta en el GR10: acogida cálida, cama cómoda y una cena copiosa tras una larga jornada de marcha.", "stars": 5 },
-      { "name": "Thomas L.", "company": "Cycliste", "text": "Ideal para recuperarse antes del puerto del Somport. La terraza con vistas a las montañas merece el desvío.", "stars": 5 },
-      { "name": "Famille Bernard", "company": "Séjour en famille", "text": "Habitación con vistas magníficas, cocina generosa y local. A los niños les encantó. ¡Volveremos!", "stars": 5 },
-      { "name": "Isabel G.", "company": "Voyageuse · Espagne", "text": "Un auténtico flechazo en el Valle de Aspe. Auténtico, acogedor y muy bien situado.", "stars": 5 },
-      { "name": "Laurent M.", "company": "De passage", "text": "Parada para comer de camino: productos de la zona, platos sabrosos y una buena copa en el bar. Qué más se puede pedir.", "stars": 5 },
-      { "name": "Sophie R.", "company": "Amoureuse de nature", "text": "La calma, la montaña, el olor a madera… exactamente el espíritu que buscábamos. Una acogida con todo lujo de detalles.", "stars": 5 }
+      { "name": "François-Samuel G.", "company": "Estancia en el hotel", "text": "Sinceramente, es el lugar imprescindible de la zona. Las habitaciones están impecables y son de una calma absoluta. La cocina con productos locales marca la diferencia. Excelente relación calidad-precio, ¡lo recomiendo!", "stars": 5 },
+      { "name": "Guillaume R.", "company": "Estancia en familia", "text": "Magnífica estancia en el Valle de Aspe, en familia con nuestros 2 hijos, 3 noches en pensión completa. Muy buen restaurante, servicio rápido y habitaciones bien cuidadas con buenas camas. ¡Volveremos seguro!", "stars": 5 },
+      { "name": "Abel Wolf", "company": "Vacaciones en familia", "text": "Una cocina excelente con productos locales. Servicio rápido, eficaz y con una sonrisa, todo en un entorno magnífico con vistas a las montañas. ¿Qué más se puede pedir?", "stars": 5 },
+      { "name": "Anne Perez", "company": "Estancia en el hotel", "text": "Habitaciones sencillas pero limpias. Cocina excelente, la trucha estaba perfecta, y un desayuno copioso. El café de la casa es excelente. ¡Gracias por la acogida!", "stars": 5 },
+      { "name": "F. Rose", "company": "Desayuno", "text": "Vinimos a desayunar: un personal de una amabilidad poco común y una amplia variedad de productos. Volveremos con gusto.", "stars": 5 },
+      { "name": "Mickaël Brun", "company": "En el restaurante", "text": "Gran restaurante. Platos frescos, variados y deliciosos, y un equipo simpático y sonriente. ¡No nos arrepentimos de nuestra elección al azar!", "stars": 5 }
     ]
   }
 }

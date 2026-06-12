@@ -183,12 +183,12 @@ export const testimonialsContent = {
   description:
     "Randonneurs, cyclistes, familles ou habitants de la vallée : tous repartent avec le sourire.",
   items: [
-    { name: 'Marie & Paul', company: 'Randonneurs · GR10', text: "Étape parfaite sur le GR10 : accueil chaleureux, lit confortable et un dîner copieux après une longue journée de marche.", stars: 5 },
-    { name: 'Thomas L.', company: 'Cycliste', text: "Idéal pour récupérer avant le col du Somport. La terrasse avec vue sur les montagnes vaut le détour.", stars: 5 },
-    { name: 'Famille Bernard', company: 'Séjour en famille', text: "Chambre avec vue magnifique, cuisine généreuse et locale. Les enfants ont adoré. On reviendra !", stars: 5 },
-    { name: 'Isabel G.', company: 'Voyageuse · Espagne', text: "Un vrai coup de cœur dans la Vallée d'Aspe. Authentique, convivial et très bien situé.", stars: 5 },
-    { name: 'Laurent M.', company: 'De passage', text: "Arrêt repas sur la route : produits du coin, plats savoureux et un bon verre au bar. Que demander de plus.", stars: 5 },
-    { name: 'Sophie R.', company: 'Amoureuse de nature', text: "Le calme, la montagne, l'odeur du bois… exactement l'esprit qu'on cherchait. Accueil aux petits soins.", stars: 5 },
+    { name: 'François-Samuel G.', company: 'Séjour à l’hôtel', text: "Très sincèrement, c'est l'endroit incontournable de la zone. Les chambres sont d'une propreté irréprochable et d'un calme olympien. La cuisine avec les produits locaux fait vraiment la différence. Excellent rapport qualité-prix, je recommande !", stars: 5 },
+    { name: 'Guillaume R.', company: 'Séjour en famille', text: "Superbe séjour en Vallée d'Aspe, en famille avec nos 2 enfants, 3 nuits en pension complète. Très bon restaurant, service rapide, et des chambres bien entretenues avec une bonne literie. Nous y reviendrons, c'est certain !", stars: 5 },
+    { name: 'Abel Wolf', company: 'Vacances en famille', text: "Une cuisine excellente avec des produits locaux. Service rapide, efficace et avec le sourire, le tout dans un cadre magnifique avec vue sur les montagnes. Que demander de plus ?", stars: 5 },
+    { name: 'Anne Perez', company: 'Étape à l’hôtel', text: "Chambres simples mais propres. Excellente cuisine, la truite était parfaite, et copieux petit déjeuner. Le café de la maison est excellent. Merci pour l'accueil !", stars: 5 },
+    { name: 'F. Rose', company: 'Petit déjeuner', text: "Nous sommes venus prendre le petit déjeuner : un personnel d'une gentillesse rare et un large choix de produits. Nous reviendrons avec plaisir.", stars: 5 },
+    { name: 'Mickaël Brun', company: 'Au restaurant', text: "Super restaurant. Des plats frais, variés et délicieux, et une équipe sympathique et souriante. Nous ne regrettons pas notre choix dû au hasard !", stars: 5 },
   ],
 }
 

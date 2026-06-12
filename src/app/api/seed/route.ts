@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
           author: 'Coline & Julien',
           published: true,
           publishedAt: new Date('2026-05-18'),
-          metaTitle: "Cuisine de saison au Permayou — produits de la vallée d'Aspe",
+          metaTitle: "Cuisine de saison au Permayou | produits de la vallée d'Aspe",
           metaDescription: "Garbure, fromages d'estive, viandes du pays : la cuisine de saison du Permayou, à base de produits locaux de la vallée d'Aspe.",
         },
       ]

@@ -62,7 +62,7 @@ export default function AdminAboutPage() {
           <SectionEditor title="Nos valeurs">
             {content.values?.map((val: any, i: number) => (
               <div key={i} className="space-y-3 rounded-lg border border-border/40 p-4">
-                <FieldEditor label={`Valeur ${i + 1} — Titre`} value={val.title} onChange={(v) => {
+                <FieldEditor label={`Valeur ${i + 1} · Titre`} value={val.title} onChange={(v) => {
                   const next = [...content.values]; next[i] = { ...next[i], title: v }; update('values', next)
                 }} />
                 <FieldEditor label="Description" value={val.description} type="textarea" onChange={(v) => {

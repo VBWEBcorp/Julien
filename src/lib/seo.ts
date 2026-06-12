@@ -16,8 +16,8 @@ export const siteConfig = {
     country: 'FR',
   },
   social: {
-    facebook: 'https://www.facebook.com/', // ⚠️ URL exacte de la page à confirmer
-    instagram: 'https://www.instagram.com/', // ⚠️ URL exacte du compte à confirmer
+    facebook: 'https://www.facebook.com/permayou/',
+    instagram: 'https://www.instagram.com/le_permayou_/',
   },
   // Réservation — Phase 1 : deep-link vers le moteur Amenitiz (nouvel onglet).
   // Phase 2 : iframe embarqué sur /reserver. ⚠️ URL réelle à fournir une fois

@@ -364,12 +364,12 @@ export const en: Record<string, Record<string, any>> = {
     description:
       "Hikers, cyclists, families or valley locals: everyone leaves with a smile.",
     testimonials: [
-      { name: "Marie & Paul", company: "Hikers · GR10", text: "A perfect stop on the GR10: a warm welcome, a comfortable bed and a hearty dinner after a long day's walking.", stars: 5 },
-      { name: "Thomas L.", company: "Cyclist", text: "Ideal for recovering before the Col du Somport. The terrace with its mountain view is worth the detour.", stars: 5 },
-      { name: "Famille Bernard", company: "Family stay", text: "A room with a magnificent view, generous local cooking. The kids loved it. We'll be back!", stars: 5 },
-      { name: "Isabel G.", company: "Traveller · Spain", text: "A real favourite in the Aspe Valley. Authentic, friendly and very well located.", stars: 5 },
-      { name: "Laurent M.", company: "Passing through", text: "A meal stop on the road: local produce, tasty dishes and a good drink at the bar. What more could you ask for.", stars: 5 },
-      { name: "Sophie R.", company: "Nature lover", text: "The quiet, the mountains, the smell of wood… exactly the spirit we were looking for. Attentive, caring welcome.", stars: 5 },
+      { name: "François-Samuel G.", company: "Hotel stay", text: "Honestly, this is the must-visit spot in the area. The rooms are spotless and wonderfully quiet. The cooking, built on local produce, really makes the difference. Excellent value, highly recommended!", stars: 5 },
+      { name: "Guillaume R.", company: "Family stay", text: "A wonderful stay in the Aspe Valley with our two children, three nights full-board. Great restaurant, quick service, and well-kept rooms with comfortable beds. We'll definitely be back!", stars: 5 },
+      { name: "Abel Wolf", company: "Family holiday", text: "Excellent cooking with local produce. Quick, efficient and smiling service, all in a magnificent setting with mountain views. What more could you ask for?", stars: 5 },
+      { name: "Anne Perez", company: "Hotel stay", text: "Simple but clean rooms. Excellent food (the trout was perfect) and a generous breakfast. The house coffee is excellent. Thank you for the welcome!", stars: 5 },
+      { name: "F. Rose", company: "Breakfast", text: "We came for breakfast: rare kindness from the staff and a wide choice of products. We'll gladly come back.", stars: 5 },
+      { name: "Mickaël Brun", company: "At the restaurant", text: "Great restaurant. Fresh, varied and delicious dishes, with a friendly, smiling team. No regrets about our chance discovery!", stars: 5 },
     ],
   },
 }

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -73,41 +72,22 @@ export default function AdminDashboardPage() {
   const firstName = user.name?.split(' ')[0] || 'admin'
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/permayou/vallee.jpg"
-          alt=""
-          fill
-          sizes="100vw"
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/65 to-primary/30" />
-      </div>
-
-      {/* Ambient glows */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute -top-32 -left-24 size-[480px] rounded-full bg-primary/20 blur-[140px]" />
-        <div className="absolute -bottom-40 -right-20 size-[420px] rounded-full bg-sky-400/15 blur-[140px]" />
-      </div>
-
-      <div className="relative z-10 space-y-6 p-4 pt-12 sm:p-6 sm:pt-12 lg:p-8 lg:pt-12">
-        {/* Hero Banner — glassmorphism */}
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-6xl space-y-8 p-4 pt-16 sm:p-6 sm:pt-8 lg:p-8 lg:pt-10">
+        {/* En-tête de bienvenue */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease }}
-          className="rounded-3xl border border-white/15 bg-white/[0.07] p-7 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-9 lg:p-10"
         >
-          <p className="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">
+          <p className="inline-flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
+            <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
             Espace admin
           </p>
-          <h1 className="mt-2 font-display text-2xl font-bold tracking-[-0.02em] text-white sm:text-3xl lg:text-4xl">
+          <h1 className="mt-3 font-display text-3xl font-bold tracking-[-0.02em] text-foreground sm:text-4xl">
             Bonjour {firstName}
           </h1>
-          <p className="mt-2 max-w-xl text-sm text-white/70 sm:text-base">
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             Gérez le contenu de votre site depuis cet espace.
           </p>
         </motion.div>
@@ -118,7 +98,7 @@ export default function AdminDashboardPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease, delay: 0.08 }}
         >
-          <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">
+          <h2 className="mb-4 font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
             Éditer les pages
           </h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -133,16 +113,16 @@ export default function AdminDashboardPage() {
                 >
                   <Link
                     href={mod.href}
-                    className="group flex items-center gap-4 rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-xl transition-all hover:border-white/30 hover:bg-white/[0.1]"
+                    className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-xs)] transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[var(--shadow-md)]"
                   >
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white transition-colors group-hover:bg-white/20">
+                    <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <Icon className="size-5" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold text-white">{mod.label}</p>
-                      <p className="truncate text-xs text-white/60">{mod.desc}</p>
+                      <p className="text-sm font-semibold text-foreground">{mod.label}</p>
+                      <p className="truncate text-xs text-muted-foreground">{mod.desc}</p>
                     </div>
-                    <ArrowRight className="size-4 text-white/40 transition-all group-hover:translate-x-0.5 group-hover:text-white" />
+                    <ArrowRight className="size-4 text-muted-foreground/50 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
                   </Link>
                 </motion.div>
               )
@@ -150,21 +130,23 @@ export default function AdminDashboardPage() {
           </div>
         </motion.div>
 
-        {/* Seed */}
+        {/* Données d'exemple */}
         {!seedDone && (
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease, delay: 0.2 }}
-            className="flex flex-col items-start justify-between gap-4 rounded-2xl border border-white/15 bg-white/[0.06] p-5 backdrop-blur-xl sm:flex-row sm:items-center"
+            className="flex flex-col items-start justify-between gap-4 rounded-2xl border border-border bg-secondary/60 p-5 sm:flex-row sm:items-center"
           >
             <div className="flex items-center gap-3">
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-accent text-primary">
                 <Database className="size-4" />
               </span>
               <div>
-                <p className="text-sm font-semibold text-white">Données d&apos;exemple</p>
-                <p className="text-xs text-white/60">Ajouter des photos galerie et articles blog pour tester le template</p>
+                <p className="text-sm font-semibold text-foreground">Données d&apos;exemple</p>
+                <p className="text-xs text-muted-foreground">
+                  Ajouter des photos galerie et articles blog pour tester le template
+                </p>
               </div>
             </div>
             <button
@@ -188,9 +170,9 @@ export default function AdminDashboardPage() {
                 }
               }}
               disabled={seeding}
-              className="w-full shrink-0 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-white/90 disabled:opacity-50 sm:w-auto"
+              className="w-full shrink-0 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50 sm:w-auto"
             >
-              {seeding ? 'Chargement...' : 'Charger les données'}
+              {seeding ? 'Chargement…' : 'Charger les données'}
             </button>
           </motion.div>
         )}
