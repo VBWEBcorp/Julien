@@ -109,8 +109,7 @@
       "hours": "· Lun-Ven 9h-18h"
     },
     "map": {
-      "placeholder": "Intégrez ici votre carte Google Maps",
-      "hint": "iframe ou API Google Maps"
+      "directions": "Itinéraire"
     }
   },
   "reserver": {

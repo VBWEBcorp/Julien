@@ -10,7 +10,6 @@ import { SectionTitle } from '@/components/ui/section-title'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
 import { images as siteImages, valleeAspeContent } from '@/lib/site-content'
-import { BRAND_ACCENTS } from '@/lib/utils'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -69,8 +68,7 @@ export function ValleeContent() {
                   {/* Numéro + icône : groupés sur une ligne en mobile, étalés en desktop */}
                   <div className="flex items-center gap-4 sm:contents">
                     <span
-                      className="font-display text-5xl font-bold leading-none tabular-nums sm:text-6xl"
-                      style={{ color: BRAND_ACCENTS[i % BRAND_ACCENTS.length] }}
+                      className="font-display text-5xl font-bold leading-none tabular-nums text-primary sm:text-6xl"
                     >
                       {String(i + 1).padStart(2, '0')}
                     </span>

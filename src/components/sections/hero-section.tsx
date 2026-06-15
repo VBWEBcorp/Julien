@@ -61,9 +61,9 @@ export function HeroSection() {
             />
           </motion.div>
         </AnimatePresence>
-        {/* Overlay minimal — la photo reste lumineuse (style Otonali) */}
-        <div className="absolute inset-0 bg-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/25" />
+        {/* Overlay un peu plus marqué — fond plus sombre (style Otonali) */}
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/35" />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8 lg:py-40">

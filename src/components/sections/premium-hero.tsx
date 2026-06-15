@@ -69,10 +69,10 @@ export function PremiumHero({
               className="object-cover"
             />
           </div>
-          {/* Voile léger — la photo reste lumineuse (même DA que le hero d'accueil) */}
-          <div className="absolute inset-0 -z-10 bg-black/25" aria-hidden />
+          {/* Voile un peu plus marqué — fond plus sombre (même DA que le hero d'accueil) */}
+          <div className="absolute inset-0 -z-10 bg-black/40" aria-hidden />
           <div
-            className="absolute inset-0 -z-10 bg-gradient-to-t from-black/50 via-transparent to-black/25"
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-black/65 via-transparent to-black/35"
             aria-hidden
           />
           {/* Fade vers le bg uniquement sur les ~96px du bas */}

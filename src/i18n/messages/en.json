@@ -109,8 +109,7 @@
       "hours": "· Mon-Fri 9am-6pm"
     },
     "map": {
-      "placeholder": "Embed your Google Maps map here",
-      "hint": "iframe or Google Maps API"
+      "directions": "Get directions"
     }
   },
   "reserver": {

@@ -109,8 +109,7 @@
       "hours": "· Lun-Vie 9h-18h"
     },
     "map": {
-      "placeholder": "Inserte aquí su mapa de Google Maps",
-      "hint": "iframe o API de Google Maps"
+      "directions": "Cómo llegar"
     }
   },
   "reserver": {

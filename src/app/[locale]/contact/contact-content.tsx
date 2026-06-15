@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { AlertCircle, CheckCircle2, Clock, Mail, MapPin, Phone, Send } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 import { PremiumHero } from '@/components/sections/premium-hero'
@@ -36,6 +36,7 @@ const defaults = {
 
 export function ContactContent() {
   const t = useTranslations('contact')
+  const locale = useLocale()
   const { data } = useContent('contact', defaults)
   const hero = data.hero ?? defaults.hero
   const info = data.info ?? defaults.info
@@ -77,6 +78,11 @@ export function ContactContent() {
   const street = info.street || siteConfig.address.street
   const postalCode = info.postalCode || siteConfig.address.postalCode
   const city = info.city || siteConfig.address.city
+
+  // Carte Google Maps via embed iframe (pas de clé API requise) — pilotée par l'adresse CMS
+  const mapQuery = encodeURIComponent(`${siteConfig.name}, ${street}, ${postalCode} ${city}`)
+  const mapEmbedSrc = `https://www.google.com/maps?q=${mapQuery}&z=15&hl=${locale}&output=embed`
+  const mapLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`
 
   return (
     <>
@@ -363,10 +369,11 @@ export function ContactContent() {
                 </div>
               </div>
 
-              {/* Map placeholder amélioré */}
+              {/* Carte Google Maps — embed iframe (sans clé API) */}
               <div className="relative overflow-hidden rounded-3xl bg-muted/50 shadow-[0_10px_30px_-12px_oklch(0.2_0.02_150/0.18)] backdrop-blur-sm">
+                {/* Bordure dégradée (au-dessus de la carte, clics traversants) */}
                 <div
-                  className="pointer-events-none absolute inset-0 rounded-3xl p-px"
+                  className="pointer-events-none absolute inset-0 z-10 rounded-3xl p-px"
                   aria-hidden
                   style={{
                     background:
@@ -377,27 +384,24 @@ export function ContactContent() {
                     maskComposite: 'exclude',
                   }}
                 />
-                {/* Dot grid décoratif */}
-                <div
-                  className="pointer-events-none absolute inset-0 opacity-40"
-                  aria-hidden
-                  style={{
-                    backgroundImage:
-                      'radial-gradient(oklch(0.55 0.05 150 / 0.2) 1px, transparent 1px)',
-                    backgroundSize: '24px 24px',
-                  }}
+                <iframe
+                  title={`${siteConfig.name} — ${street}, ${postalCode} ${city}`}
+                  src={mapEmbedSrc}
+                  className="relative block h-64 w-full border-0 grayscale-[0.15] contrast-[1.05]"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
                 />
-                <div className="relative flex h-56 flex-col items-center justify-center gap-3 p-6 text-center">
-                  <span className="flex size-12 items-center justify-center rounded-2xl bg-background/70 text-primary ring-1 ring-border/60 backdrop-blur-sm">
-                    <MapPin className="size-5" aria-hidden />
-                  </span>
-                  <p className="text-sm font-medium text-foreground">
-                    {t('map.placeholder')}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {t('map.hint')}
-                  </p>
-                </div>
+                {/* Bouton itinéraire en overlay */}
+                <a
+                  href={mapLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-1.5 rounded-full bg-background/90 px-3.5 py-2 text-xs font-medium text-foreground shadow-md ring-1 ring-border/60 backdrop-blur-sm transition-colors hover:bg-background"
+                >
+                  <MapPin className="size-3.5 text-primary" aria-hidden />
+                  {t('map.directions')}
+                </a>
               </div>
             </motion.div>
           </div>
