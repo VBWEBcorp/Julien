@@ -18,6 +18,7 @@ import {
   Wine,
   CalendarCheck,
   Mountain,
+  Languages,
 } from 'lucide-react'
 
 interface AdminUser {
@@ -128,6 +129,32 @@ export default function AdminDashboardPage() {
               )
             })}
           </div>
+        </motion.div>
+
+        {/* Interface & langues */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease, delay: 0.16 }}
+        >
+          <h2 className="mb-4 font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+            Interface &amp; langues
+          </h2>
+          <Link
+            href="/admin/translations"
+            className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-xs)] transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[var(--shadow-md)]"
+          >
+            <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+              <Languages className="size-5" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold text-foreground">Traductions de l&apos;interface</p>
+              <p className="truncate text-xs text-muted-foreground">
+                Menu, pied de page, formulaire, boutons… en FR / EN / ES
+              </p>
+            </div>
+            <ArrowRight className="size-4 text-muted-foreground/50 transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
+          </Link>
         </motion.div>
 
         {/* Données d'exemple */}
