@@ -22,5 +22,8 @@ npm-debug.log*
 # Build cache
 *.tsbuildinfo
 
+# Helper DNS local (dev uniquement, ne pas committer)
+.dev-dns.cjs
+
 # Uploads
 public/uploads/
