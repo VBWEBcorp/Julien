@@ -29,6 +29,16 @@ export default function AdminHomePage() {
               <FieldEditor label="Bouton 1" value={content.hero?.button1} onChange={(v) => update('hero.button1', v)} />
               <FieldEditor label="Bouton 2" value={content.hero?.button2} onChange={(v) => update('hero.button2', v)} />
             </div>
+            <div className="space-y-1.5 pt-2">
+              <FieldEditor
+                label="Vidéo de fond (URL .mp4 — optionnelle)"
+                value={content.hero?.video}
+                onChange={(v) => update('hero.video', v)}
+              />
+              <p className="text-xs text-muted-foreground">
+                Si renseignée, la vidéo remplace le carrousel d'images en fond du bandeau (lecture auto, sans son, en boucle). Laissez vide pour garder le carrousel.
+              </p>
+            </div>
             <div className="space-y-3 pt-2">
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Images du carrousel</p>
               {content.hero?.images?.map((img: string, i: number) => (

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
+import { AmenitiesSection } from '@/components/sections/amenities-section'
 import { CtaSection } from '@/components/sections/cta-section'
 import { FaqSection } from '@/components/sections/faq-section'
 import { GalleryCarousel } from '@/components/sections/gallery-carousel'
@@ -55,6 +56,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <HeroSection />
       <PolesMosaic />
       <StorySection />
+      <AmenitiesSection />
       <TestimonialsSection />
       <GalleryCarousel />
       <FaqSection />

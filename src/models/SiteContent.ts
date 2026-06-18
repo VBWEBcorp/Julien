@@ -54,11 +54,17 @@ const SiteContent =
   mongoose.models.SiteContent ||
   mongoose.model<ISiteContent>('SiteContent', SiteContentSchema)
 
-// Lancement best-effort de la migration d'index (ne bloque pas le chargement).
-if (!mongoose.models.__siteContentIndexMigrated) {
+// Lancement best-effort de la migration d'index (ne bloque pas le chargement),
+// une seule fois par process. IMPORTANT : on stocke le marqueur sur `globalThis`
+// (via Symbol.for) et NON dans `mongoose.models` — ce registre ne doit contenir
+// que de vrais modèles. mongoose ≥9 itère `mongoose.models` au connect pour la
+// vérification de chiffrement (`schema._hasEncryptedFields()`) ; une entrée qui
+// n'est pas un modèle (sans `.schema`) y faisait planter la connexion entière
+// (TypeError « Cannot read properties of undefined (reading '_hasEncryptedFields') »).
+const MIGRATION_FLAG = Symbol.for('permayou.siteContentIndexMigrated')
+if (!(globalThis as Record<symbol, unknown>)[MIGRATION_FLAG]) {
+  ;(globalThis as Record<symbol, unknown>)[MIGRATION_FLAG] = true
   void dropLegacyPageIdIndex(SiteContent as mongoose.Model<ISiteContent>)
-  // Marqueur pour ne tenter la migration qu'une fois par process.
-  ;(mongoose.models as any).__siteContentIndexMigrated = true
 }
 
 export default SiteContent

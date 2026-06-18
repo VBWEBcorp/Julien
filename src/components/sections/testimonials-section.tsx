@@ -30,7 +30,7 @@ function TestimonialCard({
   testimonial: { name: string; company: string; text: string; stars: number }
 }) {
   return (
-    <figure className="mr-6 flex h-[200px] w-[300px] shrink-0 flex-col overflow-hidden rounded-xl border border-border/60 bg-card/80 px-5 py-4 shadow-[var(--shadow-xs)] ring-1 ring-foreground/[0.03] backdrop-blur-sm">
+    <figure className="mr-6 flex h-[200px] w-[300px] shrink-0 flex-col overflow-hidden rounded-2xl border border-border/60 bg-card/80 px-5 py-4 shadow-[var(--shadow-xs)] ring-1 ring-foreground/[0.03] backdrop-blur-sm">
       <div className="flex items-center justify-between shrink-0">
         <div className="flex items-center gap-0.5">
           {Array.from({ length: 5 }).map((_, i) => (

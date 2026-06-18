@@ -21,13 +21,11 @@ interface FaqItem {
 
 function FaqAccordionItem({
   item,
-  index,
   isOpen,
   onToggle,
   reduceMotion,
 }: {
   item: FaqItem
-  index: number
   isOpen: boolean
   onToggle: () => void
   reduceMotion: boolean | null
@@ -68,14 +66,8 @@ function FaqAccordionItem({
           type="button"
           onClick={onToggle}
           aria-expanded={isOpen}
-          className="relative flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-foreground/[0.02] sm:px-6 sm:py-5"
+          className="relative flex w-full items-center gap-4 px-5 py-4 text-left transition-colors hover:bg-foreground/[0.02] sm:px-6 sm:py-5"
         >
-          <span className="flex items-baseline gap-3 font-display text-[15px] font-semibold tracking-tight text-foreground sm:text-base">
-            <span className="font-display text-xs font-semibold tracking-[0.2em] text-primary/70">
-              0{index + 1}
-            </span>
-            {item.question}
-          </span>
           <motion.span
             animate={{ rotate: isOpen ? 45 : 0 }}
             transition={{ duration: 0.3, ease }}
@@ -84,6 +76,9 @@ function FaqAccordionItem({
           >
             <Plus className="size-3.5" strokeWidth={2.5} />
           </motion.span>
+          <span className="font-display text-[15px] font-semibold tracking-tight text-foreground sm:text-base">
+            {item.question}
+          </span>
         </button>
 
         <AnimatePresence initial={false}>
@@ -141,7 +136,6 @@ export function FaqSection() {
             <FaqAccordionItem
               key={i}
               item={item}
-              index={i}
               isOpen={openIndex === i}
               onToggle={() => setOpenIndex(openIndex === i ? null : i)}
               reduceMotion={reduceMotion}

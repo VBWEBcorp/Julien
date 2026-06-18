@@ -57,8 +57,10 @@
   --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  /* Rayon resserré — direction anguleuse / éditoriale (style Otonali) */
-  --radius: 0.25rem;
+  /* Rayon adouci — direction « montagne épurée » arrondie (réf. The Stay).
+     Tout le scale de rayons (boutons, inputs, badges, cartes rounded-2xl/3xl)
+     en dérive : un seul réglage adoucit l'ensemble du site. */
+  --radius: 0.5rem;
 
   /* Base neutre chaude — lin / pierre claire (montagne épurée) */
   --background: oklch(0.985 0.004 95);

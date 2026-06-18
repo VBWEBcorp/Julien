@@ -10,7 +10,7 @@ import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
 import { images as siteImages, restaurantContent } from '@/lib/site-content'
-import { BRAND_ACCENTS, splitAccentTitle } from '@/lib/utils'
+import { splitAccentTitle } from '@/lib/utils'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -80,16 +80,6 @@ export function RestaurantContent() {
                     <h3 className="font-display text-xl font-semibold tracking-[-0.01em] text-foreground sm:text-2xl">
                       {s.title}
                     </h3>
-                    <span
-                      className="mx-1 hidden flex-1 -translate-y-1 border-b border-dotted border-border sm:block"
-                      aria-hidden
-                    />
-                    <span
-                      className="hidden font-mono text-xs tabular-nums tracking-[0.2em] sm:block"
-                      style={{ color: BRAND_ACCENTS[i % BRAND_ACCENTS.length] }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
                   </div>
                   <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:pl-[3.25rem] sm:text-lg">
                     {s.description}
@@ -151,8 +141,7 @@ export function RestaurantContent() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-60px' }}
                     transition={{ duration: 0.5, delay: i * 0.07, ease }}
-                    className="border-l-2 pl-4"
-                    style={{ borderColor: BRAND_ACCENTS[i % BRAND_ACCENTS.length] }}
+                    className="border-l-2 border-primary pl-4"
                   >
                     <h3 className="font-display text-lg font-semibold text-foreground">{d.name}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{d.note}</p>

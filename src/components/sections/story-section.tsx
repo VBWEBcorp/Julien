@@ -138,7 +138,7 @@ export function StorySection() {
             <motion.div
               whileHover={{ y: -4 }}
               transition={{ duration: 0.4, ease }}
-              className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] ring-1 ring-foreground/5"
+              className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-muted shadow-[0_20px_60px_-20px_rgba(0,0,0,0.2)] ring-1 ring-foreground/5"
             >
               <motion.div className="absolute inset-0 -inset-y-8" style={{ y: imageY }}>
                 <Image
@@ -151,7 +151,7 @@ export function StorySection() {
               </motion.div>
               {/* Liseré dégradé de marque */}
               <div
-                className="pointer-events-none absolute inset-0 rounded-2xl p-px"
+                className="pointer-events-none absolute inset-0 rounded-3xl p-px"
                 aria-hidden
                 style={{
                   background:

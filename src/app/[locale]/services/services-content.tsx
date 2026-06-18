@@ -15,14 +15,6 @@ import { images as siteImages, servicesContent } from '@/lib/site-content'
 const ease = [0.22, 1, 0.36, 1] as const
 const defaultImages = siteImages.services
 
-// Couleurs de marque (= celles des menus) pour numéroter les rangées en alternance.
-const ACCENTS = [
-  'oklch(0.78 0.14 62)', // orange ambré
-  'oklch(0.66 0.16 25)', // brique
-  'oklch(0.68 0.16 268)', // bleu
-  'oklch(0.72 0.1 150)', // vert mousse
-]
-
 // Détache le ou les derniers mots du titre pour l'accent serif italique.
 function splitTitle(title: string): { lead: string; accent: string } {
   const words = title.trim().split(/\s+/)
@@ -106,18 +98,6 @@ function ServiceRow({
           aria-hidden
         />
 
-        {/* Numéro signature (couleur de marque) */}
-        <motion.span
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.5, delay: 0.25, ease }}
-          className="absolute left-5 top-4 font-mono text-xs tabular-nums tracking-[0.2em] [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]"
-          style={{ color: ACCENTS[index % ACCENTS.length] }}
-          aria-hidden
-        >
-          {String(index + 1).padStart(2, '0')}
-        </motion.span>
       </motion.div>
 
       {/* Texte — slide opposé + stagger interne sur les enfants */}

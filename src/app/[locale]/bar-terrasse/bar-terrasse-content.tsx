@@ -9,7 +9,6 @@ import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
 import { images as siteImages, barTerrasseContent } from '@/lib/site-content'
-import { BRAND_ACCENTS } from '@/lib/utils'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -66,13 +65,6 @@ export function BarTerrasseContent() {
                       className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"
                       aria-hidden
                     />
-                    <span
-                      className="absolute left-4 top-3 font-mono text-[11px] tabular-nums tracking-[0.2em] [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]"
-                      style={{ color: BRAND_ACCENTS[i % BRAND_ACCENTS.length] }}
-                      aria-hidden
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
                   </div>
 
                   {/* Contenu */}

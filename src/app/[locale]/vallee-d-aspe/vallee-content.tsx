@@ -65,17 +65,9 @@ export function ValleeContent() {
                       : 'bg-card'
                   }`}
                 >
-                  {/* Numéro + icône : groupés sur une ligne en mobile, étalés en desktop */}
-                  <div className="flex items-center gap-4 sm:contents">
-                    <span
-                      className="font-display text-5xl font-bold leading-none tabular-nums text-primary sm:text-6xl"
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-primary/20">
-                      <Icon className="size-5" aria-hidden />
-                    </span>
-                  </div>
+                  <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-primary/20">
+                    <Icon className="size-5" aria-hidden />
+                  </span>
                   <div className="sm:flex-1">
                     <h3 className="font-display text-xl font-semibold tracking-[-0.01em] text-foreground sm:text-2xl">
                       {a.title}

@@ -76,7 +76,7 @@ export function CtaSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.55, ease }}
-          className="relative isolate overflow-hidden rounded-[4px] text-white shadow-[var(--shadow-lg)]"
+          className="relative isolate overflow-hidden rounded-[2rem] text-white shadow-[var(--shadow-lg)]"
         >
           {/* Décor signature : vert forêt + halos + montagne (repris du menu) */}
           <MountainBackdrop tone="dark" />
@@ -96,7 +96,7 @@ export function CtaSection() {
               <div>
                 <Link
                   href="/reserver"
-                  className="group inline-flex h-12 items-center gap-2 rounded-[3px] bg-[oklch(0.73_0.15_62)] px-8 text-xs font-semibold uppercase tracking-[0.22em] text-[oklch(0.2_0.03_150)] transition-colors hover:bg-[oklch(0.78_0.15_62)]"
+                  className="group inline-flex h-12 items-center gap-2 rounded-full bg-white px-8 text-[0.95rem] font-medium tracking-tight text-[oklch(0.2_0.03_150)] shadow-sm transition-all hover:bg-white/90 hover:shadow-md"
                 >
                   {cta.button}
                   <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

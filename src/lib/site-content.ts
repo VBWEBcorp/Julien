@@ -121,7 +121,34 @@ export const heroContent = {
     "Hôtel, restaurant et bar au cœur de la Vallée d'Aspe. On y vient pour une pause gourmande, une nuit d'étape ou un séjour au grand air, dans une ambiance simple et conviviale.",
   button1: 'Réserver',
   button2: "Découvrir l'auberge",
+  // Vidéo de fond optionnelle (URL). Si vide, le carousel d'images est utilisé.
+  // Placeholder libre de droits (Pexels) — à remplacer par une vidéo de l'auberge.
+  video: '/permayou/hero.mp4',
   images: images.heroCarousel,
+}
+
+// Section « équipements & services » (bloc pleine couleur, tags en pilules).
+export const amenitiesContent = {
+  eyebrow: 'Sur place',
+  title: 'Tout ce qu’il faut pour',
+  accent: 'se sentir bien',
+  description:
+    'Une auberge simple et chaleureuse, pensée pour les voyageurs, les marcheurs et les amoureux de la montagne.',
+  cta: 'Découvrir les chambres',
+  items: [
+    { icon: 'Wifi', label: 'WiFi gratuit' },
+    { icon: 'PawPrint', label: 'Animaux acceptés' },
+    { icon: 'Coffee', label: 'Petit-déjeuner' },
+    { icon: 'UtensilsCrossed', label: 'Restaurant midi & soir' },
+    { icon: 'Wine', label: 'Bar & terrasse' },
+    { icon: 'Mountain', label: 'Vue sur le Cirque d’Iseye' },
+    { icon: 'Footprints', label: 'Étape de Compostelle' },
+    { icon: 'BedDouble', label: '8 chambres · 5 types' },
+    { icon: 'Accessibility', label: 'Chambre PMR' },
+    { icon: 'ShowerHead', label: 'Salle de bain privative' },
+    { icon: 'Tv', label: 'TV écran plat' },
+    { icon: 'Newspaper', label: 'Point presse' },
+  ],
 }
 
 export const storyContent = {

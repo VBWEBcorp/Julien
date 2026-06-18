@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { getIcon } from '@/lib/icons'
-import { BRAND_ACCENTS, splitAccentTitle } from '@/lib/utils'
+import { splitAccentTitle } from '@/lib/utils'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -89,15 +89,6 @@ export function FeatureCards({
                 transition={{ duration: 0.55, delay: i * 0.06, ease }}
                 className="group relative flex flex-col rounded-2xl border border-border/60 bg-card p-7 shadow-[0_2px_8px_oklch(0.2_0.02_150/0.04)] transition-shadow hover:shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.25)]"
               >
-                {/* Numéro signature (couleur de marque) */}
-                <span
-                  className="absolute right-6 top-6 font-mono text-[11px] tabular-nums tracking-[0.2em]"
-                  style={{ color: BRAND_ACCENTS[i % BRAND_ACCENTS.length] }}
-                  aria-hidden
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-
                 <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-primary/20">
                   <Icon className="size-5" aria-hidden />
                 </span>

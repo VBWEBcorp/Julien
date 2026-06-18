@@ -11,14 +11,6 @@ import { polesContent } from '@/lib/site-content'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-// Couleurs de marque (= celles des menus) pour numéroter les tuiles en alternance.
-const ACCENTS = [
-  'oklch(0.78 0.14 62)', // orange ambré
-  'oklch(0.66 0.16 25)', // brique
-  'oklch(0.68 0.16 268)', // bleu
-  'oklch(0.72 0.1 150)', // vert mousse
-]
-
 // Placement de chaque tuile dans la grille (desktop) — mosaïque asymétrique :
 // grande image à gauche (2 lignes), large en haut à droite, 2 petites en bas.
 const layout = [
@@ -61,7 +53,7 @@ export function PolesMosaic() {
               <Link
                 href={item.href}
                 aria-label={item.label}
-                className="group relative block h-full min-h-[18rem] overflow-hidden rounded-[3px]"
+                className="group relative block h-full min-h-[18rem] overflow-hidden rounded-3xl"
               >
                 <Image
                   src={item.image}
@@ -76,22 +68,13 @@ export function PolesMosaic() {
                   aria-hidden
                 />
 
-                {/* Numéro signature (couleur de marque) */}
-                <span
-                  className="absolute left-6 top-5 font-mono text-[11px] tabular-nums tracking-[0.2em] [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] sm:left-7 sm:top-6"
-                  style={{ color: ACCENTS[i % ACCENTS.length] }}
-                  aria-hidden
-                >
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-
                 {/* Label */}
                 <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-6 sm:p-7">
-                  <h3 className="font-display text-2xl font-semibold uppercase tracking-[0.12em] text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-[1.7rem]">
+                  <h3 className="font-display text-2xl font-semibold tracking-tight text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-[1.7rem]">
                     {item.label}
                   </h3>
                   <span
-                    className="mb-1 inline-flex size-9 shrink-0 items-center justify-center rounded-[3px] border border-white/40 text-white opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100"
+                    className="mb-1 inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100"
                     aria-hidden
                   >
                     <ArrowUpRight className="size-4" />

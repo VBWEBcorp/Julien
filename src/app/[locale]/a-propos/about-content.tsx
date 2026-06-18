@@ -11,7 +11,7 @@ import { SectionTitle } from '@/components/ui/section-title'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
 import { aboutContent, images } from '@/lib/site-content'
-import { BRAND_ACCENTS, splitAccentTitle } from '@/lib/utils'
+import { splitAccentTitle } from '@/lib/utils'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -178,16 +178,8 @@ function ValuesTimeline({ values }: { values: any[] }) {
                     className="pointer-events-none absolute -top-16 -right-16 size-40 rounded-full bg-primary/20 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
                   />
                   <div className="relative">
-                    <div className="flex items-center gap-3">
-                      <span
-                        className="font-mono text-[11px] font-bold tabular-nums tracking-[0.2em]"
-                        style={{ color: BRAND_ACCENTS[i % BRAND_ACCENTS.length] }}
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
-                    </div>
-                    <h3 className="mt-3 font-display text-xl leading-tight tracking-[-0.01em] text-foreground">
+                    <span className="block h-px w-10 bg-gradient-to-r from-primary/60 to-transparent" />
+                    <h3 className="mt-4 font-display text-xl leading-tight tracking-[-0.01em] text-foreground">
                       {v.title}
                     </h3>
                     <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
@@ -210,7 +202,6 @@ export function AboutContent() {
   const story = data.story ?? defaults.story
   const stats = data.stats ?? defaults.stats
   const values = data.values ?? defaults.values
-  const gallery = data.gallery ?? defaults.gallery
 
   return (
     <>
@@ -242,45 +233,6 @@ export function AboutContent() {
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <SectionTitle eyebrow="Nos valeurs" title="Ce qui nous guide au quotidien" />
           <ValuesTimeline values={values} />
-        </div>
-      </section>
-
-      <section className="border-b border-border/60 bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <SectionTitle eyebrow="Au fil des jours" title="Notre quotidien" />
-          <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-            {gallery.map((src: string, i: number) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.45, ease, delay: i * 0.06 }}
-                className={`group relative overflow-hidden rounded-2xl shadow-[0_10px_30px_-12px_oklch(0.2_0.02_150/0.18)] ring-1 ring-border/60 ${
-                  i % 4 === 0 || i % 4 === 3 ? 'aspect-[4/5]' : 'aspect-[4/3]'
-                }`}
-              >
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  sizes="(min-width:768px) 25vw, 50vw"
-                  loading="lazy"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* Overlay gradient subtle au hover */}
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  aria-hidden
-                />
-                {/* Indicator dot top-right */}
-                <div
-                  className="pointer-events-none absolute top-3 right-3 size-1.5 rounded-full bg-white/0 transition-all duration-500 group-hover:bg-white/80 group-hover:shadow-[0_0_10px_oklch(1_0_0/0.6)]"
-                  aria-hidden
-                />
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 

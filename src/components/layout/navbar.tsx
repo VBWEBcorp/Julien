@@ -26,7 +26,6 @@ const curtain = [0.76, 0, 0.24, 1] as const
 export function Navbar() {
   const t = useTranslations('nav')
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const [features, setFeatures] = useState({ gallery: true, blog: true })
   const pathname = usePathname()
 
@@ -65,13 +64,6 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
@@ -88,29 +80,33 @@ export function Navbar() {
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  // Barre toujours blanche (fond clair). Seul le menu plein écran (overlay vert
-  // forêt) bascule le chrome en blanc/clair. Une ombre légère apparaît au scroll.
-  const light = open // chrome clair uniquement quand l'overlay du menu est ouvert
+  // Chrome clair (texte/logo blancs) uniquement quand l'overlay plein écran est
+  // ouvert. Sinon : pilule flottante blanche — conservée en permanence, y compris
+  // au scroll (elle ne se transforme jamais en barre pleine largeur).
+  const light = open
+  const floating = !open
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        open
-          ? 'bg-transparent'
-          : cn(
-              'border-b bg-background',
-              scrolled ? 'border-border/60 shadow-sm' : 'border-border/40'
-            )
-      )}
-    >
-      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-4 sm:h-20 sm:px-6 lg:px-8">
-        {/* Gauche — burger */}
-        <div className="flex justify-start">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div
+        className={cn(
+          'transition-all duration-300',
+          floating
+            ? 'mx-4 mt-3 flex max-w-4xl items-center gap-3 rounded-full border border-border/60 bg-background px-5 py-2.5 shadow-lg sm:mx-6 sm:mt-4 sm:px-6 lg:mx-auto'
+            : cn(
+                'mx-auto flex max-w-none items-center gap-4 px-4 py-3 sm:px-6 lg:px-8',
+                open
+                  ? 'bg-transparent'
+                  : 'border-b border-border/60 bg-background/95 shadow-sm backdrop-blur'
+              )
+        )}
+      >
+        {/* Gauche — bouton menu (ouvre l'overlay plein écran, à toutes les tailles) */}
+        <div className="flex flex-1 items-center justify-start">
           <button
             type="button"
             className={cn(
-              'group inline-flex items-center gap-2.5 rounded-[3px] px-1 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60',
+              'group inline-flex items-center gap-2.5 rounded-full px-1 py-1.5 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60',
               light ? 'text-white' : 'text-foreground'
             )}
             aria-expanded={open}
@@ -118,8 +114,7 @@ export function Navbar() {
             aria-label={open ? t('closeMenu') : t('openMenu')}
             onClick={() => setOpen((v) => !v)}
           >
-            {/* Burger animé maison : deux traits (espacés de 7px) qui se croisent
-                pile au centre en × à l'ouverture. */}
+            {/* Burger animé maison : deux traits qui se croisent en × à l'ouverture. */}
             <span className="relative flex h-4 w-7 flex-col justify-center gap-[7px]">
               <motion.span
                 className="block h-px w-full origin-center rounded-full bg-current"
@@ -140,36 +135,38 @@ export function Navbar() {
         <Link
           href="/"
           aria-label={siteConfig.name}
-          className="flex items-center justify-center"
+          className="flex shrink-0 items-center justify-center"
           onClick={() => setOpen(false)}
         >
-          {/* Barre blanche → logo couleur ; menu plein écran (overlay sombre) → logo blanc */}
           <Image
             src={light ? '/permayou/logo-white.png' : '/permayou/logo.png'}
             alt={siteConfig.name}
             width={170}
             height={113}
             priority
-            className="h-12 w-auto object-contain transition-all sm:h-16"
+            className={cn(
+              'w-auto object-contain transition-all',
+              floating ? 'h-9 sm:h-10' : 'h-11 sm:h-12'
+            )}
           />
         </Link>
 
         {/* Droite — langue + Réserver */}
-        <div className="flex items-center justify-end gap-3 sm:gap-4">
+        <div className="flex flex-1 items-center justify-end gap-3 sm:gap-4">
           <LanguageSwitcher variant={light ? 'light' : 'solid'} className="hidden sm:flex" />
           <Link
             href="/reserver"
             onClick={() => setOpen(false)}
             className={cn(
-              'group hidden h-9 items-center gap-1.5 rounded-[3px] border px-5 text-[11px] font-medium uppercase tracking-[0.2em] transition-colors sm:inline-flex',
+              'group hidden h-10 items-center gap-1.5 rounded-full px-5 text-sm font-medium tracking-tight transition-all sm:inline-flex',
               light
-                ? 'border-white/60 text-white hover:border-white hover:bg-white/10'
-                : 'border-primary bg-primary text-primary-foreground hover:bg-[oklch(0.29_0.08_150)]'
+                ? 'border border-white/60 text-white hover:border-white hover:bg-white/10'
+                : 'bg-primary text-primary-foreground shadow-sm hover:bg-[oklch(0.29_0.08_150)] hover:shadow-md'
             )}
           >
             {t('book')}
             <ArrowUpRight
-              className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
               aria-hidden
             />
           </Link>

@@ -15,14 +15,6 @@ const defaults = galleryContent
 const GAP = 20
 const CARD_WIDTH = 340
 
-// Couleurs de marque (= celles des menus) pour numéroter les cartes en alternance.
-const ACCENTS = [
-  'oklch(0.78 0.14 62)', // orange ambré
-  'oklch(0.66 0.16 25)', // brique
-  'oklch(0.68 0.16 268)', // bleu
-  'oklch(0.72 0.1 150)', // vert mousse
-]
-
 // Détache le ou les derniers mots du titre pour l'accent serif italique.
 function splitTitle(title: string): { lead: string; accent: string } {
   const words = title.trim().split(/\s+/)
@@ -118,14 +110,6 @@ export function GalleryCarousel() {
                       loading="lazy"
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
-                    {/* Numéro signature (couleur de marque) */}
-                    <span
-                      className="pointer-events-none absolute left-4 top-3 font-mono text-[11px] tabular-nums tracking-[0.2em] [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]"
-                      style={{ color: ACCENTS[i % ACCENTS.length] }}
-                      aria-hidden
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
                   </div>
                 </div>
               </motion.div>

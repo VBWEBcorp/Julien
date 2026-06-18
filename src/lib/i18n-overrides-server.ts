@@ -16,7 +16,10 @@ async function fetchOverrides(locale: string): Promise<FlatMessages> {
     // Sérialisation défensive (objet Mixed) + jamais bloquant si la base est indisponible.
     return overrides ? (JSON.parse(JSON.stringify(overrides)) as FlatMessages) : {}
   } catch (error) {
-    console.error(
+    // Repli volontaire et non bloquant : on garde les défauts JSON. `warn` (et non
+    // `error`) pour ne pas déclencher l'overlay rouge de Next.js en dev quand la
+    // base est momentanément injoignable — le site reste pleinement fonctionnel.
+    console.warn(
       `[i18n] Lecture des overrides "${locale}" impossible, repli sur les défauts JSON :`,
       (error as Error)?.message
     )

@@ -11,10 +11,33 @@ export const en: Record<string, Record<string, any>> = {
         "Hotel, restaurant and bar in the heart of the Aspe Valley. Come for a gourmet break, an overnight stop or a getaway in the great outdoors, in a simple, welcoming atmosphere.",
       button1: "Book now",
       button2: "Discover the inn",
+      video: "/permayou/hero.mp4",
       images: [
         "/permayou/vallee.jpg",
         "/permayou/terrasse.jpg",
         "/permayou/chambre-double-vue.jpg",
+      ],
+    },
+    amenities: {
+      eyebrow: "On site",
+      title: "Everything you need to",
+      accent: "feel at home",
+      description:
+        "A simple, warm mountain inn made for travellers, hikers and lovers of the great outdoors.",
+      cta: "Discover the rooms",
+      items: [
+        { icon: "Wifi", label: "Free WiFi" },
+        { icon: "PawPrint", label: "Pets welcome" },
+        { icon: "Coffee", label: "Breakfast" },
+        { icon: "UtensilsCrossed", label: "Restaurant, lunch & dinner" },
+        { icon: "Wine", label: "Bar & terrace" },
+        { icon: "Mountain", label: "Cirque d’Iseye views" },
+        { icon: "Footprints", label: "On the Camino de Santiago" },
+        { icon: "BedDouble", label: "8 rooms · 5 types" },
+        { icon: "Accessibility", label: "Accessible room" },
+        { icon: "ShowerHead", label: "Private bathroom" },
+        { icon: "Tv", label: "Flat-screen TV" },
+        { icon: "Newspaper", label: "Newsstand" },
       ],
     },
     story: {

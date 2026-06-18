@@ -10,10 +10,32 @@ export const es: Record<string, Record<string, any>> = {
       "description": "Hotel, restaurante y bar en el corazón del Valle de Aspe. Se viene para una pausa gastronómica, una noche de etapa o una estancia al aire libre, en un ambiente sencillo y acogedor.",
       "button1": "Reservar",
       "button2": "Descubrir el albergue",
+      "video": "/permayou/hero.mp4",
       "images": [
         "/permayou/vallee.jpg",
         "/permayou/terrasse.jpg",
         "/permayou/chambre-double-vue.jpg"
+      ]
+    },
+    "amenities": {
+      "eyebrow": "En el sitio",
+      "title": "Todo lo necesario para",
+      "accent": "sentirse a gusto",
+      "description": "Un albergue de montaña sencillo y acogedor, pensado para viajeros, senderistas y amantes de la naturaleza.",
+      "cta": "Descubrir las habitaciones",
+      "items": [
+        { "icon": "Wifi", "label": "WiFi gratuito" },
+        { "icon": "PawPrint", "label": "Se admiten animales" },
+        { "icon": "Coffee", "label": "Desayuno" },
+        { "icon": "UtensilsCrossed", "label": "Restaurante mediodía y noche" },
+        { "icon": "Wine", "label": "Bar y terraza" },
+        { "icon": "Mountain", "label": "Vistas al Circo de Iseye" },
+        { "icon": "Footprints", "label": "Etapa del Camino de Santiago" },
+        { "icon": "BedDouble", "label": "8 habitaciones · 5 tipos" },
+        { "icon": "Accessibility", "label": "Habitación adaptada" },
+        { "icon": "ShowerHead", "label": "Baño privado" },
+        { "icon": "Tv", "label": "TV pantalla plana" },
+        { "icon": "Newspaper", "label": "Punto de prensa" }
       ]
     },
     "story": {
