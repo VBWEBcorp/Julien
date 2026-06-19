@@ -20,7 +20,7 @@ export function SectionTitle({
   return (
     <div
       className={cn(
-        'mx-auto max-w-2xl space-y-4',
+        'mx-auto max-w-2xl space-y-5',
         centered && 'text-center',
         className
       )}
@@ -37,7 +37,7 @@ export function SectionTitle({
           {centered && <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />}
         </p>
       ) : null}
-      <h2 className="font-display text-balance text-3xl leading-[1.12] tracking-[-0.02em] text-foreground sm:text-4xl md:text-[2.6rem]">
+      <h2 className="font-display text-balance text-[2rem] leading-[1.08] tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.9rem]">
         {lead ? (
           <>
             {lead}{' '}

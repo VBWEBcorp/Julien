@@ -39,7 +39,7 @@ export function BarTerrasseContent() {
       {/* Les 3 moments — cartes photo */}
       <section className="relative isolate overflow-hidden border-b border-border/60 bg-background">
         <MountainBackdrop tone="light" />
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sections.map((s: any, i: number) => {
               const Icon = getIcon(s.iconName)

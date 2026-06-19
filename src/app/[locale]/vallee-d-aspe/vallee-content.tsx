@@ -46,7 +46,7 @@ export function ValleeContent() {
 
       {/* Itinéraire — activités numérotées en rangées alternées */}
       <section className="border-b border-border/60 bg-background">
-        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <SectionTitle eyebrow="Activités" title="Tout est à portée de l'auberge" />
           <ul className="mt-14 space-y-px overflow-hidden rounded-3xl border border-border/60">
             {activities.map((a: any, i: number) => {

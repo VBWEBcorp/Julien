@@ -36,7 +36,7 @@ function NarrativeSection({
       {/* Signature montagne + halos discrets (DA accueil) */}
       <MountainBackdrop tone="light" />
 
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Texte */}
           <motion.div

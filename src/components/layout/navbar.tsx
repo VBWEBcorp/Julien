@@ -197,17 +197,6 @@ export function Navbar() {
                   'radial-gradient(60% 50% at 85% 15%, oklch(0.73 0.15 62 / 0.12) 0%, transparent 70%), radial-gradient(50% 50% at 10% 90%, oklch(0.52 0.17 268 / 0.12) 0%, transparent 70%)',
               }}
             />
-            {/* Filigrane « montagne » */}
-            <svg
-              aria-hidden
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-[40vh] w-full text-white/[0.04]"
-              viewBox="0 0 1440 320"
-              preserveAspectRatio="none"
-              fill="currentColor"
-            >
-              <path d="M0 320 L320 90 L520 220 L760 40 L1010 210 L1230 110 L1440 240 L1440 320 Z" />
-            </svg>
-
             <div className="relative mx-auto grid min-h-[100dvh] max-w-7xl grid-cols-1 gap-12 px-6 pb-14 pt-24 sm:px-10 sm:pt-28 lg:grid-cols-[1.4fr_1fr] lg:items-center lg:gap-20 lg:pb-10 lg:pt-20">
               {/* Colonne liens */}
               <nav aria-label="Navigation principale" className="flex flex-col">

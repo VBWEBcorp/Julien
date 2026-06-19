@@ -48,7 +48,7 @@ export function RestaurantContent() {
       {/* La carte — entrées de menu typographiques avec lignes de pointillés */}
       <section className="relative isolate overflow-hidden border-b border-border/60 bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
         <MountainBackdrop tone="light" />
-        <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="mb-12 text-center lg:mb-16">
             <p className="inline-flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
               <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
@@ -107,7 +107,7 @@ export function RestaurantContent() {
 
       {/* Spécialités de la maison — bandeau image + liste */}
       <section className="relative isolate overflow-hidden border-b border-border/60 bg-background">
-        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <motion.div
               initial={{ opacity: 0, scale: 0.97 }}

@@ -36,7 +36,7 @@ export function CartesSection() {
   return (
     <section className="relative isolate overflow-hidden border-b border-border/60 bg-background">
       <MountainBackdrop tone="light" />
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <div className="mx-auto mb-12 flex max-w-2xl flex-col items-center text-center lg:mb-16">
           <p className="inline-flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
             <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />

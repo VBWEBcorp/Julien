@@ -1,10 +1,15 @@
 'use client'
 
-import { Star } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react'
+import { useState } from 'react'
 
 import { SectionTitle } from '@/components/ui/section-title'
 import { useContent } from '@/hooks/use-content'
 import { testimonialsContent } from '@/lib/site-content'
+
+const ease = [0.22, 1, 0.36, 1] as const
+const RATING = '4,2'
 
 const defaults = {
   eyebrow: testimonialsContent.eyebrow,
@@ -13,9 +18,11 @@ const defaults = {
   testimonials: testimonialsContent.items,
 }
 
-function GoogleLogo() {
+type Testimonial = { name: string; company: string; text: string; stars: number }
+
+function GoogleLogo({ className = 'size-5' }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className="size-4" aria-label="Google">
+    <svg viewBox="0 0 24 24" className={className} aria-label="Google">
       <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4" />
       <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
       <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 0 0 1 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
@@ -24,116 +31,130 @@ function GoogleLogo() {
   )
 }
 
-function TestimonialCard({
-  testimonial,
-}: {
-  testimonial: { name: string; company: string; text: string; stars: number }
-}) {
+function Stars({ value = 5, className = 'size-4' }: { value?: number; className?: string }) {
   return (
-    <figure className="mr-6 flex h-[200px] w-[300px] shrink-0 flex-col overflow-hidden rounded-2xl border border-border/60 bg-card/80 px-5 py-4 shadow-[var(--shadow-xs)] ring-1 ring-foreground/[0.03] backdrop-blur-sm">
-      <div className="flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-0.5">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star
-              key={i}
-              className={`size-3 ${i < testimonial.stars ? 'fill-amber-400 text-amber-400' : 'fill-muted text-muted'}`}
-              aria-hidden
-            />
-          ))}
-        </div>
-        <GoogleLogo />
-      </div>
-      <blockquote className="mt-3 flex-1 min-h-0 overflow-hidden">
-        <p className="line-clamp-4 text-[13px] leading-relaxed text-foreground/85">
-          &ldquo;{testimonial.text}&rdquo;
-        </p>
-      </blockquote>
-      <figcaption className="mt-3 flex items-center gap-2.5 border-t border-border/40 pt-3 shrink-0">
-        <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/10 text-[11px] font-bold text-primary">
-          {testimonial.name.charAt(0)}
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-xs font-semibold text-foreground">{testimonial.name}</p>
-          <p className="truncate text-[11px] text-muted-foreground">{testimonial.company}</p>
-        </div>
-      </figcaption>
-    </figure>
-  )
-}
-
-function MarqueeRow({
-  items,
-  direction,
-}: {
-  items: { name: string; company: string; text: string; stars: number }[]
-  direction: 'left' | 'right'
-}) {
-  const animationClass =
-    direction === 'left' ? 'animate-marquee-half-left' : 'animate-marquee-half-right'
-
-  // Une demi-piste doit couvrir toute la largeur de l'écran, sinon un vide
-  // apparaît à droite quand la boucle défile (cas des lignes à peu d'avis). On
-  // répète donc les avis jusqu'à avoir assez de cartes (~324px chacune) pour les
-  // grands écrans, PUIS on duplique l'ensemble : la translation de -50 % ramène
-  // exactement le doublon à la position de départ (boucle continue, sans saut).
-  const MIN_CARDS = 8
-  const filled = items.length ? [...items] : []
-  while (filled.length && filled.length < MIN_CARDS) filled.push(...items)
-  const loop = [...filled, ...filled]
-
-  return (
-    <div className="group relative flex overflow-hidden">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[oklch(0.975_0.008_95)] to-transparent dark:from-[oklch(0.19_0.015_150)] sm:w-24" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[oklch(0.975_0.008_95)] to-transparent dark:from-[oklch(0.19_0.015_150)] sm:w-24" />
-      <div className={`flex w-max shrink-0 py-2 ${animationClass} group-hover:[animation-play-state:paused]`}>
-        {loop.map((t, i) => (
-          <TestimonialCard key={`${t.name}-${i}`} testimonial={t} />
-        ))}
-      </div>
+    <div className="flex items-center gap-0.5">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star
+          key={i}
+          className={`${className} ${i < value ? 'fill-amber-400 text-amber-400' : 'fill-muted text-muted/40'}`}
+          aria-hidden
+        />
+      ))}
     </div>
   )
 }
 
 export function TestimonialsSection() {
   const { data } = useContent('testimonials', defaults)
-  const testimonials = data.testimonials ?? defaults.testimonials
+  const testimonials: Testimonial[] = data.testimonials ?? defaults.testimonials
+  const [index, setIndex] = useState(0)
 
-  const mid = Math.ceil(testimonials.length / 2)
-  const topRow = testimonials.slice(0, mid)
-  const bottomRow = testimonials.slice(mid)
+  if (!testimonials.length) return null
+
+  const count = testimonials.length
+  const current = testimonials[index % count]
+  const go = (dir: -1 | 1) => setIndex((prev) => (prev + dir + count) % count)
 
   return (
-    <section className="overflow-hidden border-y border-border/60 bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
-      <div className="mx-auto max-w-6xl px-4 pt-14 sm:px-6 lg:px-8 lg:pt-20">
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-border/70 bg-card px-4 py-2 shadow-sm">
-            <GoogleLogo />
-            <div className="flex items-center gap-0.5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
-                  key={i}
-                  className="size-4 fill-amber-400 text-amber-400"
-                  aria-hidden
-                />
-              ))}
-            </div>
-            <span className="text-xs font-semibold text-foreground">
-              4,2 sur Google
-            </span>
-          </div>
-        </div>
-        <div className="mt-6">
-          <SectionTitle
-            eyebrow={data.eyebrow ?? defaults.eyebrow}
-            title={data.title ?? defaults.title}
-            description={data.description ?? defaults.description}
-          />
-        </div>
-      </div>
+    <section className="border-y border-border/60 bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <SectionTitle
+          eyebrow={data.eyebrow ?? defaults.eyebrow}
+          title={data.title ?? defaults.title}
+          description={data.description ?? defaults.description}
+        />
 
-      <div className="mt-10 space-y-6 pb-14 lg:pb-20">
-        <MarqueeRow items={topRow} direction="left" />
-        {bottomRow.length > 0 && <MarqueeRow items={bottomRow} direction="right" />}
+        <div className="mt-14 grid gap-5 lg:grid-cols-[minmax(0,21rem)_1fr] lg:gap-6">
+          {/* Carte note globale */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.55, ease }}
+            className="flex flex-col justify-center gap-4 rounded-3xl border border-border/60 bg-card p-8 text-center shadow-[0_2px_10px_oklch(0.2_0.02_150/0.05)] sm:p-10 lg:text-left"
+          >
+            <div className="flex items-center justify-center gap-2 lg:justify-start">
+              <GoogleLogo />
+              <span className="text-sm font-semibold text-foreground">Google</span>
+            </div>
+            <div className="flex items-baseline justify-center gap-2 lg:justify-start">
+              <span className="font-display text-6xl font-semibold tracking-tight text-foreground">
+                {RATING}
+              </span>
+              <span className="text-lg text-muted-foreground">/ 5</span>
+            </div>
+            <div className="flex justify-center lg:justify-start">
+              <Stars value={5} className="size-5" />
+            </div>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Avis vérifiés laissés par nos clients sur Google.
+            </p>
+          </motion.div>
+
+          {/* Témoignage mis en avant + navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.55, ease, delay: 0.1 }}
+            className="relative flex min-h-[18rem] flex-col justify-between gap-8 overflow-hidden rounded-3xl border border-border/60 bg-card p-8 shadow-[0_2px_10px_oklch(0.2_0.02_150/0.05)] sm:p-10"
+          >
+            <Quote className="absolute right-8 top-8 size-12 text-primary/10" aria-hidden />
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease }}
+                className="relative flex flex-1 flex-col gap-5"
+              >
+                <Stars value={current.stars} className="size-4" />
+                <blockquote className="text-pretty font-display text-lg leading-relaxed text-foreground/90 sm:text-xl">
+                  &ldquo;{current.text}&rdquo;
+                </blockquote>
+              </motion.div>
+            </AnimatePresence>
+
+            <div className="flex items-end justify-between gap-4">
+              <figcaption className="flex items-center gap-3">
+                <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-base font-bold text-primary">
+                  {current.name.charAt(0)}
+                </div>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-semibold text-foreground">{current.name}</p>
+                  <p className="truncate text-xs text-muted-foreground">{current.company}</p>
+                </div>
+              </figcaption>
+
+              {count > 1 && (
+                <div className="flex shrink-0 items-center gap-2">
+                  <span className="mr-1 text-xs tabular-nums text-muted-foreground">
+                    {index + 1} / {count}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => go(-1)}
+                    aria-label="Avis précédent"
+                    className="flex size-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:border-primary/40 hover:bg-accent hover:text-foreground"
+                  >
+                    <ChevronLeft className="size-5" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => go(1)}
+                    aria-label="Avis suivant"
+                    className="flex size-10 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:border-primary/40 hover:bg-accent hover:text-foreground"
+                  >
+                    <ChevronRight className="size-5" />
+                  </button>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )
