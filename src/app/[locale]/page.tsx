@@ -57,8 +57,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <PolesMosaic />
       <StorySection />
       <AmenitiesSection />
-      <GalleryCarousel />
+      {/* Avis avant les images de l'auberge (ordre inversé à la demande) */}
       <TestimonialsSection />
+      <GalleryCarousel />
       <FaqSection />
       <CtaSection />
       <ValuesMarquee />

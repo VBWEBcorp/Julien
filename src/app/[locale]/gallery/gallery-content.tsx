@@ -121,15 +121,10 @@ export default function GalleryContent({ initialSettings, initialImages }: Props
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-5 space-y-2">
+                  <div className="p-5">
                     <h3 className="font-display font-semibold text-foreground group-hover:text-primary transition-colors">
                       {image.title}
                     </h3>
-                    {image.description && (
-                      <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                        {image.description}
-                      </p>
-                    )}
                   </div>
                 </div>
               </motion.div>
