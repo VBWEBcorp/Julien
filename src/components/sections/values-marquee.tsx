@@ -22,8 +22,12 @@ function ValuesTrack({
   variant: 'light' | 'dark'
   values: ValueItem[]
 }) {
+  // Marquee « sans couture » : une seule piste animée contenant le contenu
+  // dupliqué, translatée de -50 % (= exactement une copie). L'ancienne version
+  // (deux pistes à -100 %) laissait un trou sans espacement à la jointure, d'où
+  // les motifs/texte « mal cadrés » à chaque boucle.
   const animClass =
-    direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right'
+    direction === 'left' ? 'animate-marquee-half-left' : 'animate-marquee-half-right'
 
   const textClass =
     variant === 'dark'
@@ -34,30 +38,32 @@ function ValuesTrack({
       ? 'text-white/30'
       : 'text-primary/50'
 
-  const items = values.map((v) => (
-    <span
-      key={v.label}
-      className={`inline-flex shrink-0 items-center gap-2.5 text-nowrap font-display text-sm font-medium tracking-wide uppercase sm:text-base ${textClass}`}
-    >
-      <v.icon className={`size-4 ${iconClass}`} aria-hidden />
-      {v.label}
-    </span>
-  ))
+  // `gap-6` entre les items + `pr-6` en fin de copie : l'espacement à la
+  // jointure entre les deux copies est ainsi identique à l'espacement interne.
+  const half = (
+    <ul className="flex shrink-0 items-center gap-6 pr-6">
+      {values.map((v) => (
+        <li
+          key={v.label}
+          className={`inline-flex items-center gap-2.5 text-nowrap font-display text-sm font-medium tracking-wide uppercase sm:text-base ${textClass}`}
+        >
+          <v.icon className={`size-4 ${iconClass}`} aria-hidden />
+          {v.label}
+        </li>
+      ))}
+    </ul>
+  )
 
   return (
-    <div className="group flex overflow-hidden">
+    <div className="flex overflow-hidden">
       <div
-        className={`flex shrink-0 items-center gap-6 ${animClass}`}
+        className={`flex w-max items-center ${animClass}`}
         style={{ animationDuration: '35s' }}
       >
-        {items}
-      </div>
-      <div
-        aria-hidden
-        className={`flex shrink-0 items-center gap-6 ${animClass}`}
-        style={{ animationDuration: '35s' }}
-      >
-        {items}
+        {half}
+        <div aria-hidden className="flex">
+          {half}
+        </div>
       </div>
     </div>
   )

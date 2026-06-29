@@ -1,11 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
+import { ValleeGallery } from './vallee-gallery'
 import { CtaSection } from '@/components/sections/cta-section'
 import { PremiumHero } from '@/components/sections/premium-hero'
-import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { SectionTitle } from '@/components/ui/section-title'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
@@ -83,51 +82,10 @@ export function ValleeContent() {
         </div>
       </section>
 
-      {/* Pellicule — galerie en défilement horizontal */}
-      <section className="relative isolate overflow-hidden border-b border-border/60 bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
-        <MountainBackdrop tone="light" />
-        <div className="py-16 lg:py-24">
-          <div className="mx-auto mb-10 flex max-w-6xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
-            <p className="inline-flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-              <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
-              En images
-              <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl">
-              La vallée en{' '}
-              <span className="font-serif italic font-normal text-primary">grand</span>
-            </h2>
-          </div>
-          <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:px-6 lg:px-8 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {filmstrip.map((img, i) => (
-              <motion.figure
-                key={`${img.src}-${i}`}
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.06, ease }}
-                className="group relative aspect-[3/4] w-64 shrink-0 snap-start overflow-hidden rounded-2xl ring-1 ring-border/60 sm:w-72"
-              >
-                <Image
-                  src={img.src}
-                  alt={img.caption}
-                  fill
-                  sizes="288px"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent p-4">
-                  <span className="font-display text-sm font-medium text-white [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">
-                    {img.caption}
-                  </span>
-                </figcaption>
-              </motion.figure>
-            ))}
-          </div>
-          <p className="mt-6 px-4 text-center text-xs text-muted-foreground sm:px-6 lg:hidden">
-            Faites défiler &rarr;
-          </p>
-        </div>
-      </section>
+      {/* En images — carrousel à flèches (images & textes gérés depuis l'admin) */}
+      <ValleeGallery
+        fallback={filmstrip.map((img) => ({ src: img.src, title: img.caption }))}
+      />
 
       <CtaSection />
     </>

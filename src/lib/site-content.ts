@@ -122,7 +122,8 @@ export const heroContent = {
   button1: 'Réserver',
   button2: "Découvrir l'auberge",
   // Vidéo de fond optionnelle (URL). Si vide, le carousel d'images est utilisé.
-  // Placeholder libre de droits (Pexels) — à remplacer par une vidéo de l'auberge.
+  // Vallée verte des Alpes avec vue sur les montagnes (Pexels, libre de droits) —
+  // ambiance « bas de vallée » plutôt qu'« auberge en montagne ».
   video: '/permayou/hero.mp4',
   images: images.heroCarousel,
 }
@@ -197,9 +198,9 @@ export const polesContent = {
   eyebrow: 'Nos univers',
   title: 'Quatre lieux, une même âme',
   items: [
-    { label: "La Vallée d'Aspe", href: '/vallee-d-aspe', image: images.services[3] },
-    { label: "L'Hôtel", href: '/services', image: images.services[0] },
     { label: 'Le Restaurant', href: '/restaurant', image: images.services[1] },
+    { label: "L'Hôtel", href: '/services', image: images.services[0] },
+    { label: 'Tabac & Presse', href: '/tabac-presse', image: images.services[4] },
     { label: 'Le Bar & la Terrasse', href: '/bar-terrasse', image: images.services[2] },
   ],
 }
@@ -231,6 +232,8 @@ export const ctaContent = {
   description:
     "Une nuit d'étape, un week-end ou une semaine à la montagne : réservez votre chambre au Permayou en quelques clics.",
   button: 'Réserver maintenant',
+  // Photo unique affichée à droite du bloc (remplace l'ancien défilement d'images).
+  image: '/permayou/parapente.jpg',
   scrollImages: images.ctaScrollColumns,
 }
 

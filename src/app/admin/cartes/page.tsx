@@ -19,6 +19,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { CARTE_CATEGORIES, type CarteCategory } from '@/lib/carte-categories'
 import { cn } from '@/lib/utils'
 
 interface Carte {
@@ -27,6 +28,7 @@ interface Carte {
   description?: string
   fileUrl: string
   fileType: 'pdf' | 'image'
+  category: CarteCategory
   order: number
   active: boolean
 }
@@ -173,7 +175,8 @@ export default function AdminCartesPage() {
     description: string
     fileUrl: string
     fileType: 'pdf' | 'image'
-  }>({ title: '', description: '', fileUrl: '', fileType: 'image' })
+    category: CarteCategory
+  }>({ title: '', description: '', fileUrl: '', fileType: 'image', category: 'cuisine' })
 
   useEffect(() => {
     if (!localStorage.getItem('authToken')) router.push('/admin/login')
@@ -207,7 +210,7 @@ export default function AdminCartesPage() {
       if (res.ok) {
         const carte = await res.json()
         setCartes((c) => [...c, carte])
-        setNewCarte({ title: '', description: '', fileUrl: '', fileType: 'image' })
+        setNewCarte({ title: '', description: '', fileUrl: '', fileType: 'image', category: 'cuisine' })
       }
     } finally {
       setSaving(false)
@@ -284,6 +287,22 @@ export default function AdminCartesPage() {
               onChange={(e) => setNewCarte({ ...newCarte, title: e.target.value })}
               placeholder="Ex. Carte du moment"
             />
+          </div>
+          <div className="space-y-1.5">
+            <Label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Section
+            </Label>
+            <select
+              value={newCarte.category}
+              onChange={(e) => setNewCarte({ ...newCarte, category: e.target.value as CarteCategory })}
+              className="h-10 w-full rounded-xl border border-input bg-background px-3 text-sm text-foreground focus-visible:border-ring focus-visible:outline-none"
+            >
+              {CARTE_CATEGORIES.map((cat) => (
+                <option key={cat.value} value={cat.value}>
+                  {cat.label}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="space-y-1.5">
             <Label className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -373,6 +392,21 @@ export default function AdminCartesPage() {
                 {carte.description && (
                   <p className="mt-0.5 truncate text-sm text-muted-foreground">{carte.description}</p>
                 )}
+                {/* Section (catégorie) de la carte */}
+                <div className="mt-2 flex items-center gap-2">
+                  <span className="text-xs text-muted-foreground">Section&nbsp;:</span>
+                  <select
+                    value={carte.category ?? 'cuisine'}
+                    onChange={(e) => patchCarte(carte._id, { category: e.target.value as CarteCategory })}
+                    className="h-8 rounded-lg border border-input bg-background px-2 text-xs text-foreground focus-visible:border-ring focus-visible:outline-none"
+                  >
+                    {CARTE_CATEGORIES.map((cat) => (
+                      <option key={cat.value} value={cat.value}>
+                        {cat.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
                 {/* Remplacer le fichier (inline) */}
                 {replacingId === carte._id ? (
                   <div className="mt-3">

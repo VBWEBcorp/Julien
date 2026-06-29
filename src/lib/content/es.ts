@@ -116,9 +116,9 @@ export const es: Record<string, Record<string, any>> = {
       "eyebrow": "Nuestros universos",
       "title": "Cuatro lugares, una misma alma",
       "items": [
-        { "label": "El Valle de Aspe", "href": "/vallee-d-aspe", "image": "/permayou/vallee.jpg" },
-        { "label": "El Hotel", "href": "/services", "image": "/permayou/chambre-double-vue.jpg" },
         { "label": "El Restaurante", "href": "/restaurant", "image": "/permayou/terrasse.jpg" },
+        { "label": "El Hotel", "href": "/services", "image": "/permayou/chambre-double-vue.jpg" },
+        { "label": "Estanco y Prensa", "href": "/tabac-presse", "image": "/permayou/facade.jpg" },
         { "label": "El Bar y la Terraza", "href": "/bar-terrasse", "image": "/permayou/terrasse-jardin.jpg" }
       ]
     }

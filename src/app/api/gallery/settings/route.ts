@@ -42,7 +42,7 @@ export async function PUT(request: NextRequest) {
     if (!settings) {
       settings = await GallerySettings.create(body)
     } else {
-      const fields = ['enabled', 'title', 'description', 'eyebrow', 'heroImage']
+      const fields = ['enabled', 'title', 'description', 'eyebrow', 'heroImage', 'heroVideo']
       for (const field of fields) {
         if (body[field] !== undefined) (settings as any)[field] = body[field]
       }

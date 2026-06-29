@@ -18,6 +18,7 @@ export interface IGallerySettings extends Document {
   description?: string
   eyebrow?: string
   heroImage?: string
+  heroVideo?: string
   updatedAt: Date
 }
 
@@ -64,6 +65,7 @@ const GallerySettingsSchema = new Schema<IGallerySettings>(
     description: { type: String, default: 'Découvrez nos projets récents et laissez-vous inspirer par notre savoir-faire.' },
     eyebrow: { type: String, default: 'Galerie' },
     heroImage: String,
+    heroVideo: String,
   },
   {
     timestamps: true,

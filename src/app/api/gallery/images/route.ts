@@ -11,6 +11,9 @@ export async function GET(request: NextRequest) {
     // Optional ?locale= scopes the result to a single locale.
     const locale = request.nextUrl.searchParams.get('locale')
     if (locale) filter.locale = locale
+    // Optional ?category= scopes the result to a single category (ex. « vallee »).
+    const category = request.nextUrl.searchParams.get('category')
+    if (category) filter.category = category
     const images = await GalleryImage.find(filter)
       .sort({ order: 1 })
       .lean()

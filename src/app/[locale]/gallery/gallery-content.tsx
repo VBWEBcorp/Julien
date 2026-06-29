@@ -18,6 +18,7 @@ interface GallerySettings {
   description?: string
   eyebrow?: string
   heroImage?: string
+  heroVideo?: string
 }
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -45,7 +46,19 @@ export default function GalleryContent({ initialSettings, initialImages }: Props
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] flex items-center">
         <div className="absolute inset-0">
-          {settings.heroImage ? (
+          {settings.heroVideo ? (
+            <video
+              className="size-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={settings.heroImage}
+            >
+              <source src={settings.heroVideo} />
+            </video>
+          ) : settings.heroImage ? (
             <Image
               src={settings.heroImage}
               alt=""
@@ -116,11 +129,6 @@ export default function GalleryContent({ initialSettings, initialImages }: Props
                       <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                         {image.description}
                       </p>
-                    )}
-                    {image.category && (
-                      <span className="inline-block text-xs font-medium text-primary bg-primary/10 px-2.5 py-1 rounded-full">
-                        {image.category}
-                      </span>
                     )}
                   </div>
                 </div>

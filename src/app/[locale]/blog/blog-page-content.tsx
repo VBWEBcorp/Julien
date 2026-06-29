@@ -24,6 +24,7 @@ interface BlogSettings {
   description?: string
   eyebrow?: string
   heroImage?: string
+  heroVideo?: string
   categories?: string[]
 }
 
@@ -62,9 +63,21 @@ export default function BlogPageContent({ initialSettings, initialPosts }: Props
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative overflow-hidden min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] flex items-center">
-        {/* Background image */}
+        {/* Background : vidéo si définie, sinon image, sinon dégradé */}
         <div className="absolute inset-0">
-          {settings.heroImage ? (
+          {settings.heroVideo ? (
+            <video
+              className="size-full object-cover"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={settings.heroImage}
+            >
+              <source src={settings.heroVideo} />
+            </video>
+          ) : settings.heroImage ? (
             <Image
               src={settings.heroImage}
               alt=""

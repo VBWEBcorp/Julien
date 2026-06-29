@@ -89,6 +89,7 @@
       "stay": "Reserva / estancia (hotel)",
       "table": "Reservar una mesa (restaurante)",
       "group": "Grupo / seminario",
+      "quote": "Solicitud de presupuesto",
       "other": "Otra consulta"
     },
     "success": {

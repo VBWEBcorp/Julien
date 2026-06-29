@@ -14,9 +14,9 @@ const ease = [0.22, 1, 0.36, 1] as const
 // Placement de chaque tuile dans la grille (desktop) — mosaïque asymétrique :
 // grande image à gauche (2 lignes), large en haut à droite, 2 petites en bas.
 const layout = [
-  'lg:row-span-2', // Vallée — grande tuile verticale à gauche
+  'lg:row-span-2', // Restaurant — grande tuile verticale à gauche
   'lg:col-span-2', // Hôtel — tuile large en haut à droite
-  '', // Restaurant
+  '', // Tabac & Presse
   '', // Bar
 ]
 

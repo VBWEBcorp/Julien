@@ -35,6 +35,7 @@ interface BlogSettings {
   description?: string
   eyebrow?: string
   heroImage?: string
+  heroVideo?: string
   categories?: string[]
 }
 
@@ -480,6 +481,21 @@ export default function AdminBlogPage() {
               <p className="text-[11px] text-muted-foreground/60 -mt-2">
                 Image affichée en arrière-plan de la section d&apos;en-tête. Laissez vide pour un fond uni.
               </p>
+
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+                  Vidéo de fond (optionnel)
+                </Label>
+                <Input
+                  value={settings.heroVideo || ''}
+                  onChange={(e) => setSettings({ ...settings, heroVideo: e.target.value })}
+                  placeholder="/permayou/hero.mp4 ou https://..."
+                />
+                <p className="text-[11px] text-muted-foreground/60">
+                  Chemin ou URL d&apos;un film (MP4). S&apos;il est renseigné, la vidéo remplace
+                  l&apos;image de fond ; l&apos;image sert alors d&apos;aperçu au chargement.
+                </p>
+              </div>
             </div>
           </div>
 

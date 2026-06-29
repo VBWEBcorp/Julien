@@ -130,9 +130,9 @@ export const en: Record<string, Record<string, any>> = {
       eyebrow: "Our worlds",
       title: "Four places, one shared soul",
       items: [
-        { label: "The Aspe Valley", href: "/vallee-d-aspe", image: "/permayou/vallee.jpg" },
-        { label: "The Hotel", href: "/services", image: "/permayou/chambre-double-vue.jpg" },
         { label: "The Restaurant", href: "/restaurant", image: "/permayou/terrasse.jpg" },
+        { label: "The Hotel", href: "/services", image: "/permayou/chambre-double-vue.jpg" },
+        { label: "Tobacconist & Press", href: "/tabac-presse", image: "/permayou/facade.jpg" },
         { label: "The Bar & Terrace", href: "/bar-terrasse", image: "/permayou/terrasse-jardin.jpg" },
       ],
     },

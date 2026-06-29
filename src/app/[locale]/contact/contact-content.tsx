@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { AlertCircle, CheckCircle2, Clock, Mail, MapPin, Phone, Send } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { PremiumHero } from '@/components/sections/premium-hero'
 import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
@@ -43,6 +43,15 @@ export function ContactContent() {
 
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  // Objet pré-sélectionnable via ?objet=… (ex. lien « Demander un devis » depuis la page Hôtel).
+  const [subject, setSubject] = useState('sejour')
+
+  useEffect(() => {
+    const objet = new URLSearchParams(window.location.search).get('objet')
+    if (objet && ['sejour', 'table', 'groupe-seminaire', 'devis', 'autre'].includes(objet)) {
+      setSubject(objet)
+    }
+  }, [])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -239,13 +248,15 @@ export function ContactContent() {
                         <select
                           id="objet"
                           name="objet"
-                          defaultValue="sejour"
+                          value={subject}
+                          onChange={(e) => setSubject(e.target.value)}
                           required
                           className="h-11 w-full rounded-xl border border-input bg-background/70 px-3.5 text-sm text-foreground transition-shadow focus-visible:border-ring focus-visible:shadow-[0_0_0_4px_oklch(0.45_0.1_150/0.1)] focus-visible:outline-none"
                         >
                           <option value="sejour">{t('subjects.stay')}</option>
                           <option value="table">{t('subjects.table')}</option>
                           <option value="groupe-seminaire">{t('subjects.group')}</option>
+                          <option value="devis">{t('subjects.quote')}</option>
                           <option value="autre">{t('subjects.other')}</option>
                         </select>
                       </div>

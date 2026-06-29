@@ -1,37 +1,21 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-
 import { CartesSection } from './cartes-section'
 import { CtaSection } from '@/components/sections/cta-section'
 import { PremiumHero } from '@/components/sections/premium-hero'
 import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { useContent } from '@/hooks/use-content'
-import { getIcon } from '@/lib/icons'
 import { images as siteImages, restaurantContent } from '@/lib/site-content'
 import { splitAccentTitle } from '@/lib/utils'
 
-const ease = [0.22, 1, 0.36, 1] as const
-
 const defaults = {
   hero: restaurantContent.hero,
-  sections: restaurantContent.sections,
   hours: restaurantContent.hours,
 }
-
-// Spécialités maison — plats du terroir aspois cités sur le site.
-const specialites = [
-  { name: 'La garbure', note: 'La soupe paysanne du Béarn, mijotée longuement.' },
-  { name: 'Palombe en saison', note: 'Le gibier emblématique de la vallée.' },
-  { name: 'Fromages de brebis', note: 'Affinés par les producteurs voisins.' },
-  { name: 'Viandes du pays', note: 'Élevées dans les estives alentour.' },
-]
 
 export function RestaurantContent() {
   const { data } = useContent('restaurant', defaults)
   const hero = data.hero ?? defaults.hero
-  const sections = data.sections ?? defaults.sections
   const hours = data.hours ?? defaults.hours
 
   return (
@@ -45,113 +29,8 @@ export function RestaurantContent() {
         backgroundImage={siteImages.services[1]}
       />
 
-      {/* La carte — entrées de menu typographiques avec lignes de pointillés */}
-      <section className="relative isolate overflow-hidden border-b border-border/60 bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
-        <MountainBackdrop tone="light" />
-        <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mb-12 text-center lg:mb-16">
-            <p className="inline-flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-              <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
-              Notre table
-              <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
-            </p>
-            <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl">
-              Ce qui vous attend{' '}
-              <span className="font-serif italic font-normal text-primary">à table</span>
-            </h2>
-          </div>
-
-          <div className="divide-y divide-border/60">
-            {sections.map((s: any, i: number) => {
-              const Icon = getIcon(s.iconName)
-              return (
-                <motion.article
-                  key={s.title || i}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-60px' }}
-                  transition={{ duration: 0.55, delay: i * 0.07, ease }}
-                  className="py-8 first:pt-0"
-                >
-                  <div className="flex items-baseline gap-4">
-                    <span className="inline-flex size-9 shrink-0 -translate-y-0.5 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Icon className="size-4" aria-hidden />
-                    </span>
-                    <h3 className="font-display text-xl font-semibold tracking-[-0.01em] text-foreground sm:text-2xl">
-                      {s.title}
-                    </h3>
-                  </div>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground sm:pl-[3.25rem] sm:text-lg">
-                    {s.description}
-                  </p>
-                  {s.points?.length > 0 && (
-                    <div className="mt-4 flex flex-wrap items-center gap-y-1 sm:pl-[3.25rem]">
-                      {s.points.map((p: string, j: number) => (
-                        <span key={j} className="text-sm text-muted-foreground">
-                          {j > 0 && (
-                            <span className="mx-2 text-border" aria-hidden>
-                              ·
-                            </span>
-                          )}
-                          {p}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </motion.article>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Spécialités de la maison — bandeau image + liste */}
-      <section className="relative isolate overflow-hidden border-b border-border/60 bg-background">
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.7, ease }}
-              className="relative aspect-[16/11] overflow-hidden rounded-3xl shadow-[0_30px_60px_-25px_oklch(0.2_0.02_150/0.35)] ring-1 ring-border/60 lg:aspect-[4/5]"
-            >
-              <Image
-                src={siteImages.aboutGallery[2]}
-                alt="Spécialités de la maison"
-                fill
-                sizes="(min-width:1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </motion.div>
-            <div>
-              <p className="inline-flex items-center gap-3 font-display text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-                <span className="h-px w-7 bg-[oklch(0.73_0.15_62)]" aria-hidden />
-                Spécialités
-              </p>
-              <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl">
-                Le goût de la{' '}
-                <span className="font-serif italic font-normal text-primary">Vallée d&rsquo;Aspe</span>
-              </h2>
-              <ul className="mt-8 space-y-5">
-                {specialites.map((d, i) => (
-                  <motion.li
-                    key={d.name}
-                    initial={{ opacity: 0, x: -12 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
-                    transition={{ duration: 0.5, delay: i * 0.07, ease }}
-                    className="border-l-2 border-primary pl-4"
-                  >
-                    <h3 className="font-display text-lg font-semibold text-foreground">{d.name}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{d.note}</p>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Les 3 sections : Notre cuisine · Produits du terroir · Bar & snacking */}
+      <CartesSection />
 
       {/* Horaires — carte encadrée */}
       <section className="relative isolate overflow-hidden border-b border-border/60 bg-[oklch(0.975_0.008_95)] dark:bg-[oklch(0.19_0.015_150)]">
@@ -182,8 +61,6 @@ export function RestaurantContent() {
           </div>
         </div>
       </section>
-
-      <CartesSection />
 
       <CtaSection />
     </>

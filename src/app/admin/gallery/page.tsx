@@ -28,11 +28,12 @@ interface GallerySettings {
   description?: string
   eyebrow?: string
   heroImage?: string
+  heroVideo?: string
 }
 
 export default function AdminGalleryPage() {
   const router = useRouter()
-  const [settings, setSettings] = useState<GallerySettings>({ enabled: false, title: 'Nos réalisations', eyebrow: 'Galerie', description: 'Découvrez nos projets récents et laissez-vous inspirer par notre savoir-faire.', heroImage: '' })
+  const [settings, setSettings] = useState<GallerySettings>({ enabled: false, title: 'Nos réalisations', eyebrow: 'Galerie', description: 'Découvrez nos projets récents et laissez-vous inspirer par notre savoir-faire.', heroImage: '', heroVideo: '' })
   const [images, setImages] = useState<GalleryImage[]>([])
   const [newImage, setNewImage] = useState({ title: '', description: '', imageUrl: '', category: '', locale: 'fr' })
   const [editingId, setEditingId] = useState<string | null>(null)
@@ -261,6 +262,21 @@ export default function AdminGalleryPage() {
           <p className="text-[11px] text-muted-foreground/60 -mt-2">
             Image affichée en arrière-plan de la section d&apos;en-tête. Laissez vide pour un fond uni.
           </p>
+
+          <div className="space-y-1.5">
+            <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              Vidéo de fond (optionnel)
+            </Label>
+            <Input
+              value={settings.heroVideo || ''}
+              onChange={(e) => setSettings({ ...settings, heroVideo: e.target.value })}
+              placeholder="/permayou/hero.mp4 ou https://..."
+            />
+            <p className="text-[11px] text-muted-foreground/60">
+              Chemin ou URL d&apos;un film (MP4). S&apos;il est renseigné, la vidéo remplace
+              l&apos;image de fond ; l&apos;image sert alors d&apos;aperçu au chargement.
+            </p>
+          </div>
 
           <Button
             onClick={handleSaveSettings}

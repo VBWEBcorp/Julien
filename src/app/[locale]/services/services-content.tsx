@@ -1,15 +1,19 @@
 'use client'
 
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { FileText, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
 import { useRef } from 'react'
 
+import { BookButton } from '@/components/book-button'
 import { CtaSection } from '@/components/sections/cta-section'
 import { ImageGallery } from '@/components/sections/image-gallery'
 import { PremiumHero } from '@/components/sections/premium-hero'
 import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
+import { PillButton } from '@/components/ui/pill-button'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
+import { siteConfig } from '@/lib/seo'
 import { images as siteImages, servicesContent } from '@/lib/site-content'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -48,6 +52,8 @@ function ServiceRow({
   index: number
 }) {
   const Icon = getIcon(service.iconName ?? servicesContent.list[index]?.iconName)
+  // Bouton « Réserver » sur les chambres uniquement (pas sur le bloc « services de l'hôtel »).
+  const isRoom = /chambre|room|habitaci/i.test(service.title ?? '')
   const isReversed = index % 2 === 1
   const img = service.image || defaultImages[index] || defaultImages[0]
   const ref = useRef<HTMLElement>(null)
@@ -192,6 +198,19 @@ function ServiceRow({
           </motion.ul>
         )}
 
+        {/* Bouton Réserver — en bas de chaque chambre */}
+        {isRoom && (
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 12 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+            }}
+            className="mt-7"
+          >
+            <BookButton size="lg" />
+          </motion.div>
+        )}
+
       </motion.div>
     </motion.article>
   )
@@ -240,6 +259,73 @@ export function ServicesContent() {
               <ServiceRow key={s.title || i} service={s} index={i} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Section Devis — avant la galerie */}
+      <section className="border-b border-border/60 bg-muted/15">
+        <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, ease }}
+            className="relative overflow-hidden rounded-3xl bg-card/90 p-8 text-center shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.2)] sm:p-12"
+          >
+            {/* Bordure dégradée signature */}
+            <div
+              className="pointer-events-none absolute inset-0 rounded-3xl p-px"
+              aria-hidden
+              style={{
+                background:
+                  'linear-gradient(135deg, oklch(0.45 0.1 150 / 0.4) 0%, oklch(0.91 0.012 95 / 0.55) 50%, oklch(0.45 0.1 150 / 0.4) 100%)',
+                WebkitMask:
+                  'linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)',
+                WebkitMaskComposite: 'xor',
+                maskComposite: 'exclude',
+              }}
+            />
+
+            <div className="relative mx-auto max-w-2xl">
+              <span className="mx-auto inline-flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 text-primary ring-1 ring-primary/20">
+                <FileText className="size-6" aria-hidden />
+              </span>
+
+              <h2 className="mt-6 font-display text-3xl font-semibold tracking-[-0.02em] text-foreground sm:text-4xl">
+                Besoin d&apos;un{' '}
+                <span className="font-serif italic font-normal text-primary">devis</span> ?
+              </h2>
+
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Séjour en groupe, pension complète, séminaire ou demande sur mesure :
+                dites-nous votre projet, nous vous répondons rapidement avec une
+                proposition adaptée.
+              </p>
+
+              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <PillButton href="/contact?objet=devis" variant="solid" size="lg" arrow>
+                  Demander un devis
+                </PillButton>
+
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+                  <a
+                    href={`tel:${siteConfig.phone.replace(/\s/g, '')}`}
+                    className="inline-flex items-center gap-2 text-foreground/80 transition-colors hover:text-primary"
+                  >
+                    <Phone className="size-4 text-primary" aria-hidden />
+                    {siteConfig.phone}
+                  </a>
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="inline-flex items-center gap-2 text-foreground/80 transition-colors hover:text-primary"
+                  >
+                    <Mail className="size-4 text-primary" aria-hidden />
+                    {siteConfig.email}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

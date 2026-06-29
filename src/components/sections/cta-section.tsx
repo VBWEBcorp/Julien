@@ -16,56 +16,15 @@ const defaults = {
   title: ctaContent.title,
   description: ctaContent.description,
   button: ctaContent.button,
-}
-
-const col1Images = ctaContent.scrollImages.col1
-const col2Images = ctaContent.scrollImages.col2
-
-function ScrollColumn({ images, direction, speed }: { images: string[]; direction: 'up' | 'down'; speed: number }) {
-  // Duplicate once for seamless loop (2 copies, translate -50%)
-  const doubled = [...images, ...images]
-  const from = direction === 'up' ? '0%' : '-50%'
-  const to = direction === 'up' ? '-50%' : '0%'
-
-  return (
-    <div className="w-[130px] lg:w-[150px] shrink-0">
-      <motion.div
-        className="flex flex-col gap-3"
-        animate={{ y: [from, to] }}
-        transition={{
-          y: {
-            duration: speed,
-            repeat: Infinity,
-            ease: 'linear',
-            repeatType: 'loop',
-          },
-        }}
-      >
-        {doubled.map((src, i) => (
-          <div
-            key={`${direction}-${i}`}
-            className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shrink-0"
-          >
-            <Image
-              src={src}
-              alt=""
-              fill
-              sizes="150px"
-              loading="lazy"
-              className="object-cover"
-            />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  )
+  image: ctaContent.image,
 }
 
 export function CtaSection() {
   const { data } = useContent('home', { cta: defaults })
   const cta = data.cta ?? defaults
+  const image = cta.image ?? ctaContent.image
 
-  // Teinte vert forêt du bloc — sert aussi de couleur de fondu pour les colonnes d'images.
+  // Teinte vert forêt du bloc — sert aussi de couleur de fondu pour la photo.
   const fade = 'oklch(0.18 0.032 150)'
 
   return (
@@ -104,19 +63,18 @@ export function CtaSection() {
               </div>
             </div>
 
-            {/* Right - Scrolling images, clipped to card */}
-            <div className="hidden md:block relative w-[300px] lg:w-[340px] shrink-0 overflow-hidden">
-              {/* Fondus vers la teinte vert forêt du bloc */}
-              <div className="pointer-events-none absolute top-0 left-0 right-0 h-28 z-20" style={{ background: `linear-gradient(to bottom, ${fade}, transparent)` }} />
-              <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-28 z-20" style={{ background: `linear-gradient(to top, ${fade}, transparent)` }} />
-              <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-24 z-20" style={{ background: `linear-gradient(to right, ${fade}, transparent)` }} />
-
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="flex gap-3 -rotate-6 translate-x-[10%]" style={{ height: '140%', marginTop: '-20%' }}>
-                  <ScrollColumn images={col1Images} direction="up" speed={40} />
-                  <ScrollColumn images={col2Images} direction="down" speed={45} />
-                </div>
-              </div>
+            {/* Right - Photo unique (parapente), fondue dans le bloc */}
+            <div className="hidden md:block relative w-[300px] lg:w-[360px] shrink-0 overflow-hidden">
+              <Image
+                src={image}
+                alt=""
+                fill
+                sizes="(min-width: 1024px) 360px, 300px"
+                loading="lazy"
+                className="object-cover"
+              />
+              {/* Fondu vers la teinte vert forêt du bloc, côté gauche de la photo */}
+              <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-32 z-20" style={{ background: `linear-gradient(to right, ${fade}, transparent)` }} />
             </div>
           </div>
         </motion.div>

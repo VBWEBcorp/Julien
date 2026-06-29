@@ -57,8 +57,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <PolesMosaic />
       <StorySection />
       <AmenitiesSection />
-      <TestimonialsSection />
       <GalleryCarousel />
+      <TestimonialsSection />
       <FaqSection />
       <CtaSection />
       <ValuesMarquee />

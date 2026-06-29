@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { connectDB } from '@/lib/db'
 import Carte from '@/models/Menu'
 import { verifyAuth } from '@/lib/auth'
+import { normalizeCarteCategory } from '@/lib/carte-categories'
 import { Types } from 'mongoose'
 
 type Params = Promise<{ id: string }>
@@ -21,11 +22,11 @@ export async function PUT(request: NextRequest, { params }: { params: Params }) 
       return NextResponse.json({ error: 'Invalid ID' }, { status: 400 })
     }
 
-    const { title, description, fileUrl, fileType, order, active } = await request.json()
+    const { title, description, fileUrl, fileType, category, order, active } = await request.json()
 
     const carte = await Carte.findByIdAndUpdate(
       id,
-      { title, description, fileUrl, fileType, order, active },
+      { title, description, fileUrl, fileType, category: normalizeCarteCategory(category), order, active },
       { new: true, runValidators: true }
     )
 

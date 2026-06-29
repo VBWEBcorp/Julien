@@ -1,4 +1,16 @@
+import dns from 'node:dns'
+
 import mongoose from 'mongoose'
+
+// Certains réseaux / résolveurs DNS locaux refusent les requêtes SRV
+// (« querySrv ECONNREFUSED ») utilisées par les chaînes mongodb+srv:// d'Atlas.
+// On force des résolveurs publics fiables pour que la résolution aboutisse.
+// Sans effet négatif en production (où le DNS fonctionne déjà).
+try {
+  dns.setServers(['1.1.1.1', '8.8.8.8', '1.0.0.1'])
+} catch {
+  // setServers peut throw si la liste est invalide : on ignore (fallback DNS système).
+}
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/template-cms'
 

@@ -81,6 +81,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
         description: s.description ?? defaultSettings.description,
         eyebrow: s.eyebrow ?? defaultSettings.eyebrow,
         ...(s.heroImage ? { heroImage: s.heroImage } : {}),
+        ...(s.heroVideo ? { heroVideo: s.heroVideo } : {}),
       }
     }
     posts = (postsDocs as any[]).map((p) => ({

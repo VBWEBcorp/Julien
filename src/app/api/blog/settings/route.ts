@@ -38,7 +38,7 @@ export async function PUT(request: NextRequest) {
     if (!settings) {
       settings = await BlogSettings.create(body)
     } else {
-      const fields = ['enabled', 'title', 'description', 'eyebrow', 'heroImage', 'categories']
+      const fields = ['enabled', 'title', 'description', 'eyebrow', 'heroImage', 'heroVideo', 'categories']
       for (const field of fields) {
         if (body[field] !== undefined) (settings as any)[field] = body[field]
       }

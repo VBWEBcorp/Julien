@@ -93,6 +93,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ locale
         description: s.description ?? defaultSettings.description,
         eyebrow: s.eyebrow ?? defaultSettings.eyebrow,
         ...(s.heroImage ? { heroImage: s.heroImage } : {}),
+        ...(s.heroVideo ? { heroVideo: s.heroVideo } : {}),
       }
     }
     images = (imagesDocs as any[]).map((img) => ({

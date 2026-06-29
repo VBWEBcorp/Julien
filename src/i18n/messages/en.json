@@ -89,6 +89,7 @@
       "stay": "Booking / stay (hotel)",
       "table": "Book a table (restaurant)",
       "group": "Group / seminar",
+      "quote": "Quote request",
       "other": "Other enquiry"
     },
     "success": {
