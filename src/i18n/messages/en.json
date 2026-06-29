@@ -8,6 +8,7 @@
     "auberge": "The Inn",
     "gallery": "Gallery",
     "journal": "The Journal",
+    "localNews": "Local News",
     "contact": "Contact",
     "menu": "Menu",
     "close": "Close",
@@ -106,8 +107,7 @@
       "phone": "Phone",
       "email": "Email",
       "address": "Address",
-      "statusToday": "Available today",
-      "hours": "· Mon-Fri 9am-6pm"
+      "statusToday": "Available today"
     },
     "map": {
       "directions": "Get directions"
@@ -128,6 +128,7 @@
     "badge": "Best rate guaranteed",
     "loading": "Loading the booking engine…",
     "fullscreen": "Open the engine in fullscreen",
+    "bookOnline": "Book online",
     "support": "A question, a group, a seminar? Call us:"
   },
   "meta": {

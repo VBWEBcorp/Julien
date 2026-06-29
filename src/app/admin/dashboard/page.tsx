@@ -19,6 +19,7 @@ import {
   CalendarCheck,
   Mountain,
   Languages,
+  Rss,
 } from 'lucide-react'
 
 interface AdminUser {
@@ -39,6 +40,7 @@ const modules = [
   { href: '/admin/cartes', label: 'Cartes resto', desc: 'Carte du moment, semaine, boissons', icon: UtensilsCrossed },
   { href: '/admin/gallery', label: 'Galerie', desc: 'Photos du site', icon: Images },
   { href: '/admin/blog', label: 'Blog', desc: 'Articles et actualités', icon: FileText },
+  { href: '/admin/feed', label: 'Actus du coin', desc: 'Presse, randos & événements agrégés', icon: Rss },
 ]
 
 const ease = [0.22, 1, 0.36, 1] as const

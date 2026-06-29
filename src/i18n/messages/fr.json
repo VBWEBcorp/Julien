@@ -8,6 +8,7 @@
     "auberge": "L'auberge",
     "gallery": "Galerie",
     "journal": "Le Journal",
+    "localNews": "Actus du coin",
     "contact": "Contact",
     "menu": "Menu",
     "close": "Fermer",
@@ -106,8 +107,7 @@
       "phone": "Téléphone",
       "email": "Email",
       "address": "Adresse",
-      "statusToday": "Disponible aujourd'hui",
-      "hours": "· Lun-Ven 9h-18h"
+      "statusToday": "Disponible aujourd'hui"
     },
     "map": {
       "directions": "Itinéraire"
@@ -128,6 +128,7 @@
     "badge": "Meilleur tarif garanti",
     "loading": "Chargement du moteur de réservation…",
     "fullscreen": "Ouvrir le moteur en plein écran",
+    "bookOnline": "Réserver en ligne",
     "support": "Une question, un groupe, un séminaire ? Appelez-nous :"
   },
   "meta": {

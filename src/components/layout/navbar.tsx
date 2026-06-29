@@ -39,6 +39,7 @@ export function Navbar() {
     { to: '/a-propos', label: t('auberge') },
     ...(features.gallery ? [{ to: '/gallery', label: t('gallery') }] : []),
     ...(features.blog ? [{ to: '/blog', label: t('journal') }] : []),
+    { to: '/actualites-du-coin', label: t('localNews') },
     { to: '/contact', label: t('contact') },
   ]
 
@@ -248,10 +249,10 @@ export function Navbar() {
                 <Link
                   href="/reserver"
                   onClick={() => setOpen(false)}
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[3px] bg-[oklch(0.73_0.15_62)] px-8 text-xs font-semibold uppercase tracking-[0.22em] text-[oklch(0.2_0.03_150)] transition-colors hover:bg-[oklch(0.78_0.15_62)]"
+                  className="inline-flex h-14 items-center justify-center gap-2 rounded-[3px] bg-[oklch(0.73_0.15_62)] px-8 text-sm font-semibold uppercase tracking-[0.22em] text-[oklch(0.2_0.03_150)] transition-colors hover:bg-[oklch(0.78_0.15_62)]"
                 >
                   {t('book')}
-                  <ArrowUpRight className="size-4" aria-hidden />
+                  <ArrowUpRight className="size-[18px]" aria-hidden />
                 </Link>
 
                 <div className="space-y-4 text-sm">

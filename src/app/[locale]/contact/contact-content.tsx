@@ -374,7 +374,6 @@ export function ContactContent() {
                       <span className="text-xs font-medium text-foreground">
                         {t('directContact.statusToday')}
                       </span>
-                      <span className="text-xs text-muted-foreground">{t('directContact.hours')}</span>
                     </div>
                   </div>
                 </div>

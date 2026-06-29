@@ -25,6 +25,7 @@ import {
   BedDouble,
   Wine,
   CalendarCheck,
+  Rss,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useSidebar } from '@/components/admin/sidebar-context'
@@ -49,6 +50,7 @@ const moduleItems = [
   { href: '/admin/cartes', label: 'Cartes resto', icon: UtensilsCrossed },
   { href: '/admin/gallery', label: 'Galerie', icon: Images },
   { href: '/admin/blog', label: 'Blog', icon: FileText },
+  { href: '/admin/feed', label: 'Actus du coin', icon: Rss },
   { href: '/admin/marketing', label: 'Marketing', icon: Megaphone },
 ]
 

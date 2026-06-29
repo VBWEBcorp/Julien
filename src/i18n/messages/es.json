@@ -8,6 +8,7 @@
     "auberge": "El Albergue",
     "gallery": "Galería",
     "journal": "El Diario",
+    "localNews": "Noticias locales",
     "contact": "Contacto",
     "menu": "Menú",
     "close": "Cerrar",
@@ -106,8 +107,7 @@
       "phone": "Teléfono",
       "email": "Correo electrónico",
       "address": "Dirección",
-      "statusToday": "Disponible hoy",
-      "hours": "· Lun-Vie 9h-18h"
+      "statusToday": "Disponible hoy"
     },
     "map": {
       "directions": "Cómo llegar"
@@ -128,6 +128,7 @@
     "badge": "Mejor tarifa garantizada",
     "loading": "Cargando el motor de reservas…",
     "fullscreen": "Abrir el motor en pantalla completa",
+    "bookOnline": "Reservar en línea",
     "support": "¿Una pregunta, un grupo, un seminario? Llámenos:"
   },
   "meta": {

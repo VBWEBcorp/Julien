@@ -13,6 +13,7 @@ import {
 import { useLocale, useTranslations } from 'next-intl'
 import { useState } from 'react'
 
+import { Link } from '@/i18n/navigation'
 import { MountainBackdrop } from '@/components/ui/mountain-backdrop'
 import { useContent } from '@/hooks/use-content'
 import { getIcon } from '@/lib/icons'
@@ -75,6 +76,15 @@ export function ReserverContent() {
             <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
               {note}
             </p>
+            {/* Renvoi vers le contact (questions, groupes, séminaires) + appel direct */}
+            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              <Link href="/contact" className="font-medium text-primary hover:underline">
+                {t('support')}
+              </Link>{' '}
+              <a href={telHref} className="font-medium text-primary hover:underline">
+                {siteConfig.phone}
+              </a>
+            </p>
           </motion.div>
 
           {/* Bloc moteur Amenitiz */}
@@ -106,8 +116,10 @@ export function ReserverContent() {
               ))}
             </ol>
 
-            {/* Moteur de réservation Amenitiz embarqué (résa + paiement sur le site) */}
-            <div className="mt-6 overflow-hidden rounded-3xl border border-border/60 bg-card shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.25)]">
+            {/* Moteur de réservation Amenitiz embarqué (résa + paiement sur le site).
+                Embarqué uniquement sur grand écran (lg:) — sur mobile, l'iframe est
+                à l'étroit : on bascule sur un bouton « plein écran » plus pratique. */}
+            <div className="mt-6 hidden overflow-hidden rounded-3xl border border-border/60 bg-card shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.25)] lg:block">
               {/* Barre d'en-tête « navigateur » */}
               <div className="flex items-center justify-between gap-3 border-b border-border/60 bg-[oklch(0.975_0.008_95)] px-4 py-3 dark:bg-[oklch(0.19_0.015_150)]">
                 <div className="flex items-center gap-2 text-sm font-medium text-foreground">
@@ -133,15 +145,37 @@ export function ReserverContent() {
                   title="Moteur de réservation, Auberge Le Permayou"
                   loading="lazy"
                   onLoad={() => setIsLoading(false)}
-                  className="h-[680px] w-full border-0 sm:h-[780px]"
+                  // Hauteur généreuse : le moteur Amenitiz s'affiche en entier sans
+                  // scroll interne — sinon l'ouverture d'une liste déroulante fait
+                  // défiler la page parente au lieu du bloc.
+                  className="h-[860px] w-full border-0 sm:h-[1040px] lg:h-[1180px]"
                   allow="payment"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
               </div>
             </div>
 
-            {/* Secours */}
-            <div className="mt-6 flex flex-col items-center gap-3 text-sm text-muted-foreground">
+            {/* Mobile / petit écran : pas d'iframe embarqué (trop à l'étroit) — on
+                ouvre le moteur en plein écran via un bouton bien visible. */}
+            <div className="mt-6 overflow-hidden rounded-3xl border border-border/60 bg-card p-6 text-center shadow-[0_20px_50px_-20px_oklch(0.2_0.02_150/0.25)] lg:hidden">
+              <div className="flex items-center justify-center gap-2 text-sm font-medium text-foreground">
+                <Lock className="size-4 text-primary" aria-hidden />
+                <span>{t('engineHeader')}</span>
+              </div>
+              <p className="mx-auto mt-1.5 max-w-xs text-xs text-muted-foreground">{t('badge')}</p>
+              <a
+                href={bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-[oklch(0.29_0.08_150)]"
+              >
+                {t('bookOnline')}
+                <ExternalLink className="size-4" aria-hidden />
+              </a>
+            </div>
+
+            {/* Secours — lien plein écran sous le moteur embarqué (grand écran uniquement) */}
+            <div className="mt-6 hidden flex-col items-center gap-3 text-sm text-muted-foreground lg:flex">
               <a
                 href={bookingUrl}
                 target="_blank"
@@ -152,12 +186,6 @@ export function ReserverContent() {
                 {t('fullscreen')}
                 <ExternalLink className="size-3.5" aria-hidden />
               </a>
-              <p>
-                {t('support')}{' '}
-                <a href={telHref} className="font-medium text-primary hover:underline">
-                  {siteConfig.phone}
-                </a>
-              </p>
             </div>
           </motion.div>
 
